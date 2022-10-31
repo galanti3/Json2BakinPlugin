@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace json2bakinPlugin.Models
+{
+    public class BakinCode
+    {
+        public string Code { get; set; }
+        public List<BakinParameter> Params { get; set; }
+    }
+
+    public class BakinParameter
+    {
+        public string Type { get; set; }
+        public string Value { get; set; }
+
+        public string Description { get; set; }
+
+        #region Constructor
+        public BakinParameter(string type, string desc)
+        {
+            Type = type;
+            Description = desc;
+            switch(Type)
+            {
+                case "整数":
+                case "小数":
+                    Value = "0";
+                    break;
+                case "文字列":
+                    Value = "";
+                    break;
+                case "Guid":
+                    Value = Guid.Empty.ToString();
+                    break;
+                case "変数":
+                    Value = "";
+                    break;
+                case "ローカル変数":
+                    Value = "A";
+                    break;
+                case "スポット": //マップGuid | スポットID | X位置（変数可）| Y位置 | Z位置（変数可）
+                    Value = Guid.Empty.ToString() + "|1001|0|0|0";
+                    break;
+                default:
+                    Value = "";
+                    break;
+            }
+        }
+
+        public BakinParameter(string type, string desc, string value)
+        {
+            Type = type;
+            Description = desc;
+            Value = value;
+        }
+        #endregion
+    }
+}
