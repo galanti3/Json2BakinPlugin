@@ -87,7 +87,7 @@
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
     <Compile Include="Models\MvEvent.cs" />
-    <Compile Include="Models\MvEventCodeParameter.cs" />
+    <Compile Include="Models\MvEventPage.cs" />
     <Compile Include="Models\MvMap.cs" />
     <Compile Include="PluginDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,10 +104,10 @@
     <Compile Include="Services\BakinDataExportService.cs" />
     <Compile Include="Services\Json2BakinConvertService.cs" />
     <Compile Include="Services\MvMapDataLoadService.cs" />
-    <Compile Include="TestForm.cs">
+    <Compile Include="View\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestForm.Designer.cs">
+    <Compile Include="View\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -120,10 +120,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.en.resx">
+    <EmbeddedResource Include="View\TestForm.en.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.resx">
+    <EmbeddedResource Include="View\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

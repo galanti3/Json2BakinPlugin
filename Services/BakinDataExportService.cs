@@ -1,12 +1,7 @@
-﻿using json2bakinPlugin.Models;
-using Json2BakinPlugin.Models;
+﻿using Json2BakinPlugin.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Json2BakinPlugin.Services
 {
@@ -62,6 +57,10 @@ namespace Json2BakinPlugin.Services
                     {
                         foreach (MvCode code in page.list)
                         {
+                            if(code.code == 505) //route
+                            {
+                                code.ExtractRouteCode();
+                            }
                             code.BakinCode = codeDic.Code(code.code*100);
                         }
                     }

@@ -1,20 +1,6 @@
-﻿using json2bakinPlugin.Models;
-using Json2BakinPlugin.Models;
-using System;
+﻿using Json2BakinPlugin.Models;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static Yukar.Common.Resource.NSpriteSet;
-using System.Windows.Forms;
-using Yukar.Common.GameData;
-using Yukar.Common.Resource;
-using Yukar.Common.Rom;
-//using SBControl;
 
 namespace Json2BakinPlugin.Services
 {

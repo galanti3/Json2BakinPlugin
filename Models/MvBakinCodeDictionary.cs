@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Json2BakinPlugin.Models
-			{
+{
 	public class MvBakinCodeDictionary
 	{
 		private Dictionary<int, string> codePairs = new Dictionary<int, string>() {

@@ -39,7 +39,7 @@ namespace Json2BakinPlugin.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Json2BakinPlugin.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("json2bakinPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プラグインサンプル(同梱用).
+        ///   Looks up a localized string similar to JSONマップデーターBAKINイベントシート 変換プラグイン.
         /// </summary>
         internal static string PluginName {
             get {

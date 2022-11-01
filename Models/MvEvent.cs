@@ -1,7 +1,4 @@
-﻿using json2bakinPlugin.Models;
-using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
 
 namespace Json2BakinPlugin.Models
 {
@@ -16,23 +13,6 @@ namespace Json2BakinPlugin.Models
         public int y { get; set; }
 
         public List<MvEventPage> pages { get; set; }
-    }
-
-    public class MvEventPage
-    {
-        public MvEventConditions conditions { get; set; }
-        public bool directionFix { get; set; }
-        public MvEventImage image { get; set; }
-        public List<MvCode> list { get; set; }
-        public int moveFrequency { get; set; }
-        public MvEventMoveRoute moveRoute { get; set; }
-        public int moveSpeed { get; set; }
-        public int moveType { get; set; }
-        public int priorityType { get; set; }
-        public bool stepAnime { get; set; }
-        public bool through { get; set; }
-        public int trigger { get; set; }
-        public bool walkAnime { get; set; }
     }
 
     public class MvEventMoveRoute
