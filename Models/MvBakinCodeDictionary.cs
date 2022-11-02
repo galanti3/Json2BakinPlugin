@@ -42,13 +42,15 @@ namespace Json2BakinPlugin.Models
 			{11800, "COMMENT	注釈　ラベル"}, //comment out
 			{11900, "COMMENT	注釈　ラベルジャンプ"}, //comment out
 			{12100, "SWITCH	イベントスイッチのON/OFF"},
-			{12200, "HLVARIABLE	複雑な変数ボックスの操作"},
-			{12201, "HLVARIABLE	複雑な変数ボックスの操作:ゲームデータ"},
-			{12202, "HLVARIABLE	複雑な変数ボックスの操作：アクター"},
-			{12203, "HLVARIABLE	複雑な変数ボックスの操作：モンスター"},
-			{12204, "HLVARIABLE	複雑な変数ボックスの操作：キャラクター"},
-			{12205, "HLVARIABLE	複雑な変数ボックスの操作：パーティ"},
-			{12206, "COMMENT	複雑な変数ボックスの操作：スクリプト"}, //comment out
+			{12200, "VARIABLE	変数ボックスへの代入と計算：乱数"},
+			{12201, "HLVARIABLE	複雑な変数ボックスの操作"},
+			{12202, "HLVARIABLE	複雑な変数ボックスの操作：アイテム"},
+			{12203, "HLVARIABLE	複雑な変数ボックスの操作：アクター"},
+			{12204, "HLVARIABLE	複雑な変数ボックスの操作：モンスター"},
+			{12205, "HLVARIABLE	複雑な変数ボックスの操作：キャラクター"},
+			{12206, "HLVARIABLE	複雑な変数ボックスの操作：パーティ"},
+			{12207, "HLVARIABLE	複雑な変数ボックスの操作：アイテム"},
+			{12208, "COMMENT	複雑な変数ボックスの操作：スクリプト"}, //comment out
 			{12300, "SWITCH	セルフスイッチのON/OFF"},
 			{12400, "EXEC	共通イベント呼び出し：タイマーの操作"},
 			{12500, "MONEY	お金を増やす／減らす"},
@@ -56,14 +58,13 @@ namespace Json2BakinPlugin.Models
 			{12700, "ITEM	武器を増やす／減らす"},
 			{12800, "ITEM	防具を増やす／減らす"},
 			{12900, "PARTY	パーティにキャストを参加／外す"},
-			{12901, "WALK_IN_ROWS_ORDER	隊列にキャストを追加する／順番を入れ替える"},
 			{13200, "COMMENT	注釈　戦闘BGMの変更"}, //comment out
 			{13300, "COMMENT	注釈　勝利MEの変更"}, //comment out
 			{13400, "SW_SAVE	セーブの許可/禁止"},
 			{13500, "SW_MENU	メニュー画面の表示の許可/禁止"},
 			{13600, "SW_ENCOUNTING	モンスターの出現の許可/禁止"},
 			{13700, "COMMENT	注釈　並び替えの許可/禁止"}, //comment out
-			{13800, "CHANGE_LAYOUT	表示するレイアウトを変更"},
+			{13800, "CHANGE_LAYOUT	表示するレイアウト（ウィンドウカラー）を変更"},
 			{13900, "COMMENT	注釈　敗北MEの変更"}, //comment out
 			{14000, "COMMENT	注釈　乗り物BGMの変更"}, //comment out
 			{20100, "PLMOVE	プレイヤーを他の場所に移動"},
@@ -134,8 +135,8 @@ namespace Json2BakinPlugin.Models
 			{33700, "EFFECT	エフェクトの表示" },
 			{33900, "BTL_ACTION	バトルキャストの状態を指定する" },
 			{34000, "BTL_STOP	バトルの強制終了" },
+			{35100, "SHOW_SCORE_BOARD	メニューの表示（イベント用フリーレイアウトを表示）"},
 			{35200, "SAVE	セーブ画面を表示"},
-			{35100, "COMMENT	注釈　メニューの表示"}, //comment out
 			{35300, "COMMENT	注釈　ゲームオーバー"}, //comment out
 			{35400, "COMMENT	注釈　タイトル画面に戻る"}, //comment out
 			{35500, "COMMENT	注釈　スクリプト"}, //comment out
@@ -240,7 +241,6 @@ namespace Json2BakinPlugin.Models
 
 			//commands not used in MV
 			{1, "SPTEXT	イメージとして画面に文字を表示する"},
-			{2, "SHOW_SCORE_BOARD	スコアボードの表示"},
 			{3, "CHANGE_GAMEOVER_ACTION	ゲームオーバー時の動作指定"},
 			{4, "WEBBROWSER	ウェブブラウザを表示"},
 			{5, "SW_CAMLOCK	カメラ操作の許可/禁止"},
@@ -251,6 +251,7 @@ namespace Json2BakinPlugin.Models
 			{12, "PLSNAP	プレイヤーの位置をグリッドに吸着する"},
 			{13, "PLWALK_TGT	プレイヤーを座標指定して歩かせる"},
 			{14, "ROTATEPL_XYZ	プレイヤーを回転させる"},
+			{15, "WALK_IN_ROWS_ORDER	隊列にキャストを追加する／順番を入れ替える"},
 			{16, "PLSUBGRP, player subgraphic"},
 			{17, "ITEM_THROW_OUT	アイテムを捨てる"},
 			{19, "CHANGE_SCALE	イベントのスケールを変更"},
@@ -258,7 +259,6 @@ namespace Json2BakinPlugin.Models
 			{21, "EVWALK_TGT	イベントの座標を変更して歩かせる"},
 			{22, "ROTATE_XYZ	イベントを回転させる。"},
 			{24, "SUBGRP	イベントのサブグラフィックの表示状態変更"},
-			{25, "VARIABLE	変数ボックスへの代入と計算"},
 			{26, "HLSTRVARIABLE	複雑な文字列変数の操作"},
 			{27, "REPLACE_STRING_VARIABLE	文字列の置き換え"},
 			{28, "SW_PLLOCK	プレイヤー操作の許可/禁止"},

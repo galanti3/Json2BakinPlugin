@@ -8,7 +8,7 @@ namespace Json2BakinPlugin.Models
 {
     public class MvMap
     {
-        #region properties
+        #region Properties
         //map ID. created from file name.
         public string IdString { get; set; }
         public bool autoplayBgm {get; set;}

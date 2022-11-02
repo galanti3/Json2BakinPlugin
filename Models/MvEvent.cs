@@ -14,6 +14,7 @@ namespace Json2BakinPlugin.Models
 
         public List<MvEventPage> pages { get; set; }
     }
+<<<<<<< HEAD
 
     public class MvEventMoveRoute
     {
@@ -47,4 +48,6 @@ namespace Json2BakinPlugin.Models
         public bool variableValid { get; set; }
         public int variableValue { get; set; }
     }
+=======
+>>>>>>> 8f22742e0912bbe984028d57abbf04b34347c587
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{693CF4D5-9289-444F-8D4D-036B5E009577}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>json2bakinPlugin</RootNamespace>
-    <AssemblyName>json2bakinPlugin</AssemblyName>
+    <RootNamespace>Json2BakinPlugin</RootNamespace>
+    <AssemblyName>Json2BakinPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -87,7 +87,14 @@
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
     <Compile Include="Models\MvEvent.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\MvEventPage.cs" />
+=======
+    <Compile Include="Models\MvEventConditions.cs" />
+    <Compile Include="Models\MvEventImage.cs" />
+    <Compile Include="Models\MvEventPage.cs" />
+    <Compile Include="Models\MvEventMoveRoute.cs" />
+>>>>>>> 8f22742e0912bbe984028d57abbf04b34347c587
     <Compile Include="Models\MvMap.cs" />
     <Compile Include="PluginDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
