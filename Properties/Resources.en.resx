@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PluginName" xml:space="preserve">
-    <value>Sample Plug-ins (for bundling)</value>
+    <value>JSON map data - BAKIN event sheet conversion plugin</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="smile" type="System.Resources.ResXFileRef, System.Windows.Forms">

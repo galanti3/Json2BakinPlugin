@@ -61,7 +61,7 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to プラグインサンプル(同梱用).
+        ///   Looks up a localized string similar to JSONマップデーターBAKINイベントシート 変換プラグイン.
         /// </summary>
         internal static string PluginName {
             get {

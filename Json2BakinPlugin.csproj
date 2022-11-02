@@ -7,8 +7,8 @@
     <ProjectGuid>{693CF4D5-9289-444F-8D4D-036B5E009577}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>json2bakinPlugin</RootNamespace>
-    <AssemblyName>json2bakinPlugin</AssemblyName>
+    <RootNamespace>Json2BakinPlugin</RootNamespace>
+    <AssemblyName>Json2BakinPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -87,7 +87,10 @@
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
     <Compile Include="Models\MvEvent.cs" />
-    <Compile Include="Models\MvEventCodeParameter.cs" />
+    <Compile Include="Models\MvEventConditions.cs" />
+    <Compile Include="Models\MvEventImage.cs" />
+    <Compile Include="Models\MvEventPage.cs" />
+    <Compile Include="Models\MvEventMoveRoute.cs" />
     <Compile Include="Models\MvMap.cs" />
     <Compile Include="PluginDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,10 +107,10 @@
     <Compile Include="Services\BakinDataExportService.cs" />
     <Compile Include="Services\Json2BakinConvertService.cs" />
     <Compile Include="Services\MvMapDataLoadService.cs" />
-    <Compile Include="TestForm.cs">
+    <Compile Include="View\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestForm.Designer.cs">
+    <Compile Include="View\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -120,10 +123,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.en.resx">
+    <EmbeddedResource Include="View\TestForm.en.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.resx">
+    <EmbeddedResource Include="View\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
