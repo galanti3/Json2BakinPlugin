@@ -5,17 +5,21 @@ namespace Json2BakinPlugin.Models
 {
     public class BakinCode
     {
+        #region Properties
         public string Code { get; set; }
         public List<BakinParameter> Params { get; set; }
+        #endregion
     }
 
     public class BakinParameter
     {
+        #region Properties
         public string Type { get; set; }
         public string Value { get; set; }
 
         public string Description { get; set; }
 
+        #endregion
         #region Constructor
         public BakinParameter(string type, string desc)
         {
@@ -23,6 +27,11 @@ namespace Json2BakinPlugin.Models
             Description = desc;
             switch(Type)
             {
+                case "コマンド": //command name
+                case "コマンド終了": //command end
+                    Value = desc;
+                    Description = "";
+                    break;
                 case "整数":
                 case "小数":
                     Value = "0";

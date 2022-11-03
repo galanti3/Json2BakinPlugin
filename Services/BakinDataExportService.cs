@@ -12,7 +12,7 @@ namespace Json2BakinPlugin.Services
 
         private bool nullCommand = false;
 
-        #region Functions
+        #region Methods
         public void Preprocess(MvMap map)
         {
             foreach (MvEvent ev in map.events)
@@ -22,6 +22,7 @@ namespace Json2BakinPlugin.Services
                     foreach (MvEventPage page in ev.pages)
                     {
                         convertService.ConvertRouteCodesToDestinationCode(page);
+                        //debug; merge shop items
                     }
                 }
             }
@@ -61,6 +62,7 @@ namespace Json2BakinPlugin.Services
                             {
                                 code.ExtractRouteCode();
                             }
+                            code.GenerateSubCode();
                             code.BakinCode = codeDic.Code(code.code*100);
                         }
                     }
@@ -90,7 +92,9 @@ namespace Json2BakinPlugin.Services
                 }
             }
         }
+        #endregion
 
+        #region Privates
         private string WriteEventInfo(string evName)
         {
             string otext = "";
@@ -99,7 +103,7 @@ namespace Json2BakinPlugin.Services
             return otext;
         }
 
-        public string WritePage(MvEventPage page)
+        private string WritePage(MvEventPage page)
         {
             string otext = "";
             otext += WriteBasicPageInfo(page);
@@ -131,9 +135,7 @@ namespace Json2BakinPlugin.Services
             otext += "\t押せる\tFalse\n";
             return otext;
         }
-        #endregion
 
-        #region Privates
         private string GetEventName(MvEvent ev)
         {
             if(ev.name != null && ev.name != "")
@@ -160,33 +162,16 @@ namespace Json2BakinPlugin.Services
 
         private string ExportCode(BakinCode code)
         {
-            return
-            WriteCommand(code.Code)
-            + WriteCommandParameters(code.Params)
-            + WriteCommandEnd();
-        }
-
-        private string WriteCommand(string command)
-        {
-            nullCommand = command == null ? true : false;
-            return nullCommand ? "" : "\t\tコマンド\t" + command.Replace("\t", "\t(") + ")" + "\n";
-        }
-
-        private string WriteCommandParameters(List<BakinParameter> paras)
-        {
             string otext = "";
-            foreach(BakinParameter p in paras)
+            foreach (BakinParameter p in code.Params)
             {
-                string desc = p.Description == "" ? "" : "(" + p.Description + ")";
-                otext += "\t\t\t" + p.Type + "\t" + p.Value + "\t" + desc + "\n";
+                string desc = p.Description == "" ? "" : "\t(" + p.Description + ")";
+                otext += p.Type.Contains("コマンド") ? "\t\t" : "\t\t\t";
+                otext += p.Type + "\t" + p.Value +  desc + "\n";
             }
             return otext;
         }
 
-        private string WriteCommandEnd()
-        {
-            return nullCommand ? "" : "\t\tコマンド終了\n";
-        }
         #endregion
 
     }

@@ -8,7 +8,7 @@ namespace Json2BakinPlugin.Services
 {
     public class MvMapDataLoadService
     {
-        #region functions
+        #region Methods
         public MvMap DeserializeMapData(string file)
         {
             string text = System.IO.File.ReadAllText(file);
@@ -30,7 +30,7 @@ namespace Json2BakinPlugin.Services
 					{
 						foreach (MvCode code in page.list)
 						{
-							code.SplitEventCodeParameters();
+							code.ExtractEventCodeParameters();
 						}
 					}
 				}

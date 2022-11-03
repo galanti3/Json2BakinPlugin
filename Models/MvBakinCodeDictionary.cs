@@ -22,13 +22,13 @@ namespace Json2BakinPlugin.Models
 			{11101, "IFVARIABLE	変数ボックスの確認"},
 			{11102, "IFVARIABLE	変数ボックスの確認"},
 			{11103, "COMMENT	注釈　条件分岐：タイマー"}, //comment out
-			{11104, "IF_STRING_VARIABLE	文字列変数の確認"},
-			{11105, "IFPARTY	パーティに含まれるキャストの確認"},
-			{11106, "IFITEM	メンバーが持っているアイテムの確認"},
-			{11107, "COMMENT	注釈　条件分岐：アクタークラス、スキル"}, //comment out
-			{11108, "IFMONEY	持っているお金の確認"},
-			{11109, "BTL_IFMONSTER	バトル中のモンスターのチェック"},
-			{11110, "COMMENT	注釈　条件分岐：キャラクターの向き"}, //comment out
+			{11104, "IFPARTY	パーティに含まれるキャストの確認"},
+			{11105, "IF_STRING_VARIABLE	文字列変数の確認"},
+			{11106, "COMMENT	注釈　条件分岐：アクタークラス、スキル、状態"}, //comment out
+			{11107, "IFITEM	メンバーが持っているアイテムの確認"},
+			{11108, "BTL_IFMONSTER	バトル中のモンスターのチェック"},
+			{11109, "COMMENT	注釈　条件分岐：キャラクターの向き"}, //comment out
+			{11110, "IFMONEY	持っているお金の確認"},
 			{11111, "IFITEM	パーティが持っているアイテムの確認"},
 			{11112, "IFITEM	パーティが持っている武器の確認"},
 			{11113, "IFITEM	パーティが持っている防具の確認"},
