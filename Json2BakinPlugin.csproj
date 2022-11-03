@@ -87,14 +87,11 @@
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
     <Compile Include="Models\MvEvent.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\MvEventPage.cs" />
-=======
     <Compile Include="Models\MvEventConditions.cs" />
     <Compile Include="Models\MvEventImage.cs" />
     <Compile Include="Models\MvEventPage.cs" />
     <Compile Include="Models\MvEventMoveRoute.cs" />
->>>>>>> 8f22742e0912bbe984028d57abbf04b34347c587
     <Compile Include="Models\MvMap.cs" />
     <Compile Include="PluginDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

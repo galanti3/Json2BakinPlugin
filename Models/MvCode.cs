@@ -15,6 +15,8 @@ namespace Json2BakinPlugin.Models
         //generic parameter arrays. stored as string
         public string parameters { get; set; }
 
+		//id to distinguish different parameter conditions
+		public int subcode { get; set; }
         //Bakin command name
         public string BakinCode { get; set; }
 
