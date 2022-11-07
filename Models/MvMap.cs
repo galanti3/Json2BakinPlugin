@@ -38,5 +38,6 @@ namespace Json2BakinPlugin.Models
 
         public List<MvEvent> events { get; set; }
         #endregion
+
     }
 }

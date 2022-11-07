@@ -11,8 +11,9 @@ namespace Json2bakinPlugin.Controller
 {
     class Json2BakinPluginController
     {
-		MvMapDataLoadService loadService = new MvMapDataLoadService();
-		BakinDataExportService exportService = new BakinDataExportService();
+		MvMapDataLoadService _loadService;
+		Json2BakinConvertService _convertService;
+		BakinDataExportService _exportService;
 
 		public string JsonFolder { get; set; }
 		public string BakinFolder { get; set; }
@@ -21,16 +22,25 @@ namespace Json2bakinPlugin.Controller
         {
 			List<MvMap> mvMaps = new List<MvMap>();
 			List<string> files = Directory.GetFiles(JsonFolder, "Map*.json").ToList();
+			_loadService.LoadDatabase(JsonFolder);
 			foreach (string file in files)
 			{
-				MvMap map = loadService.DeserializeMapData(file);
-				map.IdString = file.Split('\\').Last().Replace("Map", "").Replace(".json", "");
-				exportService.Preprocess(map);
-				exportService.RegisterBakinCodes(map);
-				exportService.Postprocess(map);
-				exportService.ExportMap(map, BakinFolder);
-				mvMaps.Add(map);
+				_loadService.DeserializeMapData(file, file.Split('\\').Last().Replace("Map", "").Replace(".json", ""));
+				_exportService.Preprocess();
+				_exportService.RegisterBakinCodes();
+				_exportService.Postprocess();
+				_exportService.ExportMap(BakinFolder);
+				mvMaps.Add(_loadService.GetMap());
 			}
 		}
+
+        #region Initialize
+		public Json2BakinPluginController()
+        {
+			_loadService = new MvMapDataLoadService();
+			_convertService = new Json2BakinConvertService();
+			_exportService = new BakinDataExportService(_loadService, _convertService);
+        }
+		#endregion
 	}
 }

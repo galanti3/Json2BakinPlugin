@@ -12,10 +12,12 @@ namespace Json2BakinPlugin.Services
 {
 	public class Json2BakinConvertService
 	{
-		#region Global variables
+		#region Variables
 		string _moveChar;
 		string _isStopStuck;
 		string _isWaitMoving;
+		List<string> _indentType = new List<string>();
+		int _numChoices = 0;
 		#endregion
 
 		#region Methods
@@ -43,6 +45,7 @@ namespace Json2BakinPlugin.Services
 					break;
 				case "CHOICES": //102
 					AddCommandChoices(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "BRANCH": //402, 403
 					AddCommandBranch(p, code.Params);
@@ -51,31 +54,39 @@ namespace Json2BakinPlugin.Services
 					break;
 				case "ITEMMENU": //104
 					AddCommandItemmenu(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "TELOP": //105
 					AddCommandTelop(p, code.Params);
 					break;
 				case "IFSWITCH": //111(00)
 					AddCommandIfswitch(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "IFVARIABLE": //111(01-02)
 					AddCommandIfvariable(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				//timer???
 				case "IFPARTY": //111(04)
 					AddCommandIfparty(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "IF_STRING_VARIABLE": //111(05)
 					AddCommandIfstringvariable(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "IFITEM": //111(07, 11, 12, 13)
 					AddCommandIfitem(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "BTL_IFMONSTER": //111(08)
 					AddCommandBtlifmonster(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "IFMONEY": //111(10)
 					AddCommandIfmoney(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "ELSE": //411, 602, 603
 					AddCommandNoparams(p, "ELSE");
@@ -197,6 +208,7 @@ namespace Json2BakinPlugin.Services
 					break;
 				case "BOSSBATTLE": //301
 					AddCommandBossbattle(p, code.Params);
+					_indentType.Add("IF");
 					break;
 				case "SHOP": //302　code.Params[1] and code.Params[3] should be arrays containing item ids and prices
 					AddCommandShop(p, code.Params);
@@ -313,6 +325,16 @@ namespace Json2BakinPlugin.Services
 					break;
 				case "COMMENT":
 					AddCommandComment(p, code.Params);
+					break;
+				case "CLOSE":
+					AddCommandClose(p, code.Params);
+					break;
+				case "ERROR": //impossible to convert
+					AddCommandNoticeComment(p, Resources.Cvt_NoConvert, code.BakinCode[1]);
+					break;
+				case "ERROR_IF": //impossible to convert. Ignore corresponding close tag.
+					AddCommandNoticeComment(p, Resources.Cvt_NoConvert, code.BakinCode[1]);
+					_indentType.Add("IGNORE");
 					break;
 
 					#region Follwing commands are not used in MV.
@@ -524,7 +546,7 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-		public void ConvertRouteCodesToDestinationCode(MvEventPage page)
+        public void ConvertRouteCodesToDestinationCode(MvEventPage page)
 		{
 			List<MvCode> codes = new List<MvCode>();
 			int i = 0;
@@ -617,6 +639,7 @@ namespace Json2BakinPlugin.Services
 			AddCommandHeader(p, "CHOICES");
 			List<string> labels = JsonSerializer.Deserialize<List<string>>(paras[0]);
 			p.Add(new BakinParameter("整数", "選択肢の数", labels.Count.ToString()));   //num of choices
+			_numChoices = 0;
 			foreach (string label in labels)
 			{
 				p.Add(new BakinParameter("文字列", "選択肢のラベル", label)); //choice label
@@ -630,8 +653,9 @@ namespace Json2BakinPlugin.Services
 		//402 Branches of the choices
 		private void AddCommandBranch(List<BakinParameter> p, List<string> paras)
 		{
+			_numChoices++;
 			AddCommandHeader(p, "BRANCH");
-			p.Add(new BakinParameter("整数", "選択肢n番号（n-1）")); //choice N-1
+			p.Add(new BakinParameter("整数", "選択肢n番号（n-1）", _numChoices.ToString())); //choice N-1
 			AddCommandEnd(p);
 		}
 
@@ -732,7 +756,7 @@ namespace Json2BakinPlugin.Services
 		{
 			if (paras[2] == "1")
 			{
-				AddCommandComment(p, paras);
+				AddCommandNoticeComment(p, Resources.Cvt_NoConvert, "条件分岐：敵ステータス" + "(ID:" + paras[3] + ")");
 			}
 			else
 			{
@@ -1803,6 +1827,24 @@ namespace Json2BakinPlugin.Services
 			}
 			p.Add(new BakinParameter("整数", "計算（0：代入、1：足す、2：引く、3：かける、4：割る、6：割った余りを代入、7：小数点以下を切り捨てて代入）", ToStr(op))); //0=overwrite 1=add 2=sub 3=mult 4=div 6=mod 7=floor
 			AddCommandEnd(p);
+		}
+
+		private void AddCommandClose(List<BakinParameter> p, List<string> paras)
+		{
+			if (_indentType.Last() == "IF")
+            {
+				AddCommandNoparams(p, "ENDIF");
+			}
+			else if (_indentType.Last() == "CHOICE")
+            {
+				AddCommandNoparams(p, "ENDIF");
+				_numChoice = 0;
+            }
+			else if (_indentType.Last() == "IGNORE")
+            {
+				//close tag for non-converted command.
+            }
+			_indentType.RemoveAt(_indentType.Count - 1);
 		}
 
 		private string GetSpot(string type, string x, string z)

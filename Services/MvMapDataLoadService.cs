@@ -3,20 +3,76 @@ using System.Text.Json;
 using System.Collections.Generic;
 using Json2BakinPlugin.Models;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Json2BakinPlugin.Services
 {
     public class MvMapDataLoadService
     {
+		#region Privates
+		MvMap _map;
+		MvDatabase _database;
+        #endregion
+
         #region Methods
-        public MvMap DeserializeMapData(string file)
+        public void LoadDatabase(string path)
+		{
+			MvDatabase database = new MvDatabase();
+			List<string> fileList = new List<string> { "Actors", "Animations", "Armors", "Classes", "Enemies", "Items", 
+													"Mapinfos", "Skills", "States", "Troops", "Weapons", "Switches", "Variables" };
+			foreach(string file in fileList)
+            {
+				try
+				{
+					string text = System.IO.File.ReadAllText(path + "/" + file + ".json");
+					//elminate se for animation
+					List<string> list = Regex.Matches(text, @",""name"":.*?[^\\]""").Cast<Match>()
+											.Select(d => d.Value.Replace(@",""name"":", "")).ToList();
+				}
+				catch
+				{
+					database.GetType().GetProperty(file).SetValue(database, new List<string>());
+				}
+			}
+			_database = database;
+		}
+
+		public MvDatabase GetDatabase()
+        {
+			return _database;
+        }
+
+        public MvMap GetMap()
+        {
+			return _map;
+        }
+
+		public List<MvEvent> GetMapEvents()
+		{
+			return _map.events;
+		}
+
+		public string GetMapName()
+		{
+			if (_map.displayName != null && _map.displayName != "")
+			{
+				return _map.displayName;
+			}
+			else
+			{
+				return "Map" + _map.IdString;
+			}
+		}
+		
+		public void DeserializeMapData(string file, string id)
         {
             string text = System.IO.File.ReadAllText(file);
             text = StringifyParameters(text);
             MvMap jsondata = JsonSerializer.Deserialize<MvMap>(text);
 			SplitWithinCodeParams(jsondata);
 			MergeInterCodeParams(jsondata);
-            return jsondata;
+            _map = jsondata;
+			_map.IdString = id;
         }
 
 		public void SplitWithinCodeParams(MvMap jsondata)
@@ -37,7 +93,7 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-		public void MergeInterCodeParams(MvMap jsondata)
+        public void MergeInterCodeParams(MvMap jsondata)
 		{
 			List<MvEvent> mvEvents = jsondata.events;
 			foreach (MvEvent ev in mvEvents)
@@ -91,7 +147,6 @@ namespace Json2BakinPlugin.Services
 			}
 			return outtext;
 		}
-
-		#endregion
-	}
+        #endregion
+    }
 }
