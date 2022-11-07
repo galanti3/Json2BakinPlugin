@@ -17,8 +17,8 @@ namespace Json2BakinPlugin.Models
 
         //id to distinguish different parameter conditions
         public int Subcode { get; set; }
-        //Bakin command name
-        public string BakinCode { get; set; }
+        //Bakin command name and description
+        public List<string> BakinCode { get; set; }
 
         public List<string> Params { get; set; }
         #endregion
@@ -88,12 +88,12 @@ namespace Json2BakinPlugin.Models
             }
         }
 
-        public void GenerateSubCode()
+        public void GenerateSubCode(string moveChar = "0")
         {
             var scode = code * 100;
-            if (scode < 10000) //route
+            if (scode != 0 && scode < 10000) //route
             {
-                scode += Params[0] == "0" ? 1 : 0;
+                scode += moveChar == "0" ? 1 : 0;
             }
             else if (code == 111)
             {
@@ -121,7 +121,7 @@ namespace Json2BakinPlugin.Models
             }
             else if (id == 4) //script
             {
-                return 7;
+                return 8;
             }
             else
             {
@@ -133,14 +133,14 @@ namespace Json2BakinPlugin.Models
         private int GetSubcode111()
         {
             int id = int.Parse(Params[0]);
-            int id2 = int.Parse(Params[2]);
             if(id != 4)
             {
                 return id + (id >= 5 ? 3 : 0);
             }
             else //if actor
             {
-                if(id2 == 2 || id2 == 3 || id2 == 6) //class, skill, state
+				int id2 = int.Parse(Params[2]);
+				if (id2 == 2 || id2 == 3 || id2 == 6) //class, skill, state
                 {
                     return 6;
                 }

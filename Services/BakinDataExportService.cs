@@ -8,9 +8,10 @@ namespace Json2BakinPlugin.Services
     public class BakinDataExportService
     {
         private Json2BakinConvertService convertService = new Json2BakinConvertService();
-        private MvBakinCodeDictionary codeDic = new MvBakinCodeDictionary();
 
-        private bool nullCommand = false;
+		#region Variables
+        private string _moveChar;
+        #endregion
 
         #region Methods
         public void Preprocess(MvMap map)
@@ -38,9 +39,9 @@ namespace Json2BakinPlugin.Services
                     {
                         foreach (MvCode code in page.list)
                         {
-                            if (code.BakinCode != null && code.BakinCode.Contains("COMMENT") && !code.BakinCode.EndsWith("注釈"))
+                            if (code.BakinCode != null && code.BakinCode[0].Contains("COMMENT"))
                             {
-                                code.Params = new List<string> { code.BakinCode.Replace("COMMENT\t", "") };
+                                code.Params.Add(code.BakinCode[1]); //for comment, text is added to the parameters list.
                             }
                         }
                     }
@@ -58,12 +59,16 @@ namespace Json2BakinPlugin.Services
                     {
                         foreach (MvCode code in page.list)
                         {
-                            if(code.code == 505) //route
+							if (code.code == 205)
+							{
+								_moveChar = code.Params[0];
+							}
+							else if (code.code == 505) //route
                             {
                                 code.ExtractRouteCode();
-                            }
-                            code.GenerateSubCode();
-                            code.BakinCode = codeDic.Code(code.code*100);
+							}
+							code.GenerateSubCode(_moveChar);
+                            code.BakinCode = MvBakinCodeDictionary.Code(code.Subcode);
                         }
                     }
                 }
@@ -85,7 +90,7 @@ namespace Json2BakinPlugin.Services
                         string otext = "";
                         otext += WriteEventInfo(evName);
                         otext += WritePage(page);
-                        otext += "スクリプト終了\n\nシート終了";
+                        otext += "スクリプト終了\nシート終了";
                         File.WriteAllText(path + "\\" + fileName, otext);
                         pidx++;
                     }

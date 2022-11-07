@@ -39,7 +39,7 @@ namespace Json2BakinPlugin.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("json2bakinPlugin.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Json2BakinPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,24 @@ namespace Json2BakinPlugin.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修正が必要なコマンド：.
+        /// </summary>
+        internal static string Cvt_NeedRevise {
+            get {
+                return ResourceManager.GetString("Cvt_NeedRevise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換不可能なコマンド：.
+        /// </summary>
+        internal static string Cvt_NoConvert {
+            get {
+                return ResourceManager.GetString("Cvt_NoConvert", resourceCulture);
             }
         }
         

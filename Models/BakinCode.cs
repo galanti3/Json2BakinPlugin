@@ -6,7 +6,8 @@ namespace Json2BakinPlugin.Models
     public class BakinCode
     {
         #region Properties
-        public string Code { get; set; }
+        //Bakin code and description
+        public List<string> Code { get; set; }
         public List<BakinParameter> Params { get; set; }
         #endregion
     }
