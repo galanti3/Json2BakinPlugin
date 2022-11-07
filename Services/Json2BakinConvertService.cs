@@ -10,310 +10,655 @@ using System.Text.RegularExpressions;
 
 namespace Json2BakinPlugin.Services
 {
-    public class Json2BakinConvertService
-    {
-        #region Global variables
-        string _moveChar;
-        string _isStopStuck;
-        string _isWaitMoving;
-        #endregion
 
-        #region Methods
-        public BakinCode ConvertToBakinCode(MvCode code)
-        {
-            BakinCode bakin = new BakinCode();
-            bakin.Code = code.BakinCode;
-            List<string> paras = code.Params;
-            List<BakinParameter> p = new List<BakinParameter>();
-            ConvertToBakinCodeCore(code, p);
-            bakin.Params = p;
-            return bakin;
-        }
+	public class Json2BakinConvertService
+	{
+		#region Variables
+		string _moveChar;
+		string _isStopStuck;
+		string _isWaitMoving;
+		List<string> _indentType = new List<string>();
+		int _numChoices = 0;
+		#endregion
 
-        private void ConvertToBakinCodeCore(MvCode code, List<BakinParameter> p)
+		#region Methods
+		public BakinCode ConvertToBakinCode(MvCode code)
+		{
+			BakinCode bakin = new BakinCode();
+			bakin.Code = code.BakinCode;
+			List<string> paras = code.Params;
+			List<BakinParameter> p = new List<BakinParameter>();
+			ConvertToBakinCodeCore(code, p);
+			bakin.Params = p;
+			return bakin;
+		}
+
+		private void ConvertToBakinCodeCore(MvCode code, List<BakinParameter> p)
+		{
+			string command = code.BakinCode != null ? code.BakinCode[0] : null;
+			switch (command)
+			{
+				case "DIALOGUE": //101
+					AddCommandDialogue(p, code.Params);
+					break;
+				case "MESSAGE": //101
+					AddCommandMessage(p, code.Params);
+					break;
+				case "CHOICES": //102
+					AddCommandChoices(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "BRANCH": //402, 403
+					AddCommandBranch(p, code.Params);
+					break;
+				case "CHANGE_STRING_VARIABLE": //103
+					break;
+				case "ITEMMENU": //104
+					AddCommandItemmenu(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "TELOP": //105
+					AddCommandTelop(p, code.Params);
+					break;
+				case "IFSWITCH": //111(00)
+					AddCommandIfswitch(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "IFVARIABLE": //111(01-02)
+					AddCommandIfvariable(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				//timer???
+				case "IFPARTY": //111(04)
+					AddCommandIfparty(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "IF_STRING_VARIABLE": //111(05)
+					AddCommandIfstringvariable(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "IFITEM": //111(07, 11, 12, 13)
+					AddCommandIfitem(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "BTL_IFMONSTER": //111(08)
+					AddCommandBtlifmonster(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "IFMONEY": //111(10)
+					AddCommandIfmoney(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "ELSE": //411, 602, 603
+					AddCommandNoparams(p, "ELSE");
+					break;
+				case "ENDIF":
+					AddCommandNoparams(p, "ENDIF");
+					break;
+				case "LOOP": //112
+					AddCommandNoparams(p, "LOOP");
+					break;
+				case "ENDLOOP": //413
+					AddCommandNoparams(p, "ENDLOOP");
+					break;
+				case "BREAK": //113
+					AddCommandNoparams(p, "BREAK");
+					break;
+				case "END": //115
+					AddCommandNoparams(p, "END");
+					break;
+				case "EXEC": //117
+					AddCommandExec(p, code.Params);
+					break;
+				case "SWITCH": //121, 123, 27, 28
+					AddCommandSwitch(code.code, p, code.Params);
+					break;
+				case "HLVARIABLE": //122(00-05,07)
+					AddCommandHlvariable(p, code.Params);
+					break;
+				case "MONEY": //125
+					AddCommandMoney(p, code.Params);
+					break;
+				case "ITEM": //126, 127, 128
+					AddCommandItem(p, code.Params);
+					break;
+				case "PARTY": //129
+					AddCommandParty(p, code.Params);
+					break;
+				case "SW_SAVE": //134
+					AddCommandSwsave(p, code.Params);
+					break;
+				case "SW_MENU": //135
+					AddCommandSwmenu(p, code.Params);
+					break;
+				case "SW_ENCOUNTING": //136
+					AddCommandSwencounting(p, code.Params);
+					break;
+				case "CHANGE_LAYOUT": //138
+					AddCommandChangelayout(p, code.Params);
+					break;
+				case "PLMOVE": //201
+					AddCommandPlmove(p, code.Params);
+					break;
+				case "MOVE": //203
+					AddCommandMove(p, code.Params);
+					break;
+				case "CAM_ANIMATION": //204
+					AddCommandCamanimation(p, code.Params);
+					break;
+				case "MOVEROUTE": //205
+					AddCommandMoveRoute(p, code.Params);
+					break;
+				case "EFFECT": //212, 337 no character choice
+					AddCommandEffect(code.code, p, code.Params);
+					break;
+				case "EMOTE": //213 no character choice
+					AddCommandEmote(p, code.Params);
+					break;
+				case "DESTROY_EVENT": //214
+					//Erase Event
+					AddCommandNoparams(p, "DESTROY_EVENT");
+					break;
+				case "WALK_IN_ROWS": //216
+					AddCommandWalkinrows(p, code.Params);
+					break;
+				case "SCREEN_FADE": //221, 222
+					AddCommandScreenfade(code.code, p, code.Params);
+					break;
+				case "SCREEN_COLOR": //223
+					AddCommandScreencolor(p, code.Params);
+					break;
+				case "SCREEN_FLASH": //224
+					AddCommandScreenflash(p, code.Params);
+					break;
+				case "SCREEN_SHAKE": //225
+					AddCommandScreenshake(p, code.Params);
+					break;
+				case "WAIT": //230
+					AddCommandWait(p, code.Params);
+					break;
+				case "SPPICTURE": //231
+					AddCommandSppicture(p, code.Params);
+					break;
+				case "SPMOVE": //232
+					AddCommandSpmove(p, code.Params);
+					break;
+				case "SPHIDE": //235
+					AddCommandSphide(p, code.Params);
+					break;
+				case "CHANGE_RENDER": //236, 283, 284
+					AddCommandChangerender(code.code, p, code.Params);
+					break;
+				case "PLAYBGM": //241, 242
+					AddCommandPlaybgm(code.code, p, code.Params);
+					break;
+				case "PLAYBGS": //245, 246
+					AddCommandPlaybgs(code.code, p, code.Params);
+					break;
+				case "PLAYJINGLE": //249
+					AddCommandPlayjingle(p, code.Params);
+					break;
+				case "STOPSE": //251
+					AddCommandStopse(p, code.Params);
+					break;
+				case "PLAYMOVIE": //261
+					AddCommandPlaymovie(p, code.Params);
+					break;
+				case "GET_TERRAIN": //285 unable to get terraintag, eventid and regionid, position specified only by variables
+					AddCommandGetterrain(p, code.Params);
+					break;
+				case "BOSSBATTLE": //301
+					AddCommandBossbattle(p, code.Params);
+					_indentType.Add("IF");
+					break;
+				case "SHOP": //302　code.Params[1] and code.Params[3] should be arrays containing item ids and prices
+					AddCommandShop(p, code.Params);
+					break;
+				case "CHANGE_HERO_NAME": //303
+					AddCommandChangeheroname(p, code.Params);
+					break;
+				case "CHG_HPMP": //311, 312
+					AddCommandChghpmp(code.code, p, code.Params);
+					break;
+				case "CHG_STTAILM": //313
+					AddCommandChgsttailm(p, code.Params);
+					break;
+				case "FULLRECOV": //314 not all but only 1 actor? CHG_HPMP??
+					break;
+				case "CHG_EXP": //315
+					AddCommandChgexp(p, code.Params);
+					break;
+				case "STATUS": //317 unable for mdef and luk change
+					AddCommandStatus(p, code.Params);
+					break;
+				case "CHG_SKILL": //318
+					AddCommandChgskill(p, code.Params);
+					break;
+				case "EQUIP": //319
+					AddCommandEquip(p, code.Params);
+					break;
+				case "STRING_VARIABLE": //320
+					AddCommandStringvariable(p, code.Params);
+					break;
+				case "CHANGE_JOB": //321
+					AddCommandChangejob(p, code.Params);
+					break;
+				case "PLGRAPHIC": //322
+					AddCommandPlgraphic(p, code.Params);
+					break;
+				case "BTL_HEAL": //331, 332
+					AddCommandBtlheal(code.code, p, code.Params);
+					break;
+				case "BTL_STATUS": //333
+					AddCommandBtlstatus(p, code.Params);
+					break;
+				case "BTL_APPEAR": //335
+					AddCommandBtlappear(p, code.Params);
+					break;
+				case "BTL_ACTION": //339
+					AddCommandBtlaction(p, code.Params);
+					break;
+				case "BTL_STOP": //340
+					AddCommandNoparams(p, "BTL_STOP");
+					break;
+				case "SHOW_SCORE_BOARD": //351 unusable??
+					AddCommandShowscoreboard(p, code.Params);
+					break;
+				case "SAVE": //352
+					AddCommandNoparams(p, "SAVE");
+					break;
+				case "PLWALK": //1-13
+					AddCommandWalk(p, code.code);
+					break;
+				case "WALK": //1-13
+					AddCommandWalk(p, code.code);
+					break;
+				case "PLWALK_TGT": //converted from consecutive player move commands
+					AddCommandWalktgt(p, code.Params);
+					break;
+				case "EVWALK_TGT": //converted from consecutive event move commands
+					AddCommandWalktgt(p, code.Params);
+					break;
+				case "ADDFORCEPL": //14
+					AddCommandAddforce(p, code.Params);
+					break;
+				case "ADDFORCE": //14
+					AddCommandAddforce(p, code.Params);
+					break;
+				case "PLROTATE": //16-26
+					AddCommandRotate(p, code.code);
+					break;
+				case "ROTATE": //16-26
+					AddCommandRotate(p, code.code);
+					break;
+				case "PLWALKSPEED": //29
+					AddCommandWalkspeed(p, code.Params);
+					break;
+				case "WALKSPEED": //29
+					AddCommandWalkspeed(p, code.Params);
+					break;
+				case "GRAPHIC": //31, 32, 41
+					AddCommandGraphic(p, code.Params);
+					break;
+				case "PLMOTION": //33, 34
+					AddCommandPlmotion(p, code.Params);
+					break;
+				case "MOTION": //33, 34
+					AddCommandMotion(p, code.Params);
+					break;
+				case "SW_PLLOCKROTATE": //35, 36
+					AddCommandSwpllockrotate(p, code.Params);
+					break;
+				case "CHANGE_PLAYER_MOVABLE": //37, 38
+					AddCommandChangemovable(p, code.Params);
+					break;
+				case "CHANGE_MOVABLE": //37, 38
+					AddCommandChangemovable(p, code.Params);
+					break;
+				case "PLHIDE": //39, 40
+					AddCommandHide(p, code.Params);
+					break;
+				case "EVHIDE": //39, 40, 211
+					AddCommandHide(p, code.Params);
+					break;
+				case "PLAYSE": //44, 250
+					AddCommandPlayse(p, code.Params);
+					break;
+				case "COMMENT":
+					AddCommandComment(p, code.Params);
+					break;
+				case "CLOSE":
+					AddCommandClose(p, code.Params);
+					break;
+				case "ERROR": //impossible to convert
+					AddCommandNoticeComment(p, Resources.Cvt_NoConvert, code.BakinCode[1]);
+					break;
+				case "ERROR_IF": //impossible to convert. Ignore corresponding close tag.
+					AddCommandNoticeComment(p, Resources.Cvt_NoConvert, code.BakinCode[1]);
+					_indentType.Add("IGNORE");
+					break;
+
+					#region Follwing commands are not used in MV.
+					//case "VARIABLE":
+					//	break;
+					//case "FACEEMOTION":
+					//	p.Add(new BakinParameter("整数", "変更対象（0：プレイヤー、1：イベント）"));    //target 0=player 1=this
+					//	p.Add(new BakinParameter("文字列", "簡易設定"));   //template name
+					//	p.Add(new BakinParameter("整数", "詳細設定：目（変数可）")); //eye id
+					//	p.Add(new BakinParameter("整数", "詳細設定：眉（変数可）")); //eyebrow id
+					//	p.Add(new BakinParameter("整数", "詳細設定：口（変数可）")); //lip id
+					//	break;
+					//case "SPTEXT":
+					//	p.Add(new BakinParameter("整数", "イメージの管理番号（変数可）"));  //image id
+					//	p.Add(new BakinParameter("文字列", "表示する文字列"));    //txt
+					//	p.Add(new BakinParameter("整数", "拡大率（変数可）"));    //zoom %
+					//	p.Add(new BakinParameter("整数", "文字色")); //color dec -> ARGB hex
+					//	p.Add(new BakinParameter("整数", ""));
+					//	p.Add(new BakinParameter("整数", "X位置（変数可）"));    //x pos
+					//	p.Add(new BakinParameter("整数", "Y位置（変数可）"));    //y pos
+					//	p.Add(new BakinParameter("整数", "テキスト揃え（0：左揃え、1：中央揃え、2：右揃え）"));  //text align 0=left 1=center 2=right
+					//	break;
+					//case "CHANGE_GAMEOVER_ACTION":
+					//	p.Add(new BakinParameter("整数", "動作（0：タイトルへ戻る、1：その場で復活、2：高度な設定）"));  //0=title 1=resurrect 2=detail
+					//	p.Add(new BakinParameter("Guid", ""));
+					//	p.Add(new BakinParameter("整数", "X座標")); //xpos
+					//	p.Add(new BakinParameter("整数", "Z座標")); //zpos
+					//	p.Add(new BakinParameter("整数", "復活範囲（0：先頭のみ、1：全員）"));   //range 1=all 0=onlytop
+					//	p.Add(new BakinParameter("整数", "復活時のHP（‐1：1、または指定値％）"));    //hp -1=1 or in %
+					//	p.Add(new BakinParameter("整数", "復活時のMP（‐1：変更しない、または指定値％）"));    //mp -1=1 or in %
+					//	p.Add(new BakinParameter("Guid", "移動後に実行する共通イベントGuid"));    //common ev guid
+					//	break;
+					//case "SW_CAMLOCK":
+					//	p.Add(new BakinParameter("整数", "カメラ操作の禁止"));    //camera_lock flag
+					//	p.Add(new BakinParameter("整数", ""));
+					//	p.Add(new BakinParameter("整数", "横回転操作"));   //horizontal rotate
+					//	p.Add(new BakinParameter("整数", "縦回転操作"));   //vertical rotate
+					//	p.Add(new BakinParameter("整数", "ズーム操作"));   //zoom
+					//	break;
+					//case "BTL_SW_CAMERA":
+					//	p.Add(new BakinParameter("整数", "バトル開始時カメラ演出")); //on_battle_start
+					//	p.Add(new BakinParameter("整数", "攻撃時カメラ演出"));    //on_attack
+					//	p.Add(new BakinParameter("整数", "スキル使用時カメラ演出")); //on_skill
+					//	p.Add(new BakinParameter("整数", "アイテム使用時カメラ演出"));    //on_item
+					//	p.Add(new BakinParameter("整数", "リザルト時カメラ演出"));  //on_result
+					//	break;
+					//case "CHANGE_PLAYER_HEIGHT":
+					//	p.Add(new BakinParameter("整数", "Y座標の指定方法（2：プレイヤーの現在地のY座標から、3：Y座標の絶対値）"));   //2=relative 3=absolute
+					//	p.Add(new BakinParameter("小数", "変更するY座標（変数可）"));    //ychange
+					//	p.Add(new BakinParameter("小数", "Y座標の変更にかける時間（変数可）"));   //time
+					//	p.Add(new BakinParameter("整数", "移動速度（0：等速、1：加速、2：減速）"));    //speed 0=const 1=accel 2=decel
+					//	p.Add(new BakinParameter("整数", "Y座標変更の完了を待つ")); //wait complete
+					//	break;
+					//case "FALL_PLAYER":
+					//	p.Add(new BakinParameter("小数", "重力加速度（変数可）"));  //accel amount
+					//	p.Add(new BakinParameter("整数", "落下の完了を待つ"));    //wait complete
+					//	break;
+					//case "CHANGE_PLAYER_SCALE":
+					//	p.Add(new BakinParameter("小数", "変更するスケール（変数可）"));   //scale size
+					//	p.Add(new BakinParameter("小数", "スケールの変更にかける時間（変数可）"));  //time in sec
+					//	p.Add(new BakinParameter("整数", "スケール変更の完了を待つ"));    //wait complete
+					//	break;
+					//case "JOINT_WEAPON":
+					//	p.Add(new BakinParameter("整数", "変更するキャスト（0：指定、1：n番目）"));    //0=specify_cast 1=n-th member
+					//	p.Add(new BakinParameter("Guid", "指定キャストGuid"));    //cast guid
+					//	p.Add(new BakinParameter("整数", "パーティのn番目（n-1）"));   //member number, N-1
+					//	p.Add(new BakinParameter("整数", "ジョイント（0：すべて外す、1：装備しているアイテムに応じたモデルをジョイント、2：任意のモデルをジョイント）")); //joint type 0=removeall 1=attachequipped 2=specify
+					//	p.Add(new BakinParameter("[整数", "任意モデル用パラメータ？"));   //for specify
+					//	p.Add(new BakinParameter("整数", "右手モデルジョイント（0：変更、2：変更しない）"));    //for specify right, 0=change 2=nochange
+					//	p.Add(new BakinParameter("[Guid", "右手モデルGuid"));    //right model guid]
+					//	p.Add(new BakinParameter("整数", "左手モデルジョイント（0：変更、2：変更しない）"));    //for specify left, 0=change 2=nochange
+					//	p.Add(new BakinParameter("[Guid", "左手モデルGuid"));    //left model guid]]
+					//	break;
+					//case "INVINCIBLE":
+					//	p.Add(new BakinParameter("小数", "無敵時間（変数可）"));   //time in sec
+					//	p.Add(new BakinParameter("整数", "無敵中はグラフィックを点滅させる"));    //flash gra flag
+					//	p.Add(new BakinParameter("整数", "無敵中は体当たりで敵にダメージを与えない"));    //no damage to enemy flag
+					//	break;
+					//case "PLSNAP":
+					//	break;
+					//case "WALK_IN_ROWS_ORDER":
+					//	p.Add(new BakinParameter("整数", "隊列の人数"));   //number of casts
+					//	p.Add(new BakinParameter("整数", "並び替え後1番目のタイプ（0：メンバー、1：グラフィック、2：キャスト）"));    //1st 0=member 1=graphic 2=cast
+					//	p.Add(new BakinParameter("整数", "並び替え後1番目の現在の順番（n-1）")); //1st current order, N-1
+					//	p.Add(new BakinParameter("整数", "並び替え後2番目のタイプ（0：メンバー、1：グラフィック、2：キャスト）"));    //2nd 0=member 1=graphic 2=cast
+					//	p.Add(new BakinParameter("整数", "並び替え後2番目の現在の順番（n-1）")); //2nd current order, N-1
+					//	p.Add(new BakinParameter("整数", "並び替え後3番目のタイプ（0：メンバー、1：グラフィック、2：キャスト）"));    //3rd 0=member 1=graphic 2=cast
+					//	p.Add(new BakinParameter("整数", "並び替え後3番目の現在の順番（n-1）")); //3rd current order, N-1
+					//	p.Add(new BakinParameter("整数", "並び替え後4番目のタイプ（0：メンバー、1：グラフィック、2：キャスト）"));    //4th 0=member 1=graphic 2=cast
+					//	p.Add(new BakinParameter("整数", "並び替え後4番目の現在の順番（n-1）")); //4th current order, N-1
+					//	p.Add(new BakinParameter("[整数", "並び替え後5番目のタイプ（0：メンバー、1：グラフィック、2：キャスト）"));   //5th 0=member 1=graphic 2=cast
+					//	p.Add(new BakinParameter("Guid", "並び替え後5番目のGuid")); //added cast guid]
+					//	break;
+					//case "ROTATEPL_XYZ":
+					//	p.Add(new BakinParameter("整数", "回転（0：絶対値、1：現在の向きからの相対値）")); //0=absolute 1=relative
+					//	p.Add(new BakinParameter("整数", "X回転（変数可）"));    //xrotate +-360
+					//	p.Add(new BakinParameter("整数", "Y回転（変数可）"));    //yrotate +-360
+					//	p.Add(new BakinParameter("整数", "Z回転（変数可）"));    //zrotate +-360
+					//	break;
+					//case "PLSUBGRP":
+					//	p.Add(new BakinParameter("整数", ""));    //??
+					//	p.Add(new BakinParameter("Guid", ""));  //??
+					//	p.Add(new BakinParameter("整数", ""));
+					//	p.Add(new BakinParameter("整数", "変更するサブグラフィックの番号（変数可）"));    //subgraphic number
+					//	p.Add(new BakinParameter("整数", "表示フラグ"));   //display flag
+					//	p.Add(new BakinParameter("小数", "変更にかける時間（変数可）"));   //time in sec
+					//	break;
+					//case "ITEM_THROW_OUT":
+					//	break;
+					//case "CHANGE_HEIGHT":
+					//	p.Add(new BakinParameter("整数", "Y座標の指定方法（2：プレイヤーの現在地のY座標から、3：Y座標の絶対値）"));   //2=relative 3=absolute
+					//	p.Add(new BakinParameter("小数", "変更するY座標（変数可）"));    //ychange
+					//	p.Add(new BakinParameter("小数", "Y座標の変更にかける時間（変数可）"));   //time
+					//	p.Add(new BakinParameter("整数", "移動速度（0：等速、1：加速、2：減速）"));    //speed 0=const 1=accel 2=decel
+					//	p.Add(new BakinParameter("整数", "Y座標変更の完了を待つ")); //wait complete
+					//	break;
+					//case "FALL_EVENT":
+					//	p.Add(new BakinParameter("小数", "重力加速度（変数可）"));  //accel amount
+					//	p.Add(new BakinParameter("整数", "落下の完了を待つ"));    //wait complete
+					//	break;
+					//case "CHANGE_SCALE":
+					//	p.Add(new BakinParameter("小数", "変更するスケール（変数可）"));   //scale size
+					//	p.Add(new BakinParameter("小数", "スケールの変更にかける時間（変数可）"));  //time in sec
+					//	p.Add(new BakinParameter("整数", "スケール変更の完了を待つ"));    //wait complete
+					//	break;
+					//case "EVSNAP":
+					//	break;
+					//case "ROTATE_XYZ":
+					//	p.Add(new BakinParameter("整数", "回転（0：絶対値、1：現在の向きからの相対値）")); //0=absolute 1=relative
+					//	p.Add(new BakinParameter("整数", "X回転（変数可）"));    //xrotate +-360
+					//	p.Add(new BakinParameter("整数", "Y回転（変数可）"));    //yrotate +-360
+					//	p.Add(new BakinParameter("整数", "Z回転（変数可）"));    //zrotate +-360
+					//	break;
+					//case "SUBGRP":
+					//	p.Add(new BakinParameter("整数", "変更するサブグラフィックの番号（変数可）"));    //subgraphic number
+					//	p.Add(new BakinParameter("整数", "表示フラグ"));   //display flag
+					//	p.Add(new BakinParameter("小数", "変更にかける時間（変数可）"));   //time in sec
+					//	break;
+					//case "HLSTRVARIABLE":
+					//	p.Add(new BakinParameter("変数", "文字列変数の番号"));   //to; type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("整数", "タイプ（0：文字列変数の内容、1：現在のマップ名、2：キャストのステータス）"));  //0=string var 1=current map name 2=cast status
+					//	p.Add(new BakinParameter("[Guid", "キャストGuid")); //cast guid
+					//	p.Add(new BakinParameter("(none for current map name)", ""));
+					//	p.Add(new BakinParameter("変数", "代入元の文字列変数の番号"));   //from; type":name N=numeric, S=string, A=array]
+					//	p.Add(new BakinParameter("[変数", "キャストのステータス（0：名前、1：職業、2：副業、3：武器、4：腕防具、5：頭防具、6：体防具、7：装飾品1、8：装飾品2）"));    //cast status 0=name 1=job 2=subjob 3=weapon 4=armor 5=head 6=body 7=acces1 8=acces2]
+					//	p.Add(new BakinParameter("整数", "代入（0：上書き、1：先頭に追加、2：最後尾に追加）"));  //0=overwrite 1=addfirst 2=addlast
+					//	break;
+					//case "REPLACE_STRING_VARIABLE":
+					//	p.Add(new BakinParameter("変数", "文字列変数の番号"));   //to; type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("文字列", "置き換え前の文字列")); //from
+					//	p.Add(new BakinParameter("文字列", "置き換え後の文字列")); //to
+					//	break;
+					//case "SW_PLLOCK":
+					//	p.Add(new BakinParameter("整数", "プレイヤー捜査の禁止"));  //control disable flag
+					//	break;
+					//case "SW_DASH":
+					//	p.Add(new BakinParameter("整数", "プレイヤーのダッシュの禁止"));   //dash disable flag
+					//	break;
+					//case "SW_JUMP":
+					//	p.Add(new BakinParameter("整数", "ジャンプの禁止")); //jump disable flag
+					//	break;
+					//case "INN":
+					//	p.Add(new BakinParameter("[変数", "宿泊料（変数可）"));   //price in var
+					//	p.Add(new BakinParameter("整数", "(absolute"));   //absolute price]
+					//	p.Add(new BakinParameter("整数", "状態変化を回復")); //recover state flag
+					//	p.Add(new BakinParameter("整数", "先頭不能を回復")); //recover dead flag
+					//	p.Add(new BakinParameter("整数", "選択肢の位置（0：左上、1：上、2：右上、3：左、4：中央、5：右、6：左下、7：下、8：右下）"));    //pos 0=upleft 1=up 2=upright 3=left 4=center 5=right 6=botleft 7=bottom 8=botright
+					//	break;
+					//case "IF_INVENTORY_EMPTY":
+					//	p.Add(new BakinParameter("[変数", "アイテム袋空き数（変数可）")); //type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("整数", ""));
+					//	break;
+					//case "COL_CONTACT":
+					//	p.Add(new BakinParameter("整数", "チェック元（0：プレイヤー、1：このイベント）")); //0=player 1=this
+					//	p.Add(new BakinParameter("整数", "チェック先（0：地形（着地状態かどうか）、1：物体、2：プレイヤー、3：イベント"));    //0=land 1=obj 2=player 3=event
+					//	p.Add(new BakinParameter("整数", "接触したチェック先の名称を取得")); //get contact name flag
+					//	p.Add(new BakinParameter("[変数", "何個目を取得するか（変数可）"));    //type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("整数", "(N-th"));   //N-th obj]
+					//	p.Add(new BakinParameter("変数", "代入先変数名")); //name to; type":name N=numeric, S=string, A=array
+					//	break;
+					//case "COL_RAYCAST":
+					//	p.Add(new BakinParameter("整数", "チェック元（0：プレイヤー、1：このイベント）")); //0=player 1=this
+					//	p.Add(new BakinParameter("整数", "チェック先（0：地形、1：物体、2：プレイヤー、3：イベント"));  //0=land 1=obj 2=player 3=event
+					//	p.Add(new BakinParameter("整数", "向き（0：正面z+、1：左x-、2：右x+、3：上y+、4：下y-、5：後方z-、6：任意の角度）"));   //0=z+ 1=x- 2=x+ 3=y+ 4=y- 5=z- 6=deg
+					//	p.Add(new BakinParameter("小数", "何マス先までチェックするか（変数可）"));  //distance
+					//	p.Add(new BakinParameter("[変数", "角度X（変数可）"));  //type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("小数", "(xdegree)]"));  //xdegree]
+					//	p.Add(new BakinParameter("[変数", "角度Y（変数可）"));  //type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("小数", "(ydegree)]"));  //ydegree]
+					//	p.Add(new BakinParameter("整数", "基準（0：ローカル、1：ワールド）"));   //0=local 1=world
+					//	break;
+					//case "SHOT_EVENT":
+					//	p.Add(new BakinParameter("Guid", "生成されるイベントGuid")); //generated event guid
+					//	p.Add(new BakinParameter("整数", "発射元（0：プレイヤー、1：このイベント）"));   //from 0=player 1=this
+					//	p.Add(new BakinParameter("[整数", "0度の基準（0：下方向、1：向いている方向、2：生成元から見たプレイヤー、3：生成元から見たこのイベント、4＋：各イベント）")); //0deg base 0=down 1=face 2=toplayer 3=tothis
+					//	p.Add(new BakinParameter("Guid", "発射先イベントGuid"));   //toevent guid]
+					//	p.Add(new BakinParameter("[変数", "角度（変数可）"));   //type":name N=numeric, S=string, A=array
+					//	p.Add(new BakinParameter("整数", "(degree)]"));   //degree]
+					//	p.Add(new BakinParameter("整数", "発射数（変数可）"));    //num of shots
+					//	p.Add(new BakinParameter("整数", "生成ごとにばらす角度（変数可）")); //each shift deg +-180
+					//	p.Add(new BakinParameter("整数", "角度のランダム幅（変数可）"));   //deg rand 0-360
+					//	p.Add(new BakinParameter("小数", "生成ごとの待ち時間（変数可）"));  //interval in sec
+					//	p.Add(new BakinParameter("整数", "発射完了を待つ")); //wait complete shot
+					//	break;
+					//case "EXIT":
+					//	p.Add(new BakinParameter("整数", "終了方法（0：タイトル画面に戻る、1：ゲームオーバー）")); //0=totitle 1=gameover
+					//	break;
+					#endregion
+			}
+		}
+
+        public void ConvertRouteCodesToDestinationCode(MvEventPage page)
+		{
+			List<MvCode> codes = new List<MvCode>();
+			int i = 0;
+			while (i < page.list.Count)
+			{
+				if (page.list[i].code == 205) //set move route
+				{
+					int target = int.Parse(page.list[i].Params[0]);
+					codes.Add(page.list[i]);
+					i++;
+					int j = 0;
+					int x = 0, y = 0;
+					while (page.list[i + j].code >= 1 && page.list[i + j].code <= 8)
+					{
+						int code = page.list[i + j].code;
+						if (code == 2 || code == 5 || code == 7)
+						{
+							x++;
+						}
+						else if (code == 3 || code == 6 || code == 8)
+						{
+							x--;
+						}
+						if (code == 1 || code == 5 || code == 6)
+						{
+							y++;
+						}
+						else if (code == 4 || code == 7 || code == 8)
+						{
+							y--;
+						}
+						j++;
+						if (j > 1) //if route only 1 step, not converted to destination
+						{
+							codes.Add(page.list[i]);
+							codes.Last().BakinCode[0] = target == -1 ? "PLWALK_TGT" : "EVWALK_TGT";
+							codes.Last().BakinCode[1] = "目的地に向かって歩く";
+							codes.Last().Params = new List<string> { x.ToString(), y.ToString() };
+							i += j;
+						}
+					}
+				}
+				else
+				{
+					codes.Add(page.list[i]);
+					i++;
+				}
+			}
+			page.list = codes;
+		}
+
+		#endregion
+		#region Privates
+		//Adding command parameters
+
+		//101 Show Text: 0:face graphic, 1:face index, 2:background type(0:norm, 1:dark, 2:trans), 3:position type(0:up, 1:middle, 2:down),
+		//4:speaker name(mz) 5:(concatenated text)
+		private void AddCommandDialogue(List<BakinParameter> p, List<string> paras)
+		{
+			AddCommandHeader(p, "DIALOGUE");
+			p.Add(new BakinParameter("文字列", "表示するテキスト", paras.Last())); //text
+			p.Add(new BakinParameter("整数", "ウィンドウ表示位置", paras[3])); //window pos 0=up 1=middle 2=buttom
+			p.Add(new BakinParameter("整数", ""));
+			p.Add(new BakinParameter("Guid", "表示するキャスト1Guid")); //cast1 sprite guid
+			p.Add(new BakinParameter("文字列", "表示するキャスト1表情")); //cast1 face expression
+			p.Add(new BakinParameter("Guid", "表示するキャスト2Guid")); //cast2 sprite guid
+			p.Add(new BakinParameter("文字列", "表示するキャスト2表情")); //cast2 face expression
+			p.Add(new BakinParameter("整数", "喋らせるキャスト（0：キャスト1、1：キャスト2）")); //who's talking [0,1]
+			p.Add(new BakinParameter("整数", "キャスト1左右反転")); //cast1 flip
+			p.Add(new BakinParameter("整数", "キャスト2左右反転", "1")); //cast2 flip
+			p.Add(new BakinParameter("整数", "マップの光源を使用する", "1")); //use map light source
+			p.Add(new BakinParameter("整数", "キャスト1ビルボード")); //cast1 bilboard
+			p.Add(new BakinParameter("整数", "キャスト2ビルボード")); //cast2 bilboard
+			AddCommandEnd(p);
+		}
+
+		//Unused
+		private void AddCommandMessage(List<BakinParameter> p, List<string> paras)
+		{
+			AddCommandHeader(p, "MESSAGE");
+			p.Add(new BakinParameter("文字列", "表示するテキスト", paras.Last()));   //text
+			p.Add(new BakinParameter("整数", "ウィンドウ表示位置", paras[3]));  //window pos 0=up 1=middle 2=buttom
+			p.Add(new BakinParameter("整数", "ウィンドウを表示", paras[2] != "2" ? "1" : "0"));    //show window flag
+			AddCommandEnd(p);
+		}
+
+		//102 Show Choices: 0:choice list(array), 1:cancel type, 2:default type, 3:position type, 4:background type
+		private void AddCommandChoices(List<BakinParameter> p, List<string> paras)
         {
-            string command = code.BakinCode != null ? code.BakinCode[0] : null;
-            switch (command)
-            {
-                case "DIALOGUE": //101
-                    AddCommandDialogue(p, code.Params);
-                    break;
-                case "MESSAGE": //101
-                    AddCommandMessage(p, code.Params);
-                    break;
-                case "CHOICES": //102
-                    AddCommandChoices(p, code.Params);
-                    break;
-                case "BRANCH": //402, 403
-                    AddCommandBranch(p, code.Params);
-                    break;
-                case "CHANGE_STRING_VARIABLE": //103
-                    break;
-                case "ITEMMENU": //104
-                    AddCommandItemmenu(p, code.Params);
-                    break;
-                case "TELOP": //105
-                    AddCommandTelop(p, code.Params);
-                    break;
-                case "IFSWITCH": //111(00)
-                    AddCommandIfswitch(p, code.Params);
-                    break;
-                case "IFVARIABLE": //111(01-02)
-                    AddCommandIfvariable(p, code.Params);
-                    break;
-                //timer???
-                case "IFPARTY": //111(04)
-                    AddCommandIfparty(p, code.Params);
-                    break;
-                case "IF_STRING_VARIABLE": //111(05)
-                    AddCommandIfstringvariable(p, code.Params);
-                    break;
-                case "IFITEM": //111(07, 11, 12, 13)
-                    AddCommandIfitem(p, code.Params);
-                    break;
-                case "BTL_IFMONSTER": //111(08)
-                    AddCommandBtlifmonster(p, code.Params);
-                    break;
-                case "IFMONEY": //111(10)
-                    AddCommandIfmoney(p, code.Params);
-                    break;
-                case "ELSE": //411, 602, 603
-                    AddCommandNoparams(p, "ELSE");
-                    break;
-                case "ENDIF":
-                    AddCommandNoparams(p, "ENDIF");
-                    break;
-                case "LOOP": //112
-                    AddCommandNoparams(p, "LOOP");
-                    break;
-                case "ENDLOOP": //413
-                    AddCommandNoparams(p, "ENDLOOP");
-                    break;
-                case "BREAK": //113
-                    AddCommandNoparams(p, "BREAK");
-                    break;
-                case "END": //115
-                    AddCommandNoparams(p, "END");
-                    break;
-                case "EXEC": //117
-                    AddCommandExec(p, code.Params);
-                    break;
-                case "SWITCH": //121, 123, 27, 28
-                    AddCommandSwitch(code.code, p, code.Params);
-                    break;
-                case "HLVARIABLE": //122(00-05,07)
-                    AddCommandHlvariable(p, code.Params);
-                    break;
-                case "MONEY": //125
-                    AddCommandMoney(p, code.Params);
-                    break;
-                case "ITEM": //126, 127, 128
-                    AddCommandItem(p, code.Params);
-                    break;
-                case "PARTY": //129
-                    AddCommandParty(p, code.Params);
-                    break;
-                case "SW_SAVE": //134
-                    AddCommandSwsave(p, code.Params);
-                    break;
-                case "SW_MENU": //135
-                    AddCommandSwmenu(p, code.Params);
-                    break;
-                case "SW_ENCOUNTING": //136
-                    AddCommandSwencounting(p, code.Params);
-                    break;
-                case "CHANGE_LAYOUT": //138
-                    AddCommandChangelayout(p, code.Params);
-                    break;
-                case "PLMOVE": //201
-                    AddCommandPlmove(p, code.Params);
-                    break;
-                case "MOVE": //203
-                    AddCommandMove(p, code.Params);
-                    break;
-                case "CAM_ANIMATION": //204
-                    AddCommandCamanimation(p, code.Params);
-                    break;
-                case "MOVEROUTE": //205
-                    AddCommandMoveRoute(p, code.Params);
-                    break;
-                case "EFFECT": //212, 337 no character choice
-                    AddCommandEffect(code.code, p, code.Params);
-                    break;
-                case "EMOTE": //213 no character choice
-                    AddCommandEmote(p, code.Params);
-                    break;
-                case "DESTROY_EVENT": //214
-                    //Erase Event
-                    AddCommandNoparams(p, "DESTROY_EVENT");
-                    break;
-                case "WALK_IN_ROWS": //216
-                    AddCommandWalkinrows(p, code.Params);
-                    break;
-                case "SCREEN_FADE": //221, 222
-                    AddCommandScreenfade(code.code, p, code.Params);
-                    break;
-                case "SCREEN_COLOR": //223
-                    AddCommandScreencolor(p, code.Params);
-                    break;
-                case "SCREEN_FLASH": //224
-                    AddCommandScreenflash(p, code.Params);
-                    break;
-                case "SCREEN_SHAKE": //225
-                    AddCommandScreenshake(p, code.Params);
-                    break;
-                case "WAIT": //230
-                    AddCommandWait(p, code.Params);
-                    break;
-                case "SPPICTURE": //231
-                    AddCommandSppicture(p, code.Params);
-                    break;
-                case "SPMOVE": //232
-                    AddCommandSpmove(p, code.Params);
-                    break;
-                case "SPHIDE": //235
-                    AddCommandSphide(p, code.Params);
-                    break;
-                case "CHANGE_RENDER": //236, 283, 284
-                    AddCommandChangerender(code.code, p, code.Params);
-                    break;
-                case "PLAYBGM": //241, 242
-                    AddCommandPlaybgm(code.code, p, code.Params);
-                    break;
-                case "PLAYBGS": //245, 246
-                    AddCommandPlaybgs(code.code, p, code.Params);
-                    break;
-                case "PLAYJINGLE": //249
-                    AddCommandPlayjingle(p, code.Params);
-                    break;
-                case "STOPSE": //251
-                    AddCommandStopse(p, code.Params);
-                    break;
-                case "PLAYMOVIE": //261
-                    AddCommandPlaymovie(p, code.Params);
-                    break;
-                case "GET_TERRAIN": //285 unable to get terraintag, eventid and regionid, position specified only by variables
-                    AddCommandGetterrain(p, code.Params);
-                    break;
-                case "BOSSBATTLE": //301
-                    AddCommandBossbattle(p, code.Params);
-                    break;
-                case "SHOP": //302　code.Params[1] and code.Params[3] should be arrays containing item ids and prices
-                    AddCommandShop(p, code.Params);
-                    break;
-                case "CHANGE_HERO_NAME": //303
-                    AddCommandChangeheroname(p, code.Params);
-                    break;
-                case "CHG_HPMP": //311, 312
-                    AddCommandChghpmp(code.code, p, code.Params);
-                    break;
-                case "CHG_STTAILM": //313
-                    AddCommandChgsttailm(p, code.Params);
-                    break;
-                case "FULLRECOV": //314 not all but only 1 actor? CHG_HPMP??
-                    break;
-                case "CHG_EXP": //315
-                    AddCommandChgexp(p, code.Params);
-                    break;
-                case "STATUS": //317 unable for mdef and luk change
-                    AddCommandStatus(p, code.Params);
-                    break;
-                case "CHG_SKILL": //318
-                    AddCommandChgskill(p, code.Params);
-                    break;
-                case "EQUIP": //319
-                    AddCommandEquip(p, code.Params);
-                    break;
-                case "STRING_VARIABLE": //320
-                    AddCommandStringvariable(p, code.Params);
-                    break;
-                case "CHANGE_JOB": //321
-                    AddCommandChangejob(p, code.Params);
-                    break;
-                case "PLGRAPHIC": //322
-                    AddCommandPlgraphic(p, code.Params);
-                    break;
-                case "BTL_HEAL": //331, 332
-                    AddCommandBtlheal(code.code, p, code.Params);
-                    break;
-                case "BTL_STATUS": //333
-                    AddCommandBtlstatus(p, code.Params);
-                    break;
-                case "BTL_APPEAR": //335
-                    AddCommandBtlappear(p, code.Params);
-                    break;
-                case "BTL_ACTION": //339
-                    AddCommandBtlaction(p, code.Params);
-                    break;
-                case "BTL_STOP": //340
-                    AddCommandNoparams(p, "BTL_STOP");
-                    break;
-                case "SHOW_SCORE_BOARD": //351 unusable??
-                    AddCommandShowscoreboard(p, code.Params);
-                    break;
-                case "SAVE": //352
-                    AddCommandNoparams(p, "SAVE");
-                    break;
-                case "PLWALK": //1-13
-                    AddCommandWalk(p, code.code);
-                    break;
-                case "WALK": //1-13
-                    AddCommandWalk(p, code.code);
-                    break;
-                case "PLWALK_TGT": //converted from consecutive player move commands
-                    AddCommandWalktgt(p, code.Params);
-                    break;
-                case "EVWALK_TGT": //converted from consecutive event move commands
-                    AddCommandWalktgt(p, code.Params);
-                    break;
-                case "ADDFORCEPL": //14
-                    AddCommandAddforce(p, code.Params);
-                    break;
-                case "ADDFORCE": //14
-                    AddCommandAddforce(p, code.Params);
-                    break;
-                case "PLROTATE": //16-26
-                    AddCommandRotate(p, code.code);
-                    break;
-                case "ROTATE": //16-26
-                    AddCommandRotate(p, code.code);
-                    break;
-                case "PLWALKSPEED": //29
-                    AddCommandWalkspeed(p, code.Params);
-                    break;
-                case "WALKSPEED": //29
-                    AddCommandWalkspeed(p, code.Params);
-                    break;
-                case "GRAPHIC": //31, 32, 41
-                    AddCommandGraphic(p, code.Params);
-                    break;
-                case "PLMOTION": //33, 34
-                    AddCommandPlmotion(p, code.Params);
-                    break;
-                case "MOTION": //33, 34
-                    AddCommandMotion(p, code.Params);
-                    break;
-                case "SW_PLLOCKROTATE": //35, 36
-                    AddCommandSwpllockrotate(p, code.Params);
-                    break;
-                case "CHANGE_PLAYER_MOVABLE": //37, 38
-                    AddCommandChangemovable(p, code.Params);
-                    break;
-                case "CHANGE_MOVABLE": //37, 38
-                    AddCommandChangemovable(p, code.Params);
-                    break;
-                case "PLHIDE": //39, 40
-                    AddCommandHide(p, code.Params);
-                    break;
-                case "EVHIDE": //39, 40, 211
-                    AddCommandHide(p, code.Params);
-                    break;
-                case "PLAYSE": //44, 250
-                    AddCommandPlayse(p, code.Params);
-                    break;
-                case "COMMENT":
-                    AddCommandComment(p, code.Params);
-                    break;
+			AddCommandHeader(p, "CHOICES");
+			List<string> labels = JsonSerializer.Deserialize<List<string>>(paras[0]);
+			p.Add(new BakinParameter("整数", "選択肢の数", labels.Count.ToString()));   //num of choices
+			_numChoices = 0;
+			foreach (string label in labels)
+			{
+				p.Add(new BakinParameter("文字列", "選択肢のラベル", label)); //choice label
+			}
+			//pos 0=upleft 1=up 2=upright 3=left 4=center 5=right 6=botleft 7=bottom 8=botright
+			string pos = int.Parse(paras[3]) == 0 ? "3" : int.Parse(paras[3]) == 1 ? "4" : "5";
+			p.Add(new BakinParameter("整数", "選択肢の位置（0：左上、1：上、2：右上、3：左、4：中央、5：右、6：左下、7：下、8：右下）", pos));
+			AddCommandEnd(p);
+		}
+
+		//402 Branches of the choices
+		private void AddCommandBranch(List<BakinParameter> p, List<string> paras)
+		{
+			_numChoices++;
+			AddCommandHeader(p, "BRANCH");
+			p.Add(new BakinParameter("整数", "選択肢n番号（n-1）", _numChoices.ToString())); //choice N-1
+			AddCommandEnd(p);
+		}
 
                     #region Follwing commands are not used in MV.
                     //case "VARIABLE":
@@ -1811,6 +2156,31 @@ namespace Json2BakinPlugin.Services
             Tuple<string, string> valvar2 = GetBknVarNameOrVal(type, z);
             return Guid.Empty.ToString() + "|-1|" + valvar.Item2 + "|0|" + valvar2.Item2;
         }
+
+		private void AddCommandClose(List<BakinParameter> p, List<string> paras)
+		{
+			if (_indentType.Last() == "IF")
+            {
+				AddCommandNoparams(p, "ENDIF");
+			}
+			else if (_indentType.Last() == "CHOICE")
+            {
+				AddCommandNoparams(p, "ENDIF");
+				_numChoice = 0;
+            }
+			else if (_indentType.Last() == "IGNORE")
+            {
+				//close tag for non-converted command.
+            }
+			_indentType.RemoveAt(_indentType.Count - 1);
+		}
+
+		private string GetSpot(string type, string x, string z)
+		{
+			Tuple<string, string> valvar = GetBknVarNameOrVal(type, x);
+			Tuple<string, string> valvar2 = GetBknVarNameOrVal(type, z);
+			return Guid.Empty.ToString() + "|-1|" + valvar.Item2 + "|0|" + valvar2.Item2;
+		}
 
         private string OpacToColor(string opac)
         {

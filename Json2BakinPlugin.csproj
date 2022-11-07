@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Services\BakinDataExportService.cs" />
     <Compile Include="Services\Json2BakinConvertService.cs" />
+    <Compile Include="Models\MvDatabase.cs" />
     <Compile Include="Services\MvMapDataLoadService.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
