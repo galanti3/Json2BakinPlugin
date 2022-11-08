@@ -18,6 +18,26 @@ namespace Json2BakinPlugin.Models
 		public bool through { get; set; }
 		public int trigger { get; set; }
 		public bool walkAnime { get; set; }
+
+		public string TriggerCode
+		{
+			get
+			{
+                switch (trigger)
+                {
+                    case 1:
+                        return "HIT";
+                    case 2:
+                        return "HIT_FROM_EV";
+                    case 3:
+                        return "AUTO_REPEAT";
+                    case 4:
+                        return "PARALLEL";
+                    default:
+                        return "TALK";
+                }
+            }
+        }
 		#endregion
 
 		#region Functions
@@ -50,6 +70,6 @@ namespace Json2BakinPlugin.Models
 				}
 			}
 		}
-		#endregion
-	}
+        #endregion
+    }
 }

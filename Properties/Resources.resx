@@ -153,7 +153,7 @@
   <data name="Para_BtlMap" xml:space="preserve">
     <value>バトルマップ</value>
   </data>
-  <data name="Para_Calc" xml:space="preserve">
+  <data name="Para_Calc0to7" xml:space="preserve">
     <value>計算（0：代入、1：足す、2：引く、3：かける、4：割る、6：割った余りを代入、7：小数点以下を切り捨てて代入）</value>
   </data>
   <data name="Para_Camera" xml:space="preserve">
@@ -1236,7 +1236,7 @@
   <data name="Para_PlayMovie" xml:space="preserve">
     <value>再生する動画</value>
   </data>
-  <data name="Para_PluginName" xml:space="preserve">
+  <data name="PluginName" xml:space="preserve">
     <value>JSONマップデーターBAKINイベントシート 変換プラグイン</value>
   </data>
   <data name="Para_PosX" xml:space="preserve">
@@ -1446,5 +1446,23 @@
   </data>
   <data name="Para_VarName" xml:space="preserve">
     <value>変数名</value>
+  </data>
+  <data name="Para_Calc" xml:space="preserve">
+    <value>計算</value>
+  </data>
+  <data name="Para_JumpDist" xml:space="preserve">
+    <value>ジャンプ距離</value>
+  </data>
+  <data name="Para_Target" xml:space="preserve">
+    <value>ターゲット</value>
+  </data>
+  <data name="Para_Value" xml:space="preserve">
+    <value>数値</value>
+  </data>
+  <data name="Para_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Para_NoConvChoiceElse" xml:space="preserve">
+    <value>変換不可分岐のその他分岐</value>
   </data>
 </root>

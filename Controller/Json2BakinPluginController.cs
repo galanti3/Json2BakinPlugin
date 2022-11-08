@@ -17,12 +17,14 @@ namespace Json2bakinPlugin.Controller
 
 		public string JsonFolder { get; set; }
 		public string BakinFolder { get; set; }
+		public bool IsAddReviceComment { get; set; } = true;
 
         internal void Convert()
         {
 			List<MvMap> mvMaps = new List<MvMap>();
 			List<string> files = Directory.GetFiles(JsonFolder, "Map*.json").ToList();
 			_loadService.LoadDatabase(JsonFolder);
+			_convertService.SetReviceCommentMode(IsAddReviceComment);
 			foreach (string file in files)
 			{
 				_loadService.DeserializeMapData(file, file.Split('\\').Last().Replace("Map", "").Replace(".json", ""));

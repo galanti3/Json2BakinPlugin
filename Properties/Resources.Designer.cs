@@ -19,7 +19,7 @@ namespace Json2BakinPlugin.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -2185,11 +2185,20 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 計算（0：代入、1：足す、2：引く、3：かける、4：割る、6：割った余りを代入、7：小数点以下を切り捨てて代入）.
+        ///   Looks up a localized string similar to 計算.
         /// </summary>
         internal static string Para_Calc {
             get {
                 return ResourceManager.GetString("Para_Calc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 計算（0：代入、1：足す、2：引く、3：かける、4：割る、6：割った余りを代入、7：小数点以下を切り捨てて代入）.
+        /// </summary>
+        internal static string Para_Calc0to7 {
+            get {
+                return ResourceManager.GetString("Para_Calc0to7", resourceCulture);
             }
         }
         
@@ -2199,6 +2208,15 @@ namespace Json2BakinPlugin.Properties {
         internal static string Para_Camera {
             get {
                 return ResourceManager.GetString("Para_Camera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to キャンセル.
+        /// </summary>
+        internal static string Para_Cancel {
+            get {
+                return ResourceManager.GetString("Para_Cancel", resourceCulture);
             }
         }
         
@@ -2878,6 +2896,15 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ジャンプ距離.
+        /// </summary>
+        internal static string Para_JumpDist {
+            get {
+                return ResourceManager.GetString("Para_JumpDist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to レイアウト用グラフィック.
         /// </summary>
         internal static string Para_LayoutGraphic {
@@ -3036,6 +3063,15 @@ namespace Json2BakinPlugin.Properties {
         internal static string Para_NewCastName {
             get {
                 return ResourceManager.GetString("Para_NewCastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換不可分岐のその他分岐.
+        /// </summary>
+        internal static string Para_NoConvChoiceElse {
+            get {
+                return ResourceManager.GetString("Para_NoConvChoiceElse", resourceCulture);
             }
         }
         
@@ -3382,15 +3418,6 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSONマップデーターBAKINイベントシート 変換プラグイン.
-        /// </summary>
-        internal static string Para_PluginName {
-            get {
-                return ResourceManager.GetString("Para_PluginName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to X位置（変数可）.
         /// </summary>
         internal static string Para_PosX {
@@ -3724,6 +3751,15 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ターゲット.
+        /// </summary>
+        internal static string Para_Target {
+            get {
+                return ResourceManager.GetString("Para_Target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to テンポ.
         /// </summary>
         internal static string Para_Tempo {
@@ -3873,6 +3909,15 @@ namespace Json2BakinPlugin.Properties {
         internal static string Para_UseMapLightSource {
             get {
                 return ResourceManager.GetString("Para_UseMapLightSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数値.
+        /// </summary>
+        internal static string Para_Value {
+            get {
+                return ResourceManager.GetString("Para_Value", resourceCulture);
             }
         }
         
@@ -4035,6 +4080,15 @@ namespace Json2BakinPlugin.Properties {
         internal static string Para_ZoomY {
             get {
                 return ResourceManager.GetString("Para_ZoomY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSONマップデーターBAKINイベントシート 変換プラグイン.
+        /// </summary>
+        internal static string PluginName {
+            get {
+                return ResourceManager.GetString("PluginName", resourceCulture);
             }
         }
         

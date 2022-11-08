@@ -114,7 +114,7 @@ namespace Json2BakinPlugin.Services
             otext += WriteConditionInfo(page);
             otext += "\tスクリプト\n";
             //normal:trigger 0=talk, 1=player touch, 2=event touch, 3=autorun, 4=parallel
-            otext += "\t\t開始条件\t" + GetTriggerCode(page.trigger) + "\n";
+            otext += "\t\t開始条件\t" + page.TriggerCode + "\n";
             otext += "\t\t高さ無視\tFalse\n";
             otext += "\t\t判定拡張\tFalse\n";
             foreach (MvCode code in page.list)
@@ -132,7 +132,7 @@ namespace Json2BakinPlugin.Services
             otext += WriteCommonConditionInfo(common);
             otext += "\tスクリプト\n";
             //normal:trigger 0=none, 1=switch auto, 2=switch parallel
-            otext += "\t\t開始条件\t" + GetTriggerCode(common.trigger) + "\n";
+            otext += "\t\t開始条件\t" + common.TriggerCode + "\n";
             otext += "\t\t高さ無視\tFalse\n";
             otext += "\t\t判定拡張\tFalse\n";
             foreach (MvCode code in common.list)
@@ -141,38 +141,6 @@ namespace Json2BakinPlugin.Services
             }
             otext += "スクリプト終了\nシート終了";
             return otext;
-        }
-
-        private string GetTriggerCode(int mvCode)
-        {
-            if(_isCommonEvent)
-            {
-                switch (mvCode)
-                {
-                    case 1:
-                        return "AUTO_REPEAT";
-                    case 2:
-                        return "PARALLEL";
-                    default:
-                        return "TALK";
-                }
-            }
-            else
-            {
-                switch (mvCode)
-                {
-                    case 1:
-                        return "HIT";
-                    case 2:
-                        return "HIT_FROM_EV";
-                    case 3:
-                        return "AUTO_REPEAT";
-                    case 4:
-                        return "PARALLEL";
-                    default:
-                        return "TALK";
-                }
-            }
         }
 
         private string WriteBasicPageInfo(MvEventPage page)
