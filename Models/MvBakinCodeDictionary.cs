@@ -144,12 +144,13 @@ namespace Json2BakinPlugin.Models
 			{35200, new List<string>{"SAVE", "セーブ画面を表示"}},
 			{35300, new List<string>{"ERROR", "ゲームオーバー"}}, //comment out
 			{35400, new List<string>{"ERROR", "タイトル画面に戻る"}}, //comment out
-			{35500, new List<string>{"ERROR", "スクリプト"}}, //comment out
-			{35600, new List<string>{"ERROR", "プラグインコマンド"}}, //comment out
-			{35700, new List<string>{"ERROR", "プラグインコマンド"}}, //comment out
+			{35500, new List<string>{"COMMENT", "スクリプト"}}, //comment out
+			{35600, new List<string>{"COMMENT", "プラグインコマンド"}}, //comment out
+			{35700, new List<string>{"COMMENT", "プラグインコマンド"}}, //comment out
 			{40200, new List<string>{"BRANCH", "選択肢"}},
 			{40300, new List<string>{"BRANCH", "選択肢キャンセル時"}},
-			{41100, new List<string>{"ELSE", "条件分岐それ以外"}},
+            {40400, new List<string>{"CLOSE", "選択肢終了"}},
+            {41100, new List<string>{"ELSE", "条件分岐それ以外"}},
 			{41300, new List<string>{"ENDLOOP", "ループ終了"}},
 			{60200, new List<string>{"ELSE", "バトル結果：逃げた時"}},
 			{60300, new List<string>{"ELSE", "バトル結果：負けた時"}},

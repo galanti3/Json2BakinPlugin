@@ -9,7 +9,7 @@ namespace Json2BakinPlugin.Services
 {
     public class MvMapDataLoadService
     {
-		#region Privates
+		#region Variables
 		MvMap _map;
 		MvDatabase _database;
         #endregion
@@ -18,23 +18,37 @@ namespace Json2BakinPlugin.Services
         public void LoadDatabase(string path)
 		{
 			MvDatabase database = new MvDatabase();
-			List<string> fileList = new List<string> { "Actors", "Animations", "Armors", "Classes", "Enemies", "Items", 
-													"Mapinfos", "Skills", "States", "Troops", "Weapons", "Switches", "Variables" };
-			foreach(string file in fileList)
+			List<string> dataList = new List<string> { "Actors", "Animations", "Armors", "Classes", "Enemies", "Items", 
+													"Skills", "States", "Troops", "Weapons"};
+			string text;
+			List<string> list;
+			foreach(string data in dataList)
             {
 				try
 				{
-					string text = System.IO.File.ReadAllText(path + "/" + file + ".json");
-					//elminate se for animation
-					List<string> list = Regex.Matches(text, @",""name"":.*?[^\\]""").Cast<Match>()
-											.Select(d => d.Value.Replace(@",""name"":", "")).ToList();
-				}
-				catch
-				{
-					database.GetType().GetProperty(file).SetValue(database, new List<string>());
-				}
+					string file =  (data == "Switches" || data == "Variables") ? "System" : data;
+					text = System.IO.File.ReadAllText(path + "/" + file + ".json");
+					list = Regex.Matches(text, @",""name"":.*?[^\\]""").Cast<Match>()
+											.Select(d => d.Value.Replace(@",""name"":", "").Replace("\"", ""))
+											.ToList();
+                    database.GetType().GetProperty(data).SetValue(database, list);
+                }
+                catch {}
 			}
-			_database = database;
+			try
+			{
+                //switches and variables
+                text = System.IO.File.ReadAllText(path + "/SYSTEM.json");
+                list = Regex.Matches(text, @",""switches"":\[.*?\]").Cast<Match>()
+                                        .Select(d => d.Value.Replace(@",""switches"":", "")).ToList();
+                database.Switches = list;
+                list = Regex.Matches(text, @",""variables"":\[.*?\]").Cast<Match>()
+                                        .Select(d => d.Value.Replace(@",""variables"":", "")).ToList();
+                database.Variables = list;
+            }
+            catch {}
+
+            _database = database;
 		}
 
 		public MvDatabase GetDatabase()
