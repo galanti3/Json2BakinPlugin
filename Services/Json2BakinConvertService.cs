@@ -976,7 +976,7 @@ namespace Json2BakinPlugin.Services
             p.Add(new BakinParameter("整数", Para_ObjCast + Para_SpecifyOrN, "0")); //0=specify_cast 1=n-th member
             p.Add(new BakinParameter("Guid", Para_ObjCast + "Guid" + "(ID：" + paras[0] + ")")); //cast guid
             p.Add(new BakinParameter("整数", Para_NthInParty));   //member number, N-1
-            p.Add(new BakinParameter("整数", Para_PartState, paras[1])); //0=join 1=remove
+            p.Add(new BakinParameter("整数", Para_JoinState, paras[1])); //0=join 1=remove
             p.Add(new BakinParameter("整数", Para_InheritStatus, paras[2] == "0" ? "1" : "0")); //inherit previous status
             AddCommandEnd(p);
         }

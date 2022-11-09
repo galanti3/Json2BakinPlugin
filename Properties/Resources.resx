@@ -844,7 +844,7 @@
     <value>変数：パーティアクターID</value>
   </data>
   <data name="Dic_VarRandom" xml:space="preserve">
-    <value>変数ボックスへの代入と計算：乱数</value>
+    <value>複雑な変数ボックスの操作：乱数</value>
   </data>
   <data name="Dic_VarScript" xml:space="preserve">
     <value>複雑な変数ボックスの操作：スクリプト</value>
@@ -1221,7 +1221,7 @@
   <data name="Para_WindowPos" xml:space="preserve">
     <value>ウィンドウ表示位置（0：上、1：中央、2：下）</value>
   </data>
-  <data name="Para_PartState" xml:space="preserve">
+  <data name="Para_JoinState" xml:space="preserve">
     <value>参加状態（0：参加、1：外す）</value>
   </data>
   <data name="Para_PhysX" xml:space="preserve">
@@ -1237,7 +1237,7 @@
     <value>再生する動画</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>JSONマップデーターBAKINイベントシート 変換プラグイン</value>
+    <value>JSONーBAKIN変換プラグイン</value>
   </data>
   <data name="Para_PosX" xml:space="preserve">
     <value>X位置（変数可）</value>

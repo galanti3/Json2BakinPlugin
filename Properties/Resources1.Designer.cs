@@ -1933,7 +1933,7 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 変数ボックスへの代入と計算：乱数.
+        ///   Looks up a localized string similar to 複雑な変数ボックスの操作：乱数.
         /// </summary>
         internal static string Dic_VarRandom {
             get {
