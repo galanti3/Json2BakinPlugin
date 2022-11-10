@@ -27,6 +27,10 @@ namespace Json2BakinPlugin.Services
                 {
                     foreach (MvEventPage page in ev.pages)
                     {
+                        foreach(MvCode code in page.list)
+                        {
+                            code.ExtractMoveRoute();
+                        }
                         page.list = _convertService.ConvertRouteCodesToDestinationCode(page.list);
                     }
                 }
@@ -59,6 +63,10 @@ namespace Json2BakinPlugin.Services
             {
                 if (ev != null)
                 {
+                    foreach (MvCode code in ev.list)
+                    {
+                        code.ExtractMoveRoute();
+                    }
                     ev.list = _convertService.ConvertRouteCodesToDestinationCode(ev.list);
                 }
             }
@@ -91,8 +99,11 @@ namespace Json2BakinPlugin.Services
                     {
                         foreach (MvCode code in page.list)
                         {
-                            ExtractMoveRoute(code);
-							code.GenerateSubCode(_moveChar);
+                            if (code.code == 205)
+                            {
+                                _moveChar = code.Params[0];
+                            }
+                            code.GenerateSubCode(_moveChar);
                             code.BakinCode = MvBakinCodeDictionary.Code(code.Subcode);
                         }
                     }
@@ -108,7 +119,10 @@ namespace Json2BakinPlugin.Services
                 {
                     foreach (MvCode code in ev.list)
                     {
-                        ExtractMoveRoute(code);
+                        if (code.code == 205)
+                        {
+                            _moveChar = code.Params[0];
+                        }
                         code.GenerateSubCode(_moveChar);
                         code.BakinCode = MvBakinCodeDictionary.Code(code.Subcode);
                     }
@@ -151,7 +165,7 @@ namespace Json2BakinPlugin.Services
             }
             if (_isTimerUsed)
             {
-                otext = CountDownTimer.writeCommonEvent();
+                otext = CountDownTimer.WriteCommonEvent();
                 File.WriteAllText(path + "\\" + "CommonEvent_Timer.txt", otext);
             }
         }
@@ -159,17 +173,6 @@ namespace Json2BakinPlugin.Services
         #endregion
 
         #region Privates
-        private void ExtractMoveRoute(MvCode code)
-        {
-            if (code.code == 205)
-            {
-                _moveChar = code.Params[0];
-            }
-            else if (code.code == 505) //route
-            {
-                code.ExtractRouteCode();
-            }
-        }
 
         private string WriteEventInfo(string evName)
         {

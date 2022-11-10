@@ -1000,7 +1000,7 @@
     <value>代入値</value>
   </data>
   <data name="Para_InterP" xml:space="preserve">
-    <value>補間（0：一定、1：加速、2：減速、3：加速～減速</value>
+    <value>補間（0：一定、1：加速、2：減速、3：加速～減速）</value>
   </data>
   <data name="Para_Item" xml:space="preserve">
     <value>アイテム</value>

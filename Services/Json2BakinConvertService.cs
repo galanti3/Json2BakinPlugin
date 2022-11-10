@@ -94,7 +94,7 @@ namespace Json2BakinPlugin.Services
                     _indentType.Add("IF");
                     break;
                 case "ELSE": //411, 602, 603
-                    if(_indentType.Count > 0 && _indentType.Last() != "IGNORE") //ELSE of non-converted IF.
+                    if (_indentType.Count > 0 && _indentType.Last() != "IGNORE") //ELSE of non-converted IF.
                     {
                         AddCommandNoparams(p, "ELSE");
                     }
@@ -338,6 +338,9 @@ namespace Json2BakinPlugin.Services
                 case "PLAYSE": //44, 250
                     AddCommandPlayse(p, code.Params);
                     break;
+                case "WALK_TGT": //50
+                    AddCommandWalktgt(p, code.Params);
+                    break;
                 case "COMMENT":
                     AddCommandComment(p, code.Params);
                     break;
@@ -572,38 +575,47 @@ namespace Json2BakinPlugin.Services
             {
                 if (list[i].code == 205) //set move route
                 {
-                    int target = int.Parse(list[i].Params[0]);
                     codes.Add(list[i]);
                     i++;
-                    int j = 0;
                     int x = 0, y = 0;
-                    while (list[i + j].code >= 1 && list[i + j].code <= 8)
+                    while (i < list.Count && list[i].code < 100)
                     {
-                        int code = list[i + j].code;
-                        if (code == 2 || code == 5 || code == 7)
+                        if (list[i].code >= 1 && list[i].code <= 8) //walk command
                         {
-                            x++;
+                            int count = 0;
+                            while (i < list.Count && list[i].code >= 1 && list[i].code <= 8) //get steps while walking
+                            {
+                                int code = list[i].code;
+                                if (code == 2 || code == 5 || code == 7)
+                                {
+                                    x++;
+                                }
+                                else if (code == 3 || code == 6 || code == 8)
+                                {
+                                    x--;
+                                }
+                                if (code == 1 || code == 5 || code == 6)
+                                {
+                                    y++;
+                                }
+                                else if (code == 4 || code == 7 || code == 8)
+                                {
+                                    y--;
+                                }
+                                count++;
+                                i++;
+                            }
+                            codes.Add(list[i - 1]);
+                            if (count > 1) //if route only 1 step, not converted to destination
+                            {
+                                codes.Last().code = 50; //code for moving to distination
+                                codes.Last().Params = new List<string> { x.ToString(), y.ToString() };
+                            }
                         }
-                        else if (code == 3 || code == 6 || code == 8)
-                        {
-                            x--;
-                        }
-                        if (code == 1 || code == 5 || code == 6)
-                        {
-                            y++;
-                        }
-                        else if (code == 4 || code == 7 || code == 8)
-                        {
-                            y--;
-                        }
-                        j++;
-                        if (j > 1) //if route only 1 step, not converted to destination
+                        else //non walk command. skip
                         {
                             codes.Add(list[i]);
-                            codes.Last().BakinCode[0] = target == -1 ? "PLWALK_TGT" : "EVWALK_TGT";
-                            codes.Last().BakinCode[1] = target == -1 ? Dic_PlWalkTgt : Dic_EvWalkTgt;
-                            codes.Last().Params = new List<string> { x.ToString(), y.ToString() };
-                            i += j;
+                            i++;
                         }
                     }
                 }
@@ -677,7 +689,7 @@ namespace Json2BakinPlugin.Services
         private void AddCommandBranch(List<BakinParameter> p, List<string> paras)
         {
             _indentType.Add("BRANCH");
-            if(_numChoices > 0) //first choice is skipped
+            if (_numChoices > 0) //first choice is skipped
             {
                 AddCommandHeader(p, "BRANCH");
                 p.Add(new BakinParameter("整数", Para_ChoiceN, _numChoices.ToString())); //choice N-1
@@ -749,7 +761,7 @@ namespace Json2BakinPlugin.Services
             {
                 p.Add(new BakinParameter("変数", Para_TimerVarName, "N:TimerInfo")); //type:name N=numeric
                 p.Add(new BakinParameter("整数", Para_TimerSec, paras[2]));
-                p.Add(new BakinParameter("整数", Para_CondOp, ToStr(ToInt(paras[1])+1))); //0== 1=>= 2=<= 3=!= 4=> 5=<
+                p.Add(new BakinParameter("整数", Para_CondOp, ToStr(ToInt(paras[1]) + 1))); //0== 1=>= 2=<= 3=!= 4=> 5=<
             }
             AddCommandEnd(p);
         }
@@ -1057,7 +1069,7 @@ namespace Json2BakinPlugin.Services
                 //map_guid|spot_id_from_1001|xpos|ypos|zpos
                 p.Add(new BakinParameter("スポット", Para_Spot, GetSpot(paras[1], paras[2], paras[3])));
                 p.Add(new BakinParameter("Guid", Para_Event + "Guid" + "(ID:" + paras[0] + ")")); //event guid
-                //direction 0=nochange 1=up 2=down 3=left 4=right
+                                                                                                  //direction 0=nochange 1=up 2=down 3=left 4=right
                 string d = paras[4] == "4" ? "3" : paras[4] == "6" ? "4" : paras[4];
                 p.Add(new BakinParameter("整数", Para_SpecDir));
                 AddCommandEnd(p);
@@ -1231,7 +1243,7 @@ namespace Json2BakinPlugin.Services
             else if (code == 283)
             {
                 AddCommandNoticeComment(p, Cvt_NeedRevise, Para_BtlBack);
-                tmp = Para_BtlBack +  "ID:" + paras[0] + "+" + paras[1];
+                tmp = Para_BtlBack + "ID:" + paras[0] + "+" + paras[1];
             }
             else
             {
@@ -1360,7 +1372,7 @@ namespace Json2BakinPlugin.Services
             AddCommandNoticeComment(p, Cvt_NeedRevise, Para_Troop + "(ID:" + paras[0] != "2" ? varval.Item2 : Para_Rand + "), BGM Guid");
             AddCommandHeader(p, "BOSSBATTLE");
             p.Add(new BakinParameter("整数", Para_NumEnemy, "")); //num of monsters
-            //p.Add(new BakinParameter("Guid", "モンスターnのGuid"));
+                                                                //p.Add(new BakinParameter("Guid", "モンスターnのGuid"));
             p.Add(new BakinParameter("整数", Para_NoGameover, paras[3])); //no gameover flag
             p.Add(new BakinParameter("整数", Para_NoEscape, paras[2] == "0" ? "1" : "0")); //no escape flag
             p.Add(new BakinParameter("整数", ""));
@@ -1370,10 +1382,10 @@ namespace Json2BakinPlugin.Services
             p.Add(new BakinParameter("整数", Para_MapCenterX, "12")); //battle map centerx
             p.Add(new BakinParameter("整数", Para_MapCenterZ, "12")); //battle map centerz
             p.Add(new BakinParameter("整数", Para_EnemyPosSection, "1001")); //1001": monster pos section, rel to center
-            //p.Add(new BakinParameter("整数", "モンスターn位置X座標ｘ1000")); //monster1 posx*1000
-            //p.Add(new BakinParameter("整数", "モンスターn位置Z座標ｘ1000")); //monster1 posz*1000
+                                                                           //p.Add(new BakinParameter("整数", "モンスターn位置X座標ｘ1000")); //monster1 posx*1000
+                                                                           //p.Add(new BakinParameter("整数", "モンスターn位置Z座標ｘ1000")); //monster1 posz*1000
             p.Add(new BakinParameter("整数", Para_LevelSection, "1002")); //1002": level section
-            //p.Add(new BakinParameter("整数", "モンスターnレベル")); //monster1 level
+                                                                        //p.Add(new BakinParameter("整数", "モンスターnレベル")); //monster1 level
             p.Add(new BakinParameter("整数", Para_MemberPosSection, "1005")); //1005": mem pos section, rel to center
             p.Add(new BakinParameter("整数", Para_NumMember, "1")); //num of members
             p.Add(new BakinParameter("整数", Para_NthPosX, "3000")); //mem1 posx*1000
@@ -1439,7 +1451,7 @@ namespace Json2BakinPlugin.Services
             AddCommandNoticeComment(p, Cvt_NeedRevise, Para_ObjCast + "(ID:" + varval.Item2 + ")," + Para_StateChange + "(ID:" + paras[3] + ")");
             AddCommandHeader(p, "CHG_STTAILM");
             p.Add(new BakinParameter("整数", Para_ObjCast + Para_SpecifyOrN, "1")); //0=specify_cast 1=n-th member
-                                                                          //p.Add(new BakinParameter("Guid", "指定キャストGuid")); //cast guid, all if 0
+                                                                                  //p.Add(new BakinParameter("Guid", "指定キャストGuid")); //cast guid, all if 0
             p.Add(new BakinParameter("整数", Para_NthInParty, "0")); //member number, N-1
             p.Add(new BakinParameter("Guid", Para_StateChange + "Guid")); //state guid
             p.Add(new BakinParameter("整数", Para_StateAddRemove, paras[2])); //0=add 1=remove
@@ -1709,7 +1721,7 @@ namespace Json2BakinPlugin.Services
             p.Add(new BakinParameter("スポット", Para_Spot, GetSpot("0", "Tmp1", "Tmp2"))); //map_guid|spot_id_from_1001|xpos|ypos|zpos
             p.Add(new BakinParameter("整数", Para_DirAtMoveEnd, "1")); //0=deg 1=toward
             p.Add(new BakinParameter("小数", Para_Angle)); //degree
-            p.Add(new BakinParameter("小数", Para_TimeToRot, ToStr((float)0.5 * (ToFlo(paras[0]) + ToFlo(paras[1]))))); //time in sec
+            p.Add(new BakinParameter("小数", Para_TimeToRot, ToStr((float)0.5 * (Math.Abs(ToFlo(paras[0])) + Math.Abs(ToFlo(paras[1])))))); //time in sec
             p.Add(new BakinParameter("整数", Para_InterP, "0")); //interp 0=const 1=accel 2=decel 3=accel-decel
             p.Add(new BakinParameter("整数", Para_WaitComplete, _isWaitMoving)); //wait complete
             p.Add(new BakinParameter("整数", Para_NoMotionChange, "0")); //no motion change
@@ -1816,7 +1828,7 @@ namespace Json2BakinPlugin.Services
 
         private void AddCommandNoticeComment(List<BakinParameter> p, string pre, string text = "")
         {
-            if(_isAddReviceComment || pre == Cvt_NoConvert)
+            if (_isAddReviceComment || pre == Cvt_NoConvert)
             {
                 AddCommandHeader(p, "COMMENT");
                 p.Add(new BakinParameter("文字列", Para_Text, pre + text));
@@ -1888,7 +1900,7 @@ namespace Json2BakinPlugin.Services
 
         private void AddCommandClose(List<BakinParameter> p, List<string> paras)
         {
-            if(_indentType.Count == 0)
+            if (_indentType.Count == 0)
             {
                 return; //last of a page.
             }

@@ -203,7 +203,8 @@ namespace Json2BakinPlugin.Models
 			{4300, new List<string>{"ERROR", Dic_Player + Dic_MixChip}}, //CHANGE_BLEND_MODE
 			{4400, new List<string>{"PLAYSE", Dic_Player + Dic_PlaySe2}}, //PLAY_SE
 			{4500, new List<string>{"ERROR_WITH_CONTENT", Dic_Player + Dic_Script2}}, //SCRIPT
-			
+			{5000, new List<string>{"WALK_TGT", Dic_PlWalkTgt}}, //Move to destination
+
 			{0101, new List<string>{"WALK", Dic_Event + Dic_MoveDown}}, //MOVE_DOWN
 			{0201, new List<string>{"WALK", Dic_Event + Dic_MoveLeft}}, //MOVE_LEFT
 			{0301, new List<string>{"WALK", Dic_Event + Dic_MoveRight}}, //MOVE_RIGHT
@@ -246,6 +247,7 @@ namespace Json2BakinPlugin.Models
 			{4101, new List<string>{"GRAPHIC", Dic_Event + Dic_CharChip}}, //CHANGE_IMAGE
 			{4201, new List<string>{"ERROR", Dic_Event + Dic_Opacity}}, //CHANGE_OPACITY
 			{4301, new List<string>{"ERROR", Dic_Event + Dic_MixChip}}, //CHANGE_BLEND_MODE
+			{5001, new List<string>{"WALK_TGT", Dic_EvWalkTgt}}, //Move to destination
 
             //commands not used in MV
             {1, new List<string>{"SPTEXT", Dic_SpText}},

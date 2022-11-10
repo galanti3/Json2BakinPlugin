@@ -69,22 +69,25 @@ namespace Json2BakinPlugin.Models
         }
 
         //extract route parameters and replace with 505 code.
-        public void ExtractRouteCode()
+        public void ExtractMoveRoute()
         {
-            List<string> paras = parameters.Split(',').ToList();
-            code = int.Parse(paras[0].Substring(paras[0].IndexOf(":") + 1));
-            paras.RemoveAt(0);
-            string oldpara = string.Join(",", paras);
-            int bgn = oldpara.IndexOf(":"); //colon of "parameters"
-            int end = oldpara.IndexOf(",\"indent\":");
-            if (end - bgn < 0)
+            if (code == 505) //route
             {
-                Params = null;
-            }
-            else
-            {
-                parameters = oldpara.Substring(bgn + 1, end - (bgn + 1));
-                ExtractEventCodeParameters();
+                List<string> paras = parameters.Split(',').ToList();
+                code = int.Parse(paras[0].Substring(paras[0].IndexOf(":") + 1));
+                paras.RemoveAt(0);
+                string oldpara = string.Join(",", paras);
+                int bgn = oldpara.IndexOf(":"); //colon of "parameters"
+                int end = oldpara.IndexOf(",\"indent\":");
+                if (end - bgn < 0)
+                {
+                    Params = null;
+                }
+                else
+                {
+                    parameters = oldpara.Substring(bgn + 1, end - (bgn + 1));
+                    ExtractEventCodeParameters();
+                }
             }
         }
 
@@ -175,6 +178,7 @@ namespace Json2BakinPlugin.Models
             }
             return idx + 1;
         }
+
         #endregion
     }
 }
