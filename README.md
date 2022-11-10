@@ -1,15 +1,13 @@
-<p align="center>
-![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
-</p>
+ 　　　　　　　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
 <h1 align="center">
   Json2BakinPlugin
   <br>
 </h1>
 
-<h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) events to Bakin events.</h4>
-<h4 align="center">RPGツクールMV(MZ)イベントをBakinイベントに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
+<h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) event data to Bakin event data.</h4>
+<h4 align="center">RPGツクールMV(MZ)イベントデータをBakinイベントデータに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+　　　　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Twitter Followers](https://badgen.net/twitter/follow/galanti3)](https://twitter.com/galanti3)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/galanti3)
   
