@@ -21,6 +21,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#variables-and-switches">Variables And Switches</a> •
   <a href="#timer">Timer</a> •
+  <a href="#movement-route-setting">Movement Route Setting</a> •<br>
   <a href="#limitations">Limitations</a> •
   <a href="#command-conversion-list">Command Conversion List</a> •
   <a href="#credits">Credits</a> •
@@ -33,6 +34,7 @@
   <a href="#ダウンロード">ダウンロード</a> •
   <a href="#使い方">使い方</a> •
   <a href="#変数とスイッチ">変数とスイッチ</a> •
+  <a href="#移動ルート設定">移動ルート設定</a> •<br>
   <a href="#タイマー">タイマー</a> •
   <a href="#制約">制約</a> •
   <a href="#command-conversion-list">コマンド変換リスト</a> •
@@ -77,7 +79,7 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 2. Start Bakin and open any game project.
 
-3. From the menu bar of the map editor, navigate to Functions > Extentions > "Json - Bakin Conversion Plugin" and open the plugin.
+3. From the menu bar of the map editor, navigate to Functions > Expanded Features > "Json - Bakin Conversion Plugin" and open the plugin.
 
 4. Select MV (MZ) data folder containing Map, CommonEvent and related Json files
   > **Note**
@@ -119,9 +121,9 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 Bakin offers the timer functionality via a common event. If MV (MZ) events contain any timer commands, a new "Countdown Timer" common event is automatically generated duging the conversion process. To make the timer related commands functional, generated Timer common event Bakin file (named "CommonEvent_Timer.txt") must be imported to Bakin common event. The Timer event is triggered by "TimeTrigger" variable and its real time info (in seconds) is stored in "TimerInfo" variable.
 
-## Route setting
+## Movement Route setting
 
-MV (MZ)'s consecutive move commands (up, down, right, left, upper-right, upper-left, lower-right, lower-left) will be merged to a single Bakin's "go to destination" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.
+MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged to a single Bakin's "walk to specified coodinates" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.
 
 ## Limitations
 
@@ -409,7 +411,7 @@ Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com
 
 Bakinではタイマー機能はコモンイベントを通して提供されます。もしツクールイベントがタイマー関連コマンドを使用している場合、変換時に「カウントダウンタイマー」コモンイベントが自動的に生成され、Bakinファイルに出力されます。変換されたタイマー関連コマンドをBakinで動作させるには、生成されたタイマーBakinファイル(CommonEvent_Timer.txt)を必ずコモンイベントにインポートしてください。タイマーイベントは「TimeTrigger」という変数によってオンオフ操作され、リアルタイムの秒数は「TimerInfo」という変数に格納されます。
 
-## ルート設定
+## 移動ルート設定
 
 ツクールイベント内の連続する移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「目的地に向かって歩く」に集約されます。目的ポイントは自動的に計算されます。もし移動コマンド間に別のコマンド(ウエイト、向きを変えるなど)が存在する場合は、集約は行われません。
 
