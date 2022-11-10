@@ -28,7 +28,7 @@ namespace Json2BakinPlugin.Models
 			{11100, new List<string>{"IFSWITCH", Dic_IfSwitch}},
 			{11101, new List<string>{"IFVARIABLE", Dic_IfVariable}},
 			{11102, new List<string>{"IFSWITCH", Dic_IfVariable}},
-			{11103, new List<string>{"ERROR_IF", Dic_IfTimer}}, //comment out
+			{11103, new List<string>{"IFVARIABLE", Dic_IfTimer}},
 			{11104, new List<string>{"IFPARTY", Dic_IfParty}},
 			{11105, new List<string>{"IF_STRING_VARIABLE", Dic_IfStringVariable}},
 			{11106, new List<string>{"ERROR_IF", Dic_IfClassSkillState}}, //comment out
@@ -55,11 +55,11 @@ namespace Json2BakinPlugin.Models
 			{12203, new List<string>{"HLVARIABLE", Dic_VarActor}},
 			{12204, new List<string>{"HLVARIABLE", Dic_VarEnemy}},
 			{12205, new List<string>{"HLVARIABLE", Dic_VarChar}},
-			{12206, new List<string>{"ERROR", Dic_VarPartyActorId}},
+			{12206, new List<string>{"ERROR", Dic_VarPartyActorId}}, //comment out
 			{12207, new List<string>{"HLVARIABLE", Dic_VarGameData}},
 			{12208, new List<string>{"ERROR_WITH_CONTENT", Dic_VarScript}}, //comment out
 			{12300, new List<string>{"SWITCH", Dic_SelfSwitch}},
-			{12400, new List<string>{"EXEC", Dic_Timer}},
+			{12400, new List<string>{"TIMER", Dic_Timer}}, //custom command
 			{12500, new List<string>{"MONEY", Dic_Money}},
 			{12600, new List<string>{"ITEM", Dic_Item}},
 			{12700, new List<string>{"ITEM", Dic_Weapon}},

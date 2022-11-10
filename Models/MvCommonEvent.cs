@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Json2BakinPlugin.Models
 {
-    internal class MvCommonEvent
+    public class MvCommonEvent : MvCodeList
     {
         #region Properties
         public int id { get; set; }
         public string name { get; set; }
         public int switchId { get; set; }
-        public int trigger { get; set; }
-        public List<MvCode> list { get; set; }
         public string TriggerCode
         {
             get

@@ -1465,4 +1465,10 @@
   <data name="Para_NoConvChoiceElse" xml:space="preserve">
     <value>変換不可分岐のその他分岐</value>
   </data>
+  <data name="Para_TimerSec" xml:space="preserve">
+    <value>タイマー秒数</value>
+  </data>
+  <data name="Para_TimerVarName" xml:space="preserve">
+    <value>タイマー変数名</value>
+  </data>
 </root>

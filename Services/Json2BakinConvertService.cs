@@ -8,6 +8,9 @@ using static Yukar.Engine.VirtualPad;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using static Json2BakinPlugin.Properties.Resources;
+using System.Windows.Forms;
+using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
+using System.Xml.Linq;
 
 namespace Json2BakinPlugin.Services
 {
@@ -123,6 +126,9 @@ namespace Json2BakinPlugin.Services
                     break;
                 case "HLVARIABLE": //122(00-05,07)
                     AddCommandHlvariable(p, code.Params);
+                    break;
+                case "TIMER": //124
+                    AddCommandTimer(p, code.Params);
                     break;
                 case "MONEY": //125
                     AddCommandMoney(p, code.Params);
@@ -558,22 +564,22 @@ namespace Json2BakinPlugin.Services
             }
         }
 
-        public void ConvertRouteCodesToDestinationCode(MvEventPage page)
+        public List<MvCode> ConvertRouteCodesToDestinationCode(List<MvCode> list)
         {
             List<MvCode> codes = new List<MvCode>();
             int i = 0;
-            while (i < page.list.Count)
+            while (i < list.Count)
             {
-                if (page.list[i].code == 205) //set move route
+                if (list[i].code == 205) //set move route
                 {
-                    int target = int.Parse(page.list[i].Params[0]);
-                    codes.Add(page.list[i]);
+                    int target = int.Parse(list[i].Params[0]);
+                    codes.Add(list[i]);
                     i++;
                     int j = 0;
                     int x = 0, y = 0;
-                    while (page.list[i + j].code >= 1 && page.list[i + j].code <= 8)
+                    while (list[i + j].code >= 1 && list[i + j].code <= 8)
                     {
-                        int code = page.list[i + j].code;
+                        int code = list[i + j].code;
                         if (code == 2 || code == 5 || code == 7)
                         {
                             x++;
@@ -593,7 +599,7 @@ namespace Json2BakinPlugin.Services
                         j++;
                         if (j > 1) //if route only 1 step, not converted to destination
                         {
-                            codes.Add(page.list[i]);
+                            codes.Add(list[i]);
                             codes.Last().BakinCode[0] = target == -1 ? "PLWALK_TGT" : "EVWALK_TGT";
                             codes.Last().BakinCode[1] = target == -1 ? Dic_PlWalkTgt : Dic_EvWalkTgt;
                             codes.Last().Params = new List<string> { x.ToString(), y.ToString() };
@@ -603,11 +609,11 @@ namespace Json2BakinPlugin.Services
                 }
                 else
                 {
-                    codes.Add(page.list[i]);
+                    codes.Add(list[i]);
                     i++;
                 }
             }
-            page.list = codes;
+            return codes;
         }
 
         #endregion
@@ -727,14 +733,24 @@ namespace Json2BakinPlugin.Services
         }
 
         //111(01) If variable: 0:1, 1:id, 2:type(const, var), 3:value or id, 4:operation(==,>=,<=,>,<,!=)
+        //111(03) If timer 0:3	1:operator(>=,<=) 2:time in sec
         private void AddCommandIfvariable(List<BakinParameter> p, List<string> paras)
         {
             AddCommandHeader(p, "IFVARIABLE");
-            p.Add(new BakinParameter("変数", Para_VarName, GetBknVarName(paras[1], "N"))); //type:name N=numeric
-            Tuple<string, string> varval = GetBknVarNameOrVal(paras[2], paras[3]);
-            p.Add(new BakinParameter(varval.Item1, Para_VariableValue, varval.Item2));
-            string tmp = ToInt(paras[4]) <= 2 ? paras[4] : paras[4] == "5" ? "3" : ToStr(ToInt(paras[4]) - 1);
-            p.Add(new BakinParameter("整数", Para_CondOp, tmp)); //0== 1=>= 2=<= 3=!= 4=> 5=<
+            if (paras[0] == "1") //if variable
+            {
+                p.Add(new BakinParameter("変数", Para_VarName, GetBknVarName(paras[1], "N"))); //type:name N=numeric
+                Tuple<string, string> varval = GetBknVarNameOrVal(paras[2], paras[3]);
+                p.Add(new BakinParameter(varval.Item1, Para_VariableValue, varval.Item2));
+                string tmp = ToInt(paras[4]) <= 2 ? paras[4] : paras[4] == "5" ? "3" : ToStr(ToInt(paras[4]) - 1);
+                p.Add(new BakinParameter("整数", Para_CondOp, tmp)); //0== 1=>= 2=<= 3=!= 4=> 5=<
+            }
+            else //if timer. Timer common event must be implemented
+            {
+                p.Add(new BakinParameter("変数", Para_TimerVarName, "N:TimerInfo")); //type:name N=numeric
+                p.Add(new BakinParameter("整数", Para_TimerSec, paras[2]));
+                p.Add(new BakinParameter("整数", Para_CondOp, ToStr(ToInt(paras[1])+1))); //0== 1=>= 2=<= 3=!= 4=> 5=<
+            }
             AddCommandEnd(p);
         }
 
@@ -1616,6 +1632,13 @@ namespace Json2BakinPlugin.Services
             p.Add(new BakinParameter("整数", Para_DisplayFlag, "1")); //display flag
             p.Add(new BakinParameter("Guid", Para_UseLayout + "Guid"));
             AddCommandEnd(p);
+        }
+
+        //124 Control Timer 0:Operation(start, stop) 1:time in seconds
+        private void AddCommandTimer(List<BakinParameter> p, List<string> paras)
+        {
+            AddCommandTemporaryVariable(p, "TimerTrigger", paras[0], 0);
+            AddCommandTemporaryVariable(p, "TimerInfo", paras[1], 0);
         }
 
         private void AddCommandNoparams(List<BakinParameter> p, string command)

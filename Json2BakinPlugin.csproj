@@ -97,9 +97,11 @@
   <ItemGroup>
     <Compile Include="Controller\Json2BakinPluginController.cs" />
     <Compile Include="Models\BakinCode.cs" />
+    <Compile Include="Models\CountDownTimer.cs" />
     <Compile Include="Models\MvBakinCodeDictionary.cs" />
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
+    <Compile Include="Models\MvCodeList.cs" />
     <Compile Include="Models\MvCommonEvent.cs" />
     <Compile Include="Models\MvEvent.cs" />
     <Compile Include="Models\MvEventConditions.cs" />
@@ -119,11 +121,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Services\BakinDataExportService.cs" />
     <Compile Include="Services\Json2BakinConvertService.cs" />
     <Compile Include="Models\MvDatabase.cs" />
@@ -142,7 +139,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TestForm.en.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

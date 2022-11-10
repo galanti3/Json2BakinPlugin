@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 using Yukar.Engine;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static Yukar.Engine.VirtualPad;
 
 namespace Json2BakinPlugin.Services
 {
@@ -13,19 +15,19 @@ namespace Json2BakinPlugin.Services
         private MvMapDataLoadService _loadService;
         private Json2BakinConvertService _convertService;
         private string _moveChar;
-        private bool _isCommonEvent;
+        private bool _isTimerUsed;
         #endregion
 
         #region Methods
         public void Preprocess()
         {
-            foreach (MvEvent ev in _loadService.GetMap().events)
+            foreach (MvEvent ev in _loadService.GetMapEvents())
             {
                 if (ev != null)
                 {
                     foreach (MvEventPage page in ev.pages)
                     {
-                        _convertService.ConvertRouteCodesToDestinationCode(page);
+                        page.list = _convertService.ConvertRouteCodesToDestinationCode(page.list);
                     }
                 }
             }
@@ -33,7 +35,7 @@ namespace Json2BakinPlugin.Services
 
         public void Postprocess()
         {
-            foreach (MvEvent ev in _loadService.GetMap().events)
+            foreach (MvEvent ev in _loadService.GetMapEvents())
             {
                 if (ev != null)
                 {
@@ -51,9 +53,37 @@ namespace Json2BakinPlugin.Services
             }
         }
 
+        public void PreprocessCommon()
+        {
+            foreach (MvCommonEvent ev in _loadService.GetCommonEvents())
+            {
+                if (ev != null)
+                {
+                    ev.list = _convertService.ConvertRouteCodesToDestinationCode(ev.list);
+                }
+            }
+        }
+
+        public void PostprocessCommon()
+        {
+            foreach (MvCommonEvent ev in _loadService.GetCommonEvents())
+            {
+                if (ev != null)
+                {
+                    foreach (MvCode code in ev.list)
+                    {
+                        if (code.BakinCode != null && code.BakinCode[0].Contains("COMMENT"))
+                        {
+                            code.Params.Add(code.BakinCode[1]); //for comment, text is added to the parameters list.
+                        }
+                    }
+                }
+            }
+        }
+
         public void RegisterBakinCodes()
         {
-            foreach(MvEvent ev in _loadService.GetMap().events)
+            foreach(MvEvent ev in _loadService.GetMapEvents())
             {
                 if(ev != null)
                 {
@@ -61,14 +91,7 @@ namespace Json2BakinPlugin.Services
                     {
                         foreach (MvCode code in page.list)
                         {
-							if (code.code == 205)
-							{
-								_moveChar = code.Params[0];
-							}
-							else if (code.code == 505) //route
-                            {
-                                code.ExtractRouteCode();
-							}
+                            ExtractMoveRoute(code);
 							code.GenerateSubCode(_moveChar);
                             code.BakinCode = MvBakinCodeDictionary.Code(code.Subcode);
                         }
@@ -77,10 +100,25 @@ namespace Json2BakinPlugin.Services
             }
         }
 
+        public void RegisterBakinCodesCommon()
+        {
+            foreach (MvCommonEvent ev in _loadService.GetCommonEvents())
+            {
+                if (ev != null)
+                {
+                    foreach (MvCode code in ev.list)
+                    {
+                        ExtractMoveRoute(code);
+                        code.GenerateSubCode(_moveChar);
+                        code.BakinCode = MvBakinCodeDictionary.Code(code.Subcode);
+                    }
+                }
+            }
+        }
+
         public void ExportMap(string path)
         {
             string mapName = _loadService.GetMapName();
-            _isCommonEvent = false;
             foreach (MvEvent ev in _loadService.GetMapEvents())
             {
                 if (ev != null)
@@ -96,9 +134,43 @@ namespace Json2BakinPlugin.Services
                 }
             }
         }
+
+        public void ExportCommonEvents(string path)
+        {
+            string otext = "";
+            foreach (MvCommonEvent ev in _loadService.GetCommonEvents())
+            {
+                if (ev != null)
+                {
+                    otext = WriteEventInfo(String.Format("CommonEvents{0:D3}", ev.id));
+                    otext += WriteCommonEvent(ev);
+                    string evName = ev.name != "" ? "_" + ev.name : "";
+                    string fileName = String.Format("CommonEvents{0:D3}", ev.id) + evName + ".txt";
+                    File.WriteAllText(path + "\\" + fileName, otext);
+                }
+            }
+            if (_isTimerUsed)
+            {
+                otext = CountDownTimer.writeCommonEvent();
+                File.WriteAllText(path + "\\" + "CommonEvent_Timer.txt", otext);
+            }
+        }
+
         #endregion
 
         #region Privates
+        private void ExtractMoveRoute(MvCode code)
+        {
+            if (code.code == 205)
+            {
+                _moveChar = code.Params[0];
+            }
+            else if (code.code == 505) //route
+            {
+                code.ExtractRouteCode();
+            }
+        }
+
         private string WriteEventInfo(string evName)
         {
             string otext = "";
@@ -130,6 +202,25 @@ namespace Json2BakinPlugin.Services
             string otext = "";
             otext += WriteCommonBasicPageInfo();
             otext += WriteCommonConditionInfo(common);
+            otext += "\tスクリプト\n";
+            //normal:trigger 0=none, 1=switch auto, 2=switch parallel
+            otext += "\t\t開始条件\t" + common.TriggerCode + "\n";
+            otext += "\t\t高さ無視\tFalse\n";
+            otext += "\t\t判定拡張\tFalse\n";
+            foreach (MvCode code in common.list)
+            {
+                otext += ExportCode(_convertService.ConvertToBakinCode(code));
+            }
+            otext += "スクリプト終了\nシート終了";
+            return otext;
+        }
+
+        private string WriteTimerCommonEvent()
+        {
+            MvCommonEvent common = new MvCommonEvent() { trigger = 1 };
+            string otext = "";
+            otext += WriteCommonBasicPageInfo();
+            otext += WriteCommonConditionInfo(common, "TimerTrigger");
             otext += "\tスクリプト\n";
             //normal:trigger 0=none, 1=switch auto, 2=switch parallel
             otext += "\t\t開始条件\t" + common.TriggerCode + "\n";
@@ -233,14 +324,18 @@ namespace Json2BakinPlugin.Services
             return otext;
         }
 
-        private string WriteCommonConditionInfo(MvCommonEvent common)
+        private string WriteCommonConditionInfo(MvCommonEvent common, string swname= "")
         {
             List<string> swdata = _loadService.GetDatabase().Switches;
-            if(common.trigger >= 1)
+            if(swname == "")
+            {
+                swname = "N:[S" + common.switchId + "]" + swdata[common.switchId];
+            }
+            if (common.trigger >= 1)
             {
                 return "\t条件\tCOND_TYPE_SWITCH\n"
                         + "\t\t比較演算子\tEQUAL\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + "N:[S" + common.switchId + "]" + swdata[common.switchId] + "\n"
+                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + swname + "\n"
                         + "\t条件終了\n";
             }
             else

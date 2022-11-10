@@ -11,6 +11,7 @@ namespace Json2BakinPlugin.Services
     {
 		#region Variables
 		MvMap _map;
+		List<MvCommonEvent> _common;
 		MvDatabase _database;
         #endregion
 
@@ -39,11 +40,11 @@ namespace Json2BakinPlugin.Services
 			{
                 //switches and variables
                 text = System.IO.File.ReadAllText(path + "/SYSTEM.json");
-                list = Regex.Matches(text, @",""switches"":\[.*?\]").Cast<Match>()
-                                        .Select(d => d.Value.Replace(@",""switches"":", "")).ToList();
+                list = JsonSerializer.Deserialize<List<string>>(Regex.Matches(text, @",""switches"":\[.*?\]").Cast<Match>()
+                                        .Select(d => d.Value.Replace(@",""switches"":", "")).ToList().First());
                 database.Switches = list;
-                list = Regex.Matches(text, @",""variables"":\[.*?\]").Cast<Match>()
-                                        .Select(d => d.Value.Replace(@",""variables"":", "")).ToList();
+                list = JsonSerializer.Deserialize<List<string>>(Regex.Matches(text, @",""variables"":\[.*?\]").Cast<Match>()
+                                        .Select(d => d.Value.Replace(@",""variables"":", "")).ToList().First());
                 database.Variables = list;
             }
             catch {}
@@ -78,20 +79,35 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 		
+		public List<MvCommonEvent> GetCommonEvents()
+		{
+			return _common;
+		}
+
 		public void DeserializeMapData(string file, string id)
         {
             string text = System.IO.File.ReadAllText(file);
             text = StringifyParameters(text);
             MvMap jsondata = JsonSerializer.Deserialize<MvMap>(text);
-			SplitWithinCodeParams(jsondata);
-			MergeInterCodeParams(jsondata);
+			SplitWithinCodeParams(jsondata.events);
+			MergeInterCodeParams(jsondata.events);
             _map = jsondata;
 			_map.IdString = id;
         }
 
-		public void SplitWithinCodeParams(MvMap jsondata)
+		public void DeserializeCommonData(string file)
 		{
-			List<MvEvent> mvEvents = jsondata.events;
+            string text = System.IO.File.ReadAllText(file);
+            text = StringifyParameters(text);
+            List<MvCommonEvent> jsondata = JsonSerializer.Deserialize<List<MvCommonEvent>>(text);
+
+            SplitWithinCodeParams(jsondata);
+            MergeInterCodeParams(jsondata);
+			_common = jsondata;
+        }
+
+        public void SplitWithinCodeParams(List<MvEvent> mvEvents)
+		{
 			foreach (MvEvent ev in mvEvents)
 			{
 				if (ev != null)
@@ -107,9 +123,8 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-        public void MergeInterCodeParams(MvMap jsondata)
+        public void MergeInterCodeParams(List<MvEvent> mvEvents)
 		{
-			List<MvEvent> mvEvents = jsondata.events;
 			foreach (MvEvent ev in mvEvents)
 			{
 				if (ev != null)
@@ -122,15 +137,40 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-		public string StringifyParameters(string text)
+        public void SplitWithinCodeParams(List<MvCommonEvent> mvEvents)
+        {
+            foreach (MvCommonEvent ev in mvEvents)
+            {
+                if (ev != null)
+                {
+                    foreach (MvCode code in ev.list)
+                    {
+                        code.ExtractEventCodeParameters();
+                    }
+                }
+            }
+        }
+
+        public void MergeInterCodeParams(List<MvCommonEvent> mvEvents)
+        {
+            foreach (MvCommonEvent ev in mvEvents)
+            {
+                if (ev != null)
+                {
+					ev.MergeTextCodes();
+                }
+            }
+        }
+
+        public string StringifyParameters(string text)
 		{
 			List<string> paraendStrings = new List<string> { "]},", "]}]" }; //parameter endpos for middle of list or last of list
-			string outtext = String.Empty;
+			string outtext = "";
 			int idx0 = 0;
 			int idx1 = text.IndexOf("\"parameters\":"); //parameter start pos
 
 			List<int> idx2Cand = new List<int> { text.IndexOf(paraendStrings[0]), text.IndexOf(paraendStrings[1]) };
-			int idx2 = idx2Cand.Min(); //parameter end pos
+            int idx2 = idx2Cand.Min() == -1 ? idx2Cand.Max() : idx2Cand.Min(); //parameter end pos
 
 			while (true)
 			{

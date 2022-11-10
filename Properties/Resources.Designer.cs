@@ -19,7 +19,7 @@ namespace Json2BakinPlugin.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1933,7 +1933,7 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 変数ボックスへの代入と計算：乱数.
+        ///   Looks up a localized string similar to 複雑な変数ボックスの操作：乱数.
         /// </summary>
         internal static string Dic_VarRandom {
             get {
@@ -3819,6 +3819,24 @@ namespace Json2BakinPlugin.Properties {
         internal static string Para_Timer {
             get {
                 return ResourceManager.GetString("Para_Timer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to タイマー秒数.
+        /// </summary>
+        internal static string Para_TimerSec {
+            get {
+                return ResourceManager.GetString("Para_TimerSec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to タイマー変数名.
+        /// </summary>
+        internal static string Para_TimerVarName {
+            get {
+                return ResourceManager.GetString("Para_TimerVarName", resourceCulture);
             }
         }
         

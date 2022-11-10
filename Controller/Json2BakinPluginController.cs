@@ -18,6 +18,7 @@ namespace Json2bakinPlugin.Controller
 		public string JsonFolder { get; set; }
 		public string BakinFolder { get; set; }
 		public bool IsAddReviceComment { get; set; } = true;
+        public bool IsAddNonConvertedComment { get; set; } = true;
 
         internal void Convert()
         {
@@ -34,10 +35,18 @@ namespace Json2bakinPlugin.Controller
 				_exportService.ExportMap(BakinFolder);
 				mvMaps.Add(_loadService.GetMap());
 			}
-		}
+
+            //common event
+            string common = JsonFolder + "\\CommonEvents.json";
+            _loadService.DeserializeCommonData(common);
+            _exportService.PreprocessCommon();
+            _exportService.RegisterBakinCodes();
+            _exportService.PostprocessCommon();
+            _exportService.ExportCommonEvents(BakinFolder);
+        }
 
         #region Initialize
-		public Json2BakinPluginController()
+        public Json2BakinPluginController()
         {
 			_loadService = new MvMapDataLoadService();
 			_convertService = new Json2BakinConvertService();
