@@ -43,12 +43,12 @@
 ## Key Features
 
 * Exports Bakin-readable command files converted from RPG Maker MV event data
-* Supports common event conversion
-* Suppots RPG Maker MZ conversion (preliminary)
+* Converts common events
+* Converts RPG Maker MZ events (preliminary)
 * Exports unsupported RPG Maker commands as comments
-* Event-wise conversion: all pages of an event can be imported to a Bakin event.
-* Adds an alert comment prior to a command which needs modification
-* Human-friendly: Appends a description to each Bakin command and parameter (currently Japanese only)
+* Event-wise conversion: all pages in an MV event can be imported to a Bakin event at once.
+* Adds an alert comment prior to a command which requires modification
+* Human-friendly: Appends a human-readable description to each Bakin command and parameter (currently Japanese only)
 
 ## Download
 
@@ -72,19 +72,21 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 6. If you don't want to add modification alert comments to Bakin commands and/or don't want to export non-converted commands as Bakin comments, unselect corresponding checkbox(es).
   
-7. Press "Convert" button. Converted Bakin-readable command files will be exported to the folder you specified.
+7. Press "Convert" button. Converted Bakin-readable command files (.txt) will be exported to the folder you specified.
   
 8. Close the plugin. On the map editor, select an event and open the event sheet editor.
   
-9. Press "Import" button on the upper right corner of the editor. Select the exported Bakin-readable command file you want to import.
+9. Press "Import" button on the upper right corner of the editor. Select a Bakin command file you want to import.
 
 10. The command edit window turns empty. Confirm that new sheet(s) appear on the sheet list window.
   > **Note**
   > A single Bakin command file contains all pages of an RPG Maker event.
 
-11. Select a sheet you want to edit. Modify each command with referring to alert/non-converted comments (if available).
+11. Select a sheet you want to edit. Modify each command with reference to (if you appended) alert/non-converted comments.
 
-12. (Optional) If you are using timer related commands, don't forget to import common events! For detail, see Timer section.
+13. Do the same for common events. On the map editor, extract common event pane (on the left), add a new sheet for each of exported common events, then import corresponding Bakin command file.
+
+12. (Optional) If you use timer related commands, don't forget to import Timer common events! For detail, see Timer section.
 
 ## Variables and Switches
 
@@ -96,11 +98,11 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 * Self-switch names don't change i.e. local variable names will be "A", "B", "C" or "D" in RPG Developer Bakin, as used in RPG Maker.
 
-* Timer used by converted commands is triggered by "MvTimerTrigger" variable and the timer information will be stored in "MvTimerInfo" variable (see also Timer section).
+* Timer used by converted commands is triggered by "TimerTrigger" variable and the timer information will be stored in "TimerInfo" variable (see also Timer section).
 
 ## Timer
 
-RPG Developer Bakin operates timer functions via a common event. If RPG Maker events contain any timer commands, Json2BakinPlugin automatically generates a new Timer common event or appends it to other existing common events, if any. In such case, converted common event data (named "CommonEvents.txt") must be imported to RPG Developer Bakin's common event. The Timer event is triggered by "MvTimeTrigger" variable and the its real time info is stored in "MvTimerInfo" variable.
+RPG Developer Bakin operates timer functions via a common event. If RPG Maker events contain any timer commands, Json2BakinPlugin automatically generates a new Timer common event. To make timer related commands functional, generated Timer common event file (named "CommonEvent_Timer.txt") must be imported to RPG Developer Bakin's common event. The Timer event is triggered by "TimeTrigger" variable and its real time info (in seconds) is stored in "TimerInfo" variable.
 
 ## Limitations
 
@@ -131,7 +133,7 @@ RPG Developer Bakin operates timer functions via a common event. If RPG Maker ev
 |111-0|`IFSWITCH`|イベントスイッチの確認||
 |111-1|`IFVARIABLE`|変数ボックスの確認：数値||
 |111-2|`IFSWITCH`|変数ボックスの確認：スイッチ||
-|111-3|N/A|条件分岐：タイマー|Convertable?|
+|111-3|`IFVARIABLE`|条件分岐：タイマー||
 |111-4|`IFPARTY`|パーティに含まれるキャストの確認||
 |111-5|`IF_STRING_VARIABLE`|文字列変数の確認||
 |111-6|N/A|条件分岐：アクタークラス、スキル、状態||
@@ -162,7 +164,7 @@ RPG Developer Bakin operates timer functions via a common event. If RPG Maker ev
 |122-7|`HLVARIABLE`|複雑な変数ボックスの操作：ゲームデータ||
 |122-8|N/A|複雑な変数ボックスの操作：スクリプト||
 |123|`SWITCH`|セルフスイッチのON/OFF||
-|124|`EXEC`|共通イベント呼び出し：タイマーの操作<br>(共通イベント「タイマー」が必要)|Common Event (Timer) needed|
+|124|`VARIABLE`|変数ボックスの操作<br>(コモンイベント「カウントダウンタイマー」が必要)|Common Event (Timer) needed|
 |125|`MONEY`|お金を増やす／減らす||
 |126|`ITEM`|アイテムを増やす／減らす||
 |127|`ITEM`|武器を増やす／減らす||
