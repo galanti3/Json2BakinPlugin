@@ -2068,6 +2068,150 @@ namespace Json2BakinPlugin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 変換が完了しました.
+        /// </summary>
+        internal static string Log_ConvertEnd {
+            get {
+                return ResourceManager.GetString("Log_ConvertEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換を開始しました.
+        /// </summary>
+        internal static string Log_ConvertStart {
+            get {
+                return ResourceManager.GetString("Log_ConvertStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to する.
+        /// </summary>
+        internal static string Log_Do {
+            get {
+                return ResourceManager.GetString("Log_Do", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to しない.
+        /// </summary>
+        internal static string Log_DontDo {
+            get {
+                return ResourceManager.GetString("Log_DontDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マップデータの変換が完了しました.
+        /// </summary>
+        internal static string Log_EndMap {
+            get {
+                return ResourceManager.GetString("Log_EndMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換元フォルダ：.
+        /// </summary>
+        internal static string Log_InputFolder {
+            get {
+                return ResourceManager.GetString("Log_InputFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ゲームプロジェクトのデータベースを読み込んでいます....
+        /// </summary>
+        internal static string Log_LoadDatabase {
+            get {
+                return ResourceManager.GetString("Log_LoadDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換不可のコマンドをコメントとして出力：.
+        /// </summary>
+        internal static string Log_NoConvertComment {
+            get {
+                return ResourceManager.GetString("Log_NoConvertComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to データベースファイルが存在しません：.
+        /// </summary>
+        internal static string Log_NoDatabaseExists {
+            get {
+                return ResourceManager.GetString("Log_NoDatabaseExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換できるマップデータが存在しません.
+        /// </summary>
+        internal static string Log_NoMapExists {
+            get {
+                return ResourceManager.GetString("Log_NoMapExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 変換対象のマップデータ数：.
+        /// </summary>
+        internal static string Log_NumMaps {
+            get {
+                return ResourceManager.GetString("Log_NumMaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出力先フォルダ：.
+        /// </summary>
+        internal static string Log_OutputFolder {
+            get {
+                return ResourceManager.GetString("Log_OutputFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修正が必要なコマンドの上に警告コメントを出力：.
+        /// </summary>
+        internal static string Log_ReviceComment {
+            get {
+                return ResourceManager.GetString("Log_ReviceComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to コモンイベント変換開始.
+        /// </summary>
+        internal static string Log_StartCommon {
+            get {
+                return ResourceManager.GetString("Log_StartCommon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to イベントデータ変換開始.
+        /// </summary>
+        internal static string Log_StartEvents {
+            get {
+                return ResourceManager.GetString("Log_StartEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マップデータ変換開始：.
+        /// </summary>
+        internal static string Log_StartMap {
+            get {
+                return ResourceManager.GetString("Log_StartMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 3Dサウンドとして再生.
         /// </summary>
         internal static string Para_3dSound {

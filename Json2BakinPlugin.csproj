@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\x64\Debug\plugins\</OutputPath>
+    <OutputPath>..\bin\x64\Debug\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -152,6 +152,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Json2BakinPlugin.Controller.Json2BakinPluginController.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\smile.png" />

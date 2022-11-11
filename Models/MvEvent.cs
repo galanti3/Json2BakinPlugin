@@ -2,10 +2,9 @@
 
 namespace Json2BakinPlugin.Models
 {
-    //They are all defined in RPG Maker MV
-
     public class MvEvent
     {
+        #region Properties
         public int id { get; set; }
         public string name { get; set; }
         public string note { get; set; }
@@ -13,5 +12,6 @@ namespace Json2BakinPlugin.Models
         public int y { get; set; }
 
         public List<MvEventPage> pages { get; set; }
+        #endregion
     }
 }

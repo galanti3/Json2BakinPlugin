@@ -19,9 +19,9 @@ namespace Json2BakinPlugin.Models
         public string Value { get; set; }
 
         public string Description { get; set; }
-
         #endregion
-        #region Constructor
+
+        #region Methods
         public BakinParameter(string type, string desc)
         {
             Type = type;
@@ -57,7 +57,9 @@ namespace Json2BakinPlugin.Models
                     break;
             }
         }
+        #endregion
 
+        #region Initialize
         public BakinParameter(string type, string desc, string value)
         {
             Type = type;

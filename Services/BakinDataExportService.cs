@@ -29,6 +29,7 @@ namespace Json2BakinPlugin.Services
                         }
                         //deactivated. Won't work..
                         //page.list = _convertService.ConvertRouteCodesToDestinationCode(page.list);
+                        page.list = _convertService.MergeConsecutiveSameMovements(page.list);
                     }
                 }
             }
@@ -158,10 +159,10 @@ namespace Json2BakinPlugin.Services
             {
                 if (ev != null)
                 {
-                    otext = WriteEventInfo(String.Format("CommonEvents{0:D3}", ev.id));
+                    otext = WriteEventInfo(string.Format("CommonEvents{0:D3}", ev.id));
                     otext += WriteCommonEvent(ev);
                     string evName = ev.name != "" ? "_" + ev.name : "";
-                    string fileName = String.Format("CommonEvents{0:D3}", ev.id) + evName + ".txt";
+                    string fileName = string.Format("CommonEvents{0:D3}", ev.id) + evName + ".txt";
                     File.WriteAllText(path + "\\" + fileName, otext);
                 }
             }
@@ -171,11 +172,9 @@ namespace Json2BakinPlugin.Services
                 File.WriteAllText(path + "\\" + "CommonEvent_Timer.txt", otext);
             }
         }
-
         #endregion
 
         #region Privates
-
         private string WriteEventInfo(string evName)
         {
             string otext = "";
@@ -207,25 +206,6 @@ namespace Json2BakinPlugin.Services
             string otext = "";
             otext += WriteCommonBasicPageInfo();
             otext += WriteCommonConditionInfo(common);
-            otext += "\tスクリプト\n";
-            //normal:trigger 0=none, 1=switch auto, 2=switch parallel
-            otext += "\t\t開始条件\t" + common.TriggerCode + "\n";
-            otext += "\t\t高さ無視\tFalse\n";
-            otext += "\t\t判定拡張\tFalse\n";
-            foreach (MvCode code in common.list)
-            {
-                otext += ExportCode(_convertService.ConvertToBakinCode(code));
-            }
-            otext += "スクリプト終了\nシート終了";
-            return otext;
-        }
-
-        private string WriteTimerCommonEvent()
-        {
-            MvCommonEvent common = new MvCommonEvent() { trigger = 1 };
-            string otext = "";
-            otext += WriteCommonBasicPageInfo();
-            otext += WriteCommonConditionInfo(common, "TimerTrigger");
             otext += "\tスクリプト\n";
             //normal:trigger 0=none, 1=switch auto, 2=switch parallel
             otext += "\t\t開始条件\t" + common.TriggerCode + "\n";
@@ -275,56 +255,38 @@ namespace Json2BakinPlugin.Services
             {
                 return "";
             }
-
             //selfSwitchCh(selfSwitchValid)
             if (cond.selfSwitchValid)
             {
-                otext += "\t条件\tCOND_TYPE_SWITCH\n"
-                        + "\t\t比較演算子\tEQUAL\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tTrue\n\t\t参照名\t" + "L:" + cond.selfSwitchCh + "\n"
-                        + "\t条件終了\n";
+                otext += WriteConditionInfoCore("COND_TYPE_SWITCH", "EQUAL", "0", "True", cond.selfSwitchCh);
             }
             //switch1Id(switch1Valid)
             if (cond.switch1Valid)
             {
-                otext += "\t条件\tCOND_TYPE_SWITCH\n"
-                        + "\t\t比較演算子\tEQUAL\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + "N:[S" + cond.switch1Id + "]" + vardata.Switches[cond.switch1Id] + "\n"
-                        + "\t条件終了\n";
+                otext += WriteConditionInfoCore("COND_TYPE_SWITCH", "EQUAL", "0", "False",
+                    "[S" + cond.switch1Id.ToString("D3") + "]" + vardata.Switches[cond.switch1Id]);
             }
             //switch2Id(switch2Valid)
             if (cond.switch2Valid)
             {
-                otext += "\t条件\tCOND_TYPE_SWITCH\n"
-                        + "\t\t比較演算子\tEQUAL\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + "N:[S" + cond.switch2Id + "]" + vardata.Switches[cond.switch2Id] + "\n"
-                        + "\t条件終了\n";
+                otext += WriteConditionInfoCore("COND_TYPE_SWITCH", "EQUAL", "0", "False",
+                    "[S" + cond.switch2Id.ToString("D3") + "]" + vardata.Switches[cond.switch2Id]);
             }
             //variableId(variableValid)
             if (cond.variableValid)
             {
-                otext += "\t条件\tCOND_TYPE_VARIABLE\n"
-                        + "\t\t比較演算子\tEQUAL_GREATER\n\t\tインデックス\t-1\n\t\tオプション\t" + cond.variableValue + "\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + "N:[V" + cond.variableId + "]" + vardata.Variables[cond.variableId] + "\n"
-                        + "\t条件終了\n";
+                otext += WriteConditionInfoCore("COND_TYPE_VARIABLE", "EQUAL_GREATER", cond.variableValue.ToString(), "False",
+                    "[V" + cond.variableId.ToString("D3") + "]" + vardata.Variables[cond.variableId]);
             }
             //actorId(actorValid)
             if (cond.actorValid)
             {
-                otext += "\t条件\tCOND_TYPE_HERO\n"
-                        + "\t\t比較演算子\tEQUAL_GREATER\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t\n\t\tGuid参照\t" + Guid.Empty.ToString()
-                        + "\t(" + vardata.Actors[cond.actorId] + ")\n"
-                        + "\t条件終了\n";
+                otext += WriteConditionInfoCore("COND_TYPE_HERO", "EQUAL", "0", "False", "", Guid.Empty.ToString());
             }
             //itemId(itemValid)
             if (cond.itemValid)
             {
-                otext += "\t条件\tCOND_TYPE_ITEM_WITH_EQUIPMENT\n"
-                        + "\t\t比較演算子\tEQUAL_GREATER\n\t\tインデックス\t-1\n\t\tオプション\t1\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t\n\t\tGuid参照\t" + Guid.Empty.ToString()
-                        + "\t(" + vardata.Items[cond.itemId] + ")\n"
-                        + "\t条件終了\n";
+                return WriteConditionInfoCore("COND_TYPE_ITEM_WITH_EQUIPMENT", "EQUAL", "1", "False", "", Guid.Empty.ToString());
             }
             return otext;
         }
@@ -334,14 +296,11 @@ namespace Json2BakinPlugin.Services
             List<string> swdata = _loadService.GetDatabase().Switches;
             if(swname == "")
             {
-                swname = "N:[S" + common.switchId + "]" + swdata[common.switchId];
+                swname = "[S" + common.switchId.ToString("D3") + "]" + swdata[common.switchId];
             }
             if (common.trigger >= 1)
             {
-                return "\t条件\tCOND_TYPE_SWITCH\n"
-                        + "\t\t比較演算子\tEQUAL\n\t\tインデックス\t-1\n\t\tオプション\t0\n"
-                        + "\t\tローカル参照\tFalse\n\t\t参照名\t" + swname + "\n"
-                        + "\t条件終了\n";
+                return WriteConditionInfoCore("COND_TYPE_SWITCH", "EQUAL", "0", "False", swname);
             }
             else
             {
@@ -349,12 +308,19 @@ namespace Json2BakinPlugin.Services
             }
         }
 
-        private string WriteConditionInfoCore(string command, string operand, string option, string local, string name, string guid)
+        private string WriteConditionInfoCore(string command, string operand, string option, string local, string name, string guid="")
         {
-            string otext = "\t条件\t" + command + "\n\t\t比較演算子\t" + operand + "\n\t\tインデックス\t-1\n\t\tオプション\t" + option +
-                    "\n\t\tローカル参照\t" + local + "\n\t\t参照名\t" + name;
-            otext += "\n\t\tGuid参照\t" + Guid.Empty.ToString() + "\t(" + guid + ")\n";
-            otext += "\t条件終了\n";
+            string otext = "\t条件\t" + command + "\n" + 
+                "\t\t比較演算子\t" + operand +
+                "\n\t\tインデックス\t-1\n" +
+                "\t\tオプション\t" + option +
+                "\n\t\tローカル参照\t" + local +
+                "\n\t\t参照名\t" + name;
+            if (guid != "")
+            {
+                otext += "\n\t\tGuid参照\t" + Guid.Empty.ToString() + "\t(" + guid + ")";
+            }
+            otext += "\n\t条件終了\n";
             return otext;
         }
 
@@ -381,7 +347,6 @@ namespace Json2BakinPlugin.Services
             }
             return otext;
         }
-
         #endregion
 
         #region Initialize

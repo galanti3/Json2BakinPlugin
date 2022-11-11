@@ -1474,4 +1474,52 @@
   <data name="Para_BtlStateObj" xml:space="preserve">
     <value>対象（1：パーティ、２：モンスター）</value>
   </data>
+  <data name="Log_ConvertEnd" xml:space="preserve">
+    <value>変換が完了しました</value>
+  </data>
+  <data name="Log_ConvertStart" xml:space="preserve">
+    <value>変換を開始しました</value>
+  </data>
+  <data name="Log_Do" xml:space="preserve">
+    <value>する</value>
+  </data>
+  <data name="Log_DontDo" xml:space="preserve">
+    <value>しない</value>
+  </data>
+  <data name="Log_InputFolder" xml:space="preserve">
+    <value>変換元フォルダ：</value>
+  </data>
+  <data name="Log_LoadDatabase" xml:space="preserve">
+    <value>ゲームプロジェクトのデータベースを読み込んでいます...</value>
+  </data>
+  <data name="Log_NoConvertComment" xml:space="preserve">
+    <value>変換不可のコマンドをコメントとして出力：</value>
+  </data>
+  <data name="Log_NumMaps" xml:space="preserve">
+    <value>変換対象のマップデータ数：</value>
+  </data>
+  <data name="Log_OutputFolder" xml:space="preserve">
+    <value>出力先フォルダ：</value>
+  </data>
+  <data name="Log_ReviceComment" xml:space="preserve">
+    <value>修正が必要なコマンドの上に警告コメントを出力：</value>
+  </data>
+  <data name="Log_StartCommon" xml:space="preserve">
+    <value>コモンイベント変換開始</value>
+  </data>
+  <data name="Log_StartEvents" xml:space="preserve">
+    <value>イベントデータ変換開始</value>
+  </data>
+  <data name="Log_StartMap" xml:space="preserve">
+    <value>マップデータ変換開始：</value>
+  </data>
+  <data name="Log_EndMap" xml:space="preserve">
+    <value>マップデータの変換が完了しました</value>
+  </data>
+  <data name="Log_NoDatabaseExists" xml:space="preserve">
+    <value>データベースファイルが存在しません：</value>
+  </data>
+  <data name="Log_NoMapExists" xml:space="preserve">
+    <value>変換できるマップデータが存在しません</value>
+  </data>
 </root>

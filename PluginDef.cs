@@ -17,7 +17,7 @@ namespace Json2BakinPlugin
         
         public override DialogResult ShowDialog(IWin32Window parent)
         {
-            using (var dialog = new TestForm(catalog))
+            using (var dialog = new TestForm())
             {
                 return dialog.ShowDialog(parent);
             }

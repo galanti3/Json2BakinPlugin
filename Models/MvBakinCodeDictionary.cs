@@ -1,10 +1,5 @@
-﻿using Json2BakinPlugin.Properties;
-using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Json2BakinPlugin.Properties.Resources;
 
 namespace Json2BakinPlugin.Models

@@ -1,22 +1,18 @@
-﻿using Json2BakinPlugin.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text.Json;
-using Json2BakinPlugin.Properties;
-using static Yukar.Engine.VirtualPad;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using Json2BakinPlugin.Models;
 using static Json2BakinPlugin.Properties.Resources;
-using System.Windows.Forms;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
-using System.Xml.Linq;
 
 namespace Json2BakinPlugin.Services
 {
     public class Json2BakinConvertService
     {
         #region Variables
+        MvMapDataLoadService _loadService;
+
         string _moveChar;
         string _isStopStuck;
         string _isWaitMoving;
@@ -282,10 +278,12 @@ namespace Json2BakinPlugin.Services
                     AddCommandNoparams(p, "SAVE");
                     break;
                 case "PLWALK": //1-13
-                    AddCommandWalk(p, code.code);
+                    var plSteps = code.Params == null ? "1" : code.Params.Last();
+                    AddCommandWalk(p, code.code, plSteps);
                     break;
                 case "WALK": //1-13
-                    AddCommandWalk(p, code.code);
+                    string steps = code.Params == null ? "1" : code.Params.Last();
+                    AddCommandWalk(p, code.code, steps);
                     break;
                 case "PLWALK_TGT": //converted from consecutive player move commands
                     AddCommandWalktgt(p, code.Params);
@@ -567,6 +565,49 @@ namespace Json2BakinPlugin.Services
             }
         }
 
+        public List<MvCode> MergeConsecutiveSameMovements(List<MvCode> list)
+        {
+            List<MvCode> codes = new List<MvCode>();
+            int i = 0;
+            while (i < list.Count)
+            {
+                if (list[i].code == 205) //set move route
+                {
+                    codes.Add(list[i]);
+                    i++;
+                    while (i < list.Count && list[i].code < 100) //contents of code 205
+                    {
+                        if (list[i].code >= 1 && list[i].code <= 8) //walk command
+                        {
+                            codes.Add(list[i]);
+                            int stepCount = 0;
+                            int code = list[i].code;
+                            while (list[i].code == code) //get steps while walking
+                            {
+                                stepCount++;
+                                i++;
+                            }
+                            if (stepCount > 1) //if route only 1 step, not converted to destination
+                            {
+                                codes.Last().Params = new List<string> { stepCount.ToString() };
+                            }
+                        }
+                        else //non walk command. skip
+                        {
+                            codes.Add(list[i]);
+                            i++;
+                        }
+                    }
+                }
+                else
+                {
+                    codes.Add(list[i]);
+                    i++;
+                }
+            }
+            return codes;
+        }
+
         public List<MvCode> ConvertRouteCodesToDestinationCode(List<MvCode> list)
         {
             List<MvCode> codes = new List<MvCode>();
@@ -627,10 +668,14 @@ namespace Json2BakinPlugin.Services
             }
             return codes;
         }
-
         #endregion
+
         #region Privates
-        #region Commands implementation
+        public void SetReviceCommentMode(bool isAddReviceComment)
+        {
+            _isAddReviceComment = isAddReviceComment;
+        }
+
         //Adding command parameters
 
         //101 Show Text: 0:face graphic, 1:face index, 2:background type(0:norm, 1:dark, 2:trans), 3:position type(0:up, 1:middle, 2:down),
@@ -1683,7 +1728,7 @@ namespace Json2BakinPlugin.Services
         }
 
         //1-13 1:down, 2:left, 3:right, 4:up, 5:dl, 6:dr, 7:ul, 8:ur, 9:random, 10:toward, 11:away, 12:forward, 13:backward
-        private void AddCommandWalk(List<BakinParameter> p, int code)
+        private void AddCommandWalk(List<BakinParameter> p, int code, string steps)
         {
             if (code == 13)
             {
@@ -1693,7 +1738,7 @@ namespace Json2BakinPlugin.Services
             //0=up 1=down 2=left 3=right 4=rand 5=face 6=away 8=toward 10=deg
             List<string> dir = new List<string> { "", "1", "2", "3", "0", "10", "10", "10", "10", "4", "5", "6", "8", "6" };
             p.Add(new BakinParameter("整数", Para_Dir0to10, dir[code]));
-            p.Add(new BakinParameter("小数", Para_NumSteps, "1")); //step size
+            p.Add(new BakinParameter("小数", Para_NumSteps, steps)); //step size
             p.Add(new BakinParameter("変数", ""));
             p.Add(new BakinParameter("整数", Para_FixDir, "0")); //fix_direction flag
             p.Add(new BakinParameter("整数", Para_StopStuck, _isStopStuck)); //stop if stuck flag
@@ -1886,15 +1931,15 @@ namespace Json2BakinPlugin.Services
             AddCommandHeader(p, "HLVARIABLE");
             p.Add(new BakinParameter("整数", ""));
             p.Add(new BakinParameter("変数", Para_VarNum, "N:" + varname)); //type":name N=numeric
-            //if (type < 0)
-            //{
-            //    p.Add(new BakinParameter("整数", ""));
-            //    p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
-            //}
-            //else //game data
-            //{
-                //nummember = 31, gold = 4, playtime(hour) = 8
-                p.Add(new BakinParameter("整数", Para_DataType, ToStr(id)));
+                                                                          //if (type < 0)
+                                                                          //{
+                                                                          //    p.Add(new BakinParameter("整数", ""));
+                                                                          //    p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
+                                                                          //}
+                                                                          //else //game data
+                                                                          //{
+                                                                          //nummember = 31, gold = 4, playtime(hour) = 8
+            p.Add(new BakinParameter("整数", Para_DataType, ToStr(id)));
             //}
             p.Add(new BakinParameter("整数", Para_Calc0to7, ToStr(op))); //0=overwrite 1=add 2=sub 3=mult 4=div 6=mod 7=floor
             AddCommandEnd(p);
@@ -1929,6 +1974,13 @@ namespace Json2BakinPlugin.Services
 
         #endregion
 
+        #region initialize
+        public Json2BakinConvertService(MvMapDataLoadService loadService)
+        {
+            _loadService = loadService;
+        }
+        #endregion
+
         #region Helpers
         private string GetSpot(string type, string x, string z)
         {
@@ -1952,14 +2004,17 @@ namespace Json2BakinPlugin.Services
         {
             return int.Parse(val);
         }
+
         private float ToFlo(string val)
         {
             return float.Parse(val);
         }
+
         private string ToStr(int val)
         {
             return val.ToString();
         }
+
         private string ToStr(float val)
         {
             return val.ToString();
@@ -1997,16 +2052,11 @@ namespace Json2BakinPlugin.Services
             }
             else
             {
-
-                return "N:" + (type == "B" ? "[S" : "[V") + String.Format("{0:D3}]", int.Parse(key)); //"variable" or "switch"
+                MvDatabase varData = _loadService.GetDatabase();
+                return "N:" + (type == "B" ? "[S" : "[V") + int.Parse(key).ToString("D3") + "]" + //"variable" or "switch"
+                    (type == "B" ? varData.Switches[int.Parse(key)] : varData.Variables[int.Parse(key)]);
             }
         }
-
-        public void SetReviceCommentMode(bool isAddReviceComment)
-        {
-            _isAddReviceComment = isAddReviceComment;
-        }
-        #endregion
         #endregion
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.Linq;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Json2BakinPlugin.Models;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Json2BakinPlugin.Services
 {
@@ -16,13 +15,15 @@ namespace Json2BakinPlugin.Services
         #endregion
 
         #region Methods
-        public void LoadDatabase(string path)
+        public List<string> LoadDatabase(string path)
 		{
 			MvDatabase database = new MvDatabase();
 			List<string> dataList = new List<string> { "Actors", "Animations", "Armors", "Classes", "Enemies", "Items", 
 													"Skills", "States", "Troops", "Weapons"};
+			List<string> noExist = new List<string>();
 			string text;
 			List<string> list;
+
 			foreach(string data in dataList)
             {
 				try
@@ -34,7 +35,10 @@ namespace Json2BakinPlugin.Services
 											.ToList();
                     database.GetType().GetProperty(data).SetValue(database, list);
                 }
-                catch {}
+                catch
+				{
+					noExist.Add(data);
+				}
 			}
 			try
 			{
@@ -50,6 +54,8 @@ namespace Json2BakinPlugin.Services
             catch {}
 
             _database = database;
+
+			return noExist; //return nonexistent file names
 		}
 
 		public MvDatabase GetDatabase()
@@ -105,8 +111,10 @@ namespace Json2BakinPlugin.Services
             MergeInterCodeParams(jsondata);
 			_common = jsondata;
         }
+        #endregion
 
-        public void SplitWithinCodeParams(List<MvEvent> mvEvents)
+        #region Privates
+        private void SplitWithinCodeParams(List<MvEvent> mvEvents)
 		{
 			foreach (MvEvent ev in mvEvents)
 			{
@@ -123,7 +131,7 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-        public void MergeInterCodeParams(List<MvEvent> mvEvents)
+        private void MergeInterCodeParams(List<MvEvent> mvEvents)
 		{
 			foreach (MvEvent ev in mvEvents)
 			{
@@ -137,7 +145,7 @@ namespace Json2BakinPlugin.Services
 			}
 		}
 
-        public void SplitWithinCodeParams(List<MvCommonEvent> mvEvents)
+        private void SplitWithinCodeParams(List<MvCommonEvent> mvEvents)
         {
             foreach (MvCommonEvent ev in mvEvents)
             {
@@ -151,7 +159,7 @@ namespace Json2BakinPlugin.Services
             }
         }
 
-        public void MergeInterCodeParams(List<MvCommonEvent> mvEvents)
+        private void MergeInterCodeParams(List<MvCommonEvent> mvEvents)
         {
             foreach (MvCommonEvent ev in mvEvents)
             {
@@ -162,7 +170,7 @@ namespace Json2BakinPlugin.Services
             }
         }
 
-        public string StringifyParameters(string text)
+        private string StringifyParameters(string text)
 		{
 			List<string> paraendStrings = new List<string> { "]},", "]}]" }; //parameter endpos for middle of list or last of list
 			string outtext = "";

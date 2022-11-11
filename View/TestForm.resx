@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+    <value>332, 22</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 26</value>
+    <value>96, 96</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
@@ -142,25 +148,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 17</value>
+    <value>81, 143</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>871, 36</value>
+    <value>632, 29</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>このプラグインはjsonマップデータをBAKINイベントシート形式に変換します</value>
+    <value>RPGツクールMVイベントデータをBakinイベントデータに変換します</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -172,16 +184,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
+  </data>
+  <data name="jsonSelector.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="jsonSelector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 156</value>
+    <value>811, 301</value>
   </data>
   <data name="jsonSelector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="jsonSelector.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>173, 39</value>
   </data>
   <data name="jsonSelector.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -199,73 +214,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;jsonSelector.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="jsonFolderComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="jsonFolderComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 156</value>
-  </data>
-  <data name="jsonFolderComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="jsonFolderComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>333, 41</value>
-  </data>
-  <data name="jsonFolderComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;jsonFolderComboBox.Name" xml:space="preserve">
-    <value>jsonFolderComboBox</value>
-  </data>
-  <data name="&gt;&gt;jsonFolderComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;jsonFolderComboBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;jsonFolderComboBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="bakinFolderComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="bakinFolderComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 275</value>
-  </data>
-  <data name="bakinFolderComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="bakinFolderComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>333, 41</value>
-  </data>
-  <data name="bakinFolderComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;bakinFolderComboBox.Name" xml:space="preserve">
-    <value>bakinFolderComboBox</value>
-  </data>
-  <data name="&gt;&gt;bakinFolderComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bakinFolderComboBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bakinFolderComboBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>12</value>
   </data>
   <data name="bakinSelector.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="bakinSelector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 275</value>
+    <value>811, 394</value>
   </data>
   <data name="bakinSelector.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="bakinSelector.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>173, 39</value>
   </data>
   <data name="bakinSelector.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -283,64 +244,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bakinSelector.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 204</value>
-  </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 36</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>↓　　BAKINイベントシート形式に変換</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>11</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 100</value>
+    <value>81, 268</value>
   </data>
   <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 36</value>
+    <value>190, 29</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>jsonマップデータフォルダ</value>
+    <value>Jsonデータフォルダ</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -352,31 +280,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>10</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 222</value>
+    <value>81, 360</value>
   </data>
   <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>423, 36</value>
+    <value>343, 29</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>BAKINイベントシートデータ出力先</value>
+    <value>Bakinイベントデータ出力先フォルダ</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -388,7 +316,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>9</value>
   </data>
   <data name="transformButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -397,13 +325,13 @@
     <value>NoControl</value>
   </data>
   <data name="transformButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>410, 746</value>
+    <value>531, 883</value>
   </data>
   <data name="transformButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="transformButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>217, 57</value>
   </data>
   <data name="transformButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -421,28 +349,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;transformButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>8</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 41</value>
+    <value>81, 192</value>
+  </data>
+  <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>822, 36</value>
+    <value>956, 29</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>変換後のテキストデータはイベントの「インポート」ボタンで読み込めます</value>
+    <value>出力されたテキストファイルをBakinイベントエディタの「インポート」ボタンでイベントに読み込んでください</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -454,25 +385,232 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 466</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>414, 28</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Text" xml:space="preserve">
+    <value>変換不可のコマンドをコメントとして出力</value>
+  </data>
+  <data name="&gt;&gt;nonConvertCommentCheckBox.Name" xml:space="preserve">
+    <value>nonConvertCommentCheckBox</value>
+  </data>
+  <data name="&gt;&gt;nonConvertCommentCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nonConvertCommentCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nonConvertCommentCheckBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="json2BakinPluginControllerBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="alertCommentCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="alertCommentCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="alertCommentCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 526</value>
+  </data>
+  <data name="alertCommentCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 28</value>
+  </data>
+  <data name="alertCommentCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="alertCommentCheckBox.Text" xml:space="preserve">
+    <value>修正が必要なコマンドの上に警告コメントを追加</value>
+  </data>
+  <data name="&gt;&gt;alertCommentCheckBox.Name" xml:space="preserve">
+    <value>alertCommentCheckBox</value>
+  </data>
+  <data name="&gt;&gt;alertCommentCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;alertCommentCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;alertCommentCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="jsonFolderTextBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 11pt</value>
+  </data>
+  <data name="jsonFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 303</value>
+  </data>
+  <data name="jsonFolderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>717, 37</value>
+  </data>
+  <data name="jsonFolderTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;jsonFolderTextBox.Name" xml:space="preserve">
+    <value>jsonFolderTextBox</value>
+  </data>
+  <data name="&gt;&gt;jsonFolderTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;jsonFolderTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;jsonFolderTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="bakinFolderTextBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 11pt</value>
+  </data>
+  <data name="bakinFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 396</value>
+  </data>
+  <data name="bakinFolderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>717, 37</value>
+  </data>
+  <data name="bakinFolderTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;bakinFolderTextBox.Name" xml:space="preserve">
+    <value>bakinFolderTextBox</value>
+  </data>
+  <data name="&gt;&gt;bakinFolderTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bakinFolderTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bakinFolderTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 16pt</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>513, 44</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 43</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Json2Bakin</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1050, 955</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 24</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ver. 0.0.1 by galanti</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="logTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 576</value>
+  </data>
+  <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1086, 269</value>
+  </data>
+  <data name="logTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="logTextBox.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;logTextBox.Name" xml:space="preserve">
+    <value>logTextBox</value>
+  </data>
+  <data name="&gt;&gt;logTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;logTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;logTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>13, 24</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>935, 839</value>
+    <value>1281, 1003</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>13, 11, 13, 11</value>
+  </data>
+  <data name="$this.RightToLeftLayout" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Json2Bakin</value>
+  </data>
+  <data name="&gt;&gt;json2BakinPluginControllerBindingSource.Name" xml:space="preserve">
+    <value>json2BakinPluginControllerBindingSource</value>
+  </data>
+  <data name="&gt;&gt;json2BakinPluginControllerBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>TestForm</value>

@@ -2,7 +2,8 @@
 {
 	public class MvEventConditions
 	{
-		public int actorId { get; set; }
+        #region Properties
+        public int actorId { get; set; }
 		public bool actorValid { get; set; }
 		public int itemId { get; set; }
 		public bool itemValid { get; set; }
@@ -15,5 +16,6 @@
 		public int variableId { get; set; }
 		public bool variableValid { get; set; }
 		public int variableValue { get; set; }
+		#endregion
 	}
 }

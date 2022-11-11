@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Json2BakinPlugin.Models
+﻿namespace Json2BakinPlugin.Models
 {
 	public class MvEventPage : MvCodeList
 	{
