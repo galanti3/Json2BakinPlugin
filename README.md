@@ -326,8 +326,8 @@ MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right
 |32|`GRAPHIC`|歩行アニメOFF|Walk anime off|
 |33|`PLMOTION`|足踏みアニメON|Step anime on|
 |34|`PLMOTION`|足踏みアニメOFF|Step anime off|
-|35|`SW PLLOCKROTATE`|向き固定ON|Dir fix on|
-|36|`SW PLLOCKROTATE`|向き固定OFF|Dir fix off|
+|35|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定ON|Dir fix on|
+|36|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定OFF|Dir fix off|
 |37|`CHANGE PLAYER MOVABLE`|すり抜けON|Through on|
 |38|`CHANGE PLAYER MOVABLE`|すり抜けOFF|Through off|
 |39|`PLHIDE`|透明化ON|Transparent on|
