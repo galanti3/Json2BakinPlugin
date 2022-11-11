@@ -140,8 +140,8 @@ namespace Json2BakinPlugin.Models
             }
             else //if actor
             {
-				int id2 = int.Parse(Params[2]);
-				if (id2 == 2 || id2 == 3 || id2 == 6) //class, skill, state
+                int id2 = int.Parse(Params[2]);
+                if (id2 == 2 || id2 == 3 || id2 == 6) //class, skill, state
                 {
                     return 6;
                 }
