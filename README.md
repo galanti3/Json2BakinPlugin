@@ -1,15 +1,13 @@
+ 　　　　　　　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
 <h1 align="center">
-<!--  <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
-  <br> -->
   Json2BakinPlugin
   <br>
 </h1>
 
-<h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) events to Bakin events.</h4>
-<h4 align="center">RPGツクールMV(MZ)イベントをBakinイベントに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
+<h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) event data to Bakin event data.</h4>
+<h4 align="center">RPGツクールMV(MZ)イベントデータをBakinイベントデータに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+　　　　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Twitter Followers](https://badgen.net/twitter/follow/galanti3)](https://twitter.com/galanti3)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/galanti3)
   
@@ -94,6 +92,13 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 8. Close the plugin. On the map editor, select an event and open the event sheet editor.
   
 9. Press "Import" button on the upper right corner of the editor. Select a Bakin file you want to import.
+![Json2Bakin03](https://user-images.githubusercontent.com/15904672/201215213-fb7942e1-ffbb-43ad-9062-18e5a70011fc.png)
+
+  > **Note**
+  > When importing, you may be asked if you want to replace variables.
+  >**Always choose "No"!**
+  >
+  >![Json2Bakin04](https://user-images.githubusercontent.com/15904672/201217910-b198978f-9588-46da-ae7b-01521945a9b6.png)
 
 10. The command edit window turns empty. Confirm that new sheet(s) appear on the sheet list window.
   > **Note**
@@ -321,8 +326,8 @@ MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right
 |32|`GRAPHIC`|歩行アニメOFF|Walk anime off|
 |33|`PLMOTION`|足踏みアニメON|Step anime on|
 |34|`PLMOTION`|足踏みアニメOFF|Step anime off|
-|35|`SW PLLOCKROTATE`|向き固定ON|Dir fix on|
-|36|`SW PLLOCKROTATE`|向き固定OFF|Dir fix off|
+|35|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定ON|Dir fix on|
+|36|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定OFF|Dir fix off|
 |37|`CHANGE PLAYER MOVABLE`|すり抜けON|Through on|
 |38|`CHANGE PLAYER MOVABLE`|すり抜けOFF|Through off|
 |39|`PLHIDE`|透明化ON|Transparent on|
@@ -384,10 +389,17 @@ Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com
 8. プラグインを閉じます。マップエディタで適当なイベントを選択し、イベントシートエディタを開きます。
   
 9. エディタの右上にある「インポート」ボタンを押し、インポートしたいBakinファイルを選択してください。
+![Json2Bakin03](https://user-images.githubusercontent.com/15904672/201215213-fb7942e1-ffbb-43ad-9062-18e5a70011fc.png)
+
+  > **Note**
+  > Bakinファイルをインポートすると「新しい変数名に置き換えますか」と聞かれることがあります。
+  >**必ず「いいえ」を選択してください！**
+  >
+  >![Json2Bakin02](https://user-images.githubusercontent.com/15904672/201216612-496a3328-6050-44d1-8443-5a57a08ed060.png)
 
 10. インポートが行われるとコマンド編集画面が空白になります。左側にあるシート一覧ウィンドウにインポートした分のシートが増えていることを確認してください。
   > **Note**
-  > 1つのBakinファイルは1つのツクールイベントに対応し、そのイベント内のすべてのページのデータが格納されています。
+  > 1つのBakinファイルは1つのツクールイベントに対応しています。Bakinファイルをインポートすると、対応するイベント内のページがすべて読み込まれます。
 
 11. 編集したいシートを選択します。警告コメントや変換不可コメント(もしあれば)を参考にしながら、コマンドを修正してください。
 
@@ -417,13 +429,14 @@ Bakinではタイマー機能はコモンイベントを通して提供されま
 
 ## 制約
 
-* ツクールとBakinのイベント実装思想が異なるため、ツクールコマンドの中にはBakinコマンドへの変換が不完全、またはまったく変換不可能なものがあります。詳細については<a href="#command-conversion-list">コマンド変換リスト</a>を参照してください。
+* ツクールとBakinのイベント実装に関する設計思想が異なるため、Bakinコマンドへの変換が不完全、または変換不可能なツクールコマンドがあります。詳細については<a href="#command-conversion-list">コマンド変換リスト</a>を参照してください。
 
-* ツクールはイベントで使用するリソース(キャラ、アイテム、サウンド、画像など)を名前またはデータベースIDで管理しています。一方BakinではそれらをGUID（ユニークなID)で管理します。GUIDはリソースがプロジェクトに登録される際にそれぞれ付与されます。このため、ツクールコマンドで指定されたあらゆるリソースは変換時にすべてクリアされてしまい、Bakinにインポートした後に手動でそれらのリソースを再設定する必要があります。
+* ツクールはイベントで使用するリソース(キャラ、アイテム、サウンド、画像など)を名前またはデータベースIDで管理しています。一方BakinではそれらをGUID（ユニークなID)で管理します。GUIDはリソースがプロジェクトに登録される際にそれぞれ付与されます。このため、ツクールコマンドで指定されたあらゆるリソースの名前やIDは変換時にすべてクリアされてしまい、Bakinにインポートした後に手動でそれらのリソースを再設定する必要があります。
 
 * Bakinではコマンドによって他のイベント(コマンドを実行していないイベント)の動きを制御することができません。もしツクールイベント内で他のイベントを動かすコマンドを使っている場合、変換時に動かす対象が「このイベント」に変更されます。つまり、Bakinでそのコマンドを実行した場合、動かす対象のイベントでなく自分が動きます。
 
-* Bakinではコマンドによって複数のイベントを同時に動かすことはできません(ツクールでは「移動の設定」コマンドを使えば可能です)。そのため、Bakinでは移動コマンドは上から順番に1つずつ実行され、並列実行(移動完了を待たずに次のコマンドを実行)はできません。
+* Bakinでは歩行コマンドによって複数のイベントを同時に動かすことはできません(ツクールでは「移動ルートの設定」コマンドを使えば可能です)。そのため、Bakinでは移動コマンドは上から順番に1つずつ実行され、並列実行(移動完了を待たずに次のコマンドを実行)はできません。
+※ただしツクールの移動コマンドがBakinの「座標を指定して歩かせる」コマンドに集約された場合(<a href="#移動ルート設定">移動ルート設定</a>を参照)、プレイヤーとコマンド実行イベントに限り同時移動が可能です。
 
 * RPGツクール MZのイベントの変換は動作未確認です。たぶん動くと思いますが、保証はしません。
 
