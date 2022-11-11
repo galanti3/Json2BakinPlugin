@@ -91,7 +91,7 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 6. If you don't want to add modification alert comments to Bakin command lists and/or don't want to export non-converted MV (MZ) commands as Bakin comments, unselect corresponding checkbox(es).
   
-7. Press "Convert" button. MV (MZ) events will be converted to Bakin events and exported to Bakin files (.txt) in the specified export folder.
+7. Press "Convert" button. MV (MZ) events will be converted to Bakin events and exported to Bakin files (.txt) in the specified export folder. A conversion log file (log.txt) is also generated in the same export folder.
   
 8. Close the plugin. On the map editor, select an event and open the event sheet editor.
   
@@ -389,7 +389,7 @@ Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com
 
 6. もし編集が必要なBakinコマンドのための警告コメントが不要、または変換不可コマンドをコメントとして出力したくないなら、それぞれ対応するチェックマークを外してください。
   
-7. 「変換」ボタンを押せばツクールイベントがBakinイベントに変換され、指定フォルダ内にBakinファイル(.txt)として出力されます。
+7. 「変換」ボタンを押せばツクールイベントがBakinイベントに変換され、指定フォルダ内にBakinファイル(.txt)として出力されます。変換ログファイル(log.txt)も同じフォルダ内に出力されます。
   
 8. プラグインを閉じます。マップエディタで適当なイベントを選択し、イベントシートエディタを開きます。
   
