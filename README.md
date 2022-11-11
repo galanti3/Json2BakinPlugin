@@ -454,6 +454,8 @@ This plugin refers to following game engine architectures:<br>
 - [RPG Developer Bakin](https://rpgbakin.com/en)
 - [RPG Maker MV (MZ)](https://www.rpgmakerweb.com/)
 
+This plugin is unofficial; Don't send any request, complaint or inquiry regarding this plugin to the developers listed above.
+
 ## Support
 
 投げ銭<br>
