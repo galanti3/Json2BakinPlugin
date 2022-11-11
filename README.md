@@ -118,9 +118,9 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 * MV (MZ) utilizes three types of variables: "variables", "switches" and "self-switches". These variables are converted to "numerical variables", "0/1 numerical variables" and "0/1 local variables" for Bakin, respectively.
 
-* Converted variable names in Bakin will be : [V(MV (MZ) variable number)]. For example, MV's variable No.1 will be [V001] in Bakin.
+* Converted variable names in Bakin will be "[V(MV (MZ) variable number)]Var_Name". For example, MV's variable No.1, Named "TalkNumber", is converted to "[V001]TalkNumber" for Bakin.
 
-* Converted switch names in Bakin will be : [S(MV (MZ) switch number)]. For example, MV's switch No.1 will be [S001] in Bakin.
+* Converted switch names in Bakin will be "[S(MV (MZ) switch number)]Switch_Name". For example, MV's switch No.1, Named "TalkedToKing", is converted to "[S001]TalkedToKing" for Bakin.
 
 * Self-switch names don't change i.e. local variable names will be "A", "B", "C" or "D" in Bakin, as used in MV (MZ).
 
@@ -132,7 +132,8 @@ Bakin offers the timer functionality via a common event. If MV (MZ) events conta
 
 ## Movement Route setting
 
-MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged to a single Bakin's "walk to specified coodinates" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.
+~~MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged into a single Bakin's "walk to specified coodinates" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.~~
+MV (MZ)'s consecutive same-direction movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged into a single Bakin's movement command. The step size is automatically calculated.
 
 ## Limitations
 
@@ -415,9 +416,9 @@ Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com
 
 * ツクールは「変数」「スイッチ」「セルフスイッチ」の3種類の変数を使用します。これらはそれぞれBakinの「変数ボックス」「2値変数ボックス」「2値ローカル変数ボックス」に変換されます。
 
-* 変換後の変数名は[V(ツクール変数番号)]になります。例えば、ツクールの1番目の変数はBakinでは「[V001]」という名前になります。
+* 変換後の変数名は「[V(ツクール変数番号)]変数名」になります。例えば、ツクール上で「会話数」という名前の1番目の変数はBakinでは「[V001]会話数」という名前になります。
 
-* 変換後のスイッチ名は[S(ツクールスイッチ番号)]になります。例えば、ツクールの1番目のスイッチはBakinでは「[S001]」という名前になります。
+* 変換後のスイッチ名は「[S(ツクールスイッチ番号)]スイッチ名」になります。例えば、ツクール上で「王様と話した」という名前の1番目のスイッチはBakinでは「[S001]王様と話した」という名前になります。
 
 * セルフスイッチ名は変換後もそのままです。ツクールのセルフスイッチ名と同じく、Bakinでもローカル変数名は「A」、「B」、「C」、「D」になります。
 
@@ -429,7 +430,8 @@ Bakinではタイマー機能はコモンイベントを通して提供されま
 
 ## 移動ルート設定
 
-ツクールイベント内の連続する移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「目的地に向かって歩く」に集約されます。目的ポイントは自動的に計算されます。もし移動コマンド間に別のコマンド(ウエイト、向きを変えるなど)が存在する場合は、集約は行われません。
+~~ツクールイベント内の連続する移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「目的地に向かって歩く」に集約されます。目的ポイントは自動的に計算されます。もし移動コマンド間に別のコマンド(ウエイト、向きを変えるなど)が存在する場合は、集約は行われません。~~
+ツクールイベント内の連続する同じ方向への移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「歩かせる」に集約されます。歩数は自動的に計算されます。
 
 ## 制約
 
@@ -440,7 +442,6 @@ Bakinではタイマー機能はコモンイベントを通して提供されま
 * Bakinではコマンドによって他のイベント(コマンドを実行していないイベント)の動きを制御することができません。もしツクールイベント内で他のイベントを動かすコマンドを使っている場合、変換時に動かす対象が「このイベント」に変更されます。つまり、Bakinでそのコマンドを実行した場合、動かす対象のイベントでなく自分が動きます。
 
 * Bakinでは歩行コマンドによって複数のイベントを同時に動かすことはできません(ツクールでは「移動ルートの設定」コマンドを使えば可能です)。そのため、Bakinでは移動コマンドは上から順番に1つずつ実行され、並列実行(移動完了を待たずに次のコマンドを実行)はできません。
-※ただしツクールの移動コマンドがBakinの「座標を指定して歩かせる」コマンドに集約された場合(<a href="#移動ルート設定">移動ルート設定</a>を参照)、プレイヤーとコマンド実行イベントに限り同時移動が可能です。
 
 * RPGツクール MZのイベントの変換は動作未確認です。たぶん動くと思いますが、保証はしません。
 
