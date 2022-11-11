@@ -1,4 +1,4 @@
- 　　　　　　　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
+ 　　　　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
 <h1 align="center">
   Json2BakinPlugin
   <br>
@@ -10,7 +10,11 @@
 　　　　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Twitter Followers](https://badgen.net/twitter/follow/galanti3)](https://twitter.com/galanti3)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/galanti3)
-  
+
+**Still in Beta. Might generates improperly formatted export files, causing a crush of Bakin application or destruction of your game project.<br>Use this plugin at your own risk. Make a backup before using this plugin.<br>
+ベータ版です。不適切なフォーマットの出力ファイルによりBakinアプリの暴走やゲームプロジェクトデータの破壊を引き起こす可能性があります。<br>
+使用は自己責任でお願いします。使用前にゲームプロジェクトのバックアップを取っておくことをおすすめします。**
+
 <h4 align="center">English</h4>
 <p align="center">
   <a href="#terminology">Terminology</a> •
@@ -145,7 +149,7 @@ MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right
 ## Command Conversion List
 <h3>Basic Commands</h3>
 
-|MV(MZ) Codes|Bakin Codes|Description(JP)|Description(EN), in progress|
+|MV(MZ) Codes|Bakin Codes|Description(JP)|Description(EN), to be filled|
 |---------------:|-----------|-------------------|--------|
 |000|`CLOSE`|クローズタグ||
 |101|`DIALOGUE`|会話を表示||
@@ -288,50 +292,50 @@ MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right
 |602|`ELSE`|バトル結果：逃げた時||
 |603|`ELSE`|バトル結果：負けた時||
 
-<h3>Move Route Commands (Player or command running event only)</h3>
+<h3>Move Route Commands: Player (upper) or command running event (lower) only</h3>
 
 |MV(MZ) Codes|Bakin Codes|Description(JP)|Description(EN)|
 |---------------:|-----------|-------------------|--------|
-|01|`PLWALK`|下に移動|Move down|
-|02|`PLWALK`|左に移動|Move left|
-|03|`PLWALK`|右に移動|Move right|
-|04|`PLWALK`|上に移動|Move up|
-|05|`PLWALK`|左下に移動|Move lower L|
-|06|`PLWALK`|右下に移動|Move lower R|
-|07|`PLWALK`|左上に移動|Move upper L|
-|08|`PLWALK`|右上に移動|Move upper R|
-|09|`PLWALK`|ランダムに移動|Move random|
-|10|`PLWALK`|プレイヤーに近づく|Move toward|
-|11|`PLWALK`|プレイヤーから遠ざかる|Move away|
-|12|`PLWALK`|一歩前進|Move forward|
-|13|`PLWALK`|一歩後退|Move backward|
-|14|`ADDFORCEPL`|ジャンプ|Jump|
+|01|`PLWALK`<br>`WALK`|下に移動|Move down|
+|02|`PLWALK`<br>`WALK`|左に移動|Move left|
+|03|`PLWALK`<br>`WALK`|右に移動|Move right|
+|04|`PLWALK`<br>`WALK`|上に移動|Move up|
+|05|`PLWALK`<br>`WALK`|左下に移動|Move lower L|
+|06|`PLWALK`<br>`WALK`|右下に移動|Move lower R|
+|07|`PLWALK`<br>`WALK`|左上に移動|Move upper L|
+|08|`PLWALK`<br>`WALK`|右上に移動|Move upper R|
+|09|`PLWALK`<br>`WALK`|ランダムに移動|Move random|
+|10|`PLWALK`<br>`WALK`|プレイヤーに近づく|Move toward|
+|11|`PLWALK`<br>`WALK`|プレイヤーから遠ざかる|Move away|
+|12|`PLWALK`<br>`WALK`|一歩前進|Move forward|
+|13|`PLWALK`<br>`WALK`|一歩後退|Move backward|
+|14|`ADDFORCEPL`<br>`ADDFORCE`|ジャンプ|Jump|
 |15|`WAIT`|ウェイト|Wait|
-|16|`PLROTATE`|下を向く|Turn down|
-|17|`PLROTATE`|左を向く|Turn left|
-|18|`PLROTATE`|右を向く|Turn right|
-|19|`PLROTATE`|上を向く|Turn up|
-|20|`PLROTATE`|右に90度回転|Turn 90d R|
-|21|`PLROTATE`|左に90度回転|Turn 90d L|
-|22|`PLROTATE`|右に180度回転|Turn 180d|
-|23|`PLROTATE`|左右どちらかに90度回転|Turn 90d RL|
-|24|`PLROTATE`|ランダムに方向転換|Turn random|
-|25|`PLROTATE`|プレイヤーの方を向く|Turn toward|
-|26|`PLROTATE`|プレイヤーの逆を向く|Turn away|
+|16|`PLROTATE`<br>`ROTATE`|下を向く|Turn down|
+|17|`PLROTATE`<br>`ROTATE`|左を向く|Turn left|
+|18|`PLROTATE`<br>`ROTATE`|右を向く|Turn right|
+|19|`PLROTATE`<br>`ROTATE`|上を向く|Turn up|
+|20|`PLROTATE`<br>`ROTATE`|右に90度回転|Turn 90d R|
+|21|`PLROTATE`<br>`ROTATE`|左に90度回転|Turn 90d L|
+|22|`PLROTATE`<br>`ROTATE`|右に180度回転|Turn 180d|
+|23|`PLROTATE`<br>`ROTATE`|左右どちらかに90度回転|Turn 90d RL|
+|24|`PLROTATE`<br>`ROTATE`|ランダムに方向転換|Turn random|
+|25|`PLROTATE`<br>`ROTATE`|プレイヤーの方を向く|Turn toward|
+|26|`PLROTATE`<br>`ROTATE`|プレイヤーの逆を向く|Turn away|
 |27|`SWITCH`|スイッチON|Switch on|
 |28|`SWITCH`|スイッチOFF|Switch off|
-|29|`PLWALKSPEED`|移動速度の変更|Change speed|
+|29|`PLWALKSPEED`<br>`WALKSPEED`|移動速度の変更|Change speed|
 |30|N/A|移動頻度の変更|Change freq|
 |31|`GRAPHIC`|歩行アニメON|Walk anime on|
 |32|`GRAPHIC`|歩行アニメOFF|Walk anime off|
-|33|`PLMOTION`|足踏みアニメON|Step anime on|
-|34|`PLMOTION`|足踏みアニメOFF|Step anime off|
-|35|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定ON|Dir fix on|
-|36|`SW PLLOCKROTATE`<br>(プレイヤーのみ)|向き固定OFF|Dir fix off|
-|37|`CHANGE PLAYER MOVABLE`|すり抜けON|Through on|
-|38|`CHANGE PLAYER MOVABLE`|すり抜けOFF|Through off|
-|39|`PLHIDE`|透明化ON|Transparent on|
-|40|`PLHIDE`|透明化OFF|Transparent off|
+|33|`PLMOTION`<br>`MOTION`|足踏みアニメON|Step anime on|
+|34|`PLMOTION`<br>`MOTION`|足踏みアニメOFF|Step anime off|
+|35|`SW PLLOCKROTATE`<br>N/A|向き固定ON|Dir fix on|
+|36|`SW PLLOCKROTATE`<br>N/A|向き固定OFF|Dir fix off|
+|37|`CHANGE_PLAYER_MOVABLE`<br>`CHANGE_MOVABLE`|すり抜けON|Through on|
+|38|`CHANGE_PLAYER_MOVABLE`<br>`CHANGE_MOVABLE`|すり抜けOFF|Through off|
+|39|`PLHIDE`<br>`EVHIDE`|透明化ON|Transparent on|
+|40|`PLHIDE`<br>`EVHIDE`|透明化OFF|Transparent off|
 |41|`GRAPHIC`|画像の変更|Change image|
 |42|N/A|不透明度の変更|Change opacity|
 |43|N/A|合成方法の変更|Change blend mode|
