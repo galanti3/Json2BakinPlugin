@@ -4,10 +4,12 @@
   <br>
 </h1>
 
+　　　　　![Json2BakinUI](https://user-images.githubusercontent.com/15904672/201438729-2a7f7a59-e589-400c-8ac0-0e14ebcfcea7.png)
+
 <h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) event data to Bakin event data.</h4>
 <h4 align="center">RPGツクールMV(MZ)イベントデータをBakinイベントデータに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
 
-　　　　　　　　　　　　　　　　　　 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Twitter Followers](https://badgen.net/twitter/follow/galanti3)](https://twitter.com/galanti3)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/galanti3)
 
@@ -63,7 +65,7 @@
 
 * Exports Bakin-readable command files converted from RPG Maker MV event data
 * Converts common events
-* Converts RPG Maker MZ events (preliminary)
+* Converts RPG Maker MZ events (beta)
 * Exports unsupported RPG Maker commands as comments
 * Event-wise conversion: all pages contained in an MV event can be imported to a Bakin event at once.
 * Adds an alert comment prior to a command which requires modification
