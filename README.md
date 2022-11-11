@@ -1,4 +1,4 @@
- 　　　　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
+ 　　　　　　　　　　　　　　　　　　　　　　![smile](https://user-images.githubusercontent.com/15904672/201221341-3e3bc596-642d-439b-a38e-9b47d6538bc0.png)
 <h1 align="center">
   Json2BakinPlugin
   <br>
@@ -7,12 +7,12 @@
 <h4 align="center">An <a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a> plugin to convert RPG Maker MV (MZ) event data to Bakin event data.</h4>
 <h4 align="center">RPGツクールMV(MZ)イベントデータをBakinイベントデータに変換する<a href="https://rpgbakin.com/en" target="_blank">RPG Developer Bakin</a>用プラグイン</h4>
 
-　　　　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+　　　　　　　　　　　　　　　　　　[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Twitter Followers](https://badgen.net/twitter/follow/galanti3)](https://twitter.com/galanti3)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](https://www.buymeacoffee.com/galanti3)
 
 **Still in Beta. Might generates improperly formatted export files, causing a crush of Bakin application or destruction of your game project.<br>Use this plugin at your own risk. Make a backup before using this plugin.<br>
-ベータ版です。不適切なフォーマットの出力ファイルによりBakinアプリの暴走やゲームプロジェクトデータの破壊を引き起こす可能性があります。<br>
+ベータ版です。不適切なフォーマットの出力ファイルによりBakinアプリの暴走やゲームプロジェクトデータの破壊を引き起こす可能性があります。
 使用は自己責任でお願いします。使用前にゲームプロジェクトのバックアップを取っておくことをおすすめします。**
 
 <h4 align="center">English</h4>
@@ -132,7 +132,7 @@ Bakin offers the timer functionality via a common event. If MV (MZ) events conta
 
 ## Movement Route setting
 
-~~MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged into a single Bakin's "walk to specified coodinates" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.~~
+~~MV (MZ)'s consecutive movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged into a single Bakin's "walk to specified coodinates" command. The destination point is automatically calculated. If any other command (e.g. wait or turn) exists in between those move commands, no merge happens.~~<br>
 MV (MZ)'s consecutive same-direction movement commands (walk up, down, right, left, upper-right, upper-left, lower-right or lower-left) will be merged into a single Bakin's movement command. The step size is automatically calculated.
 
 ## Limitations
@@ -430,7 +430,7 @@ Bakinではタイマー機能はコモンイベントを通して提供されま
 
 ## 移動ルート設定
 
-~~ツクールイベント内の連続する移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「目的地に向かって歩く」に集約されます。目的ポイントは自動的に計算されます。もし移動コマンド間に別のコマンド(ウエイト、向きを変えるなど)が存在する場合は、集約は行われません。~~
+~~ツクールイベント内の連続する移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「目的地に向かって歩く」に集約されます。目的ポイントは自動的に計算されます。もし移動コマンド間に別のコマンド(ウエイト、向きを変えるなど)が存在する場合は、集約は行われません。~~<br>
 ツクールイベント内の連続する同じ方向への移動コマンド(上、下、左、右、右上、左上、右下、左下) は1つのBakinコマンド「歩かせる」に集約されます。歩数は自動的に計算されます。
 
 ## 制約
