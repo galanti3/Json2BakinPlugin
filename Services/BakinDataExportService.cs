@@ -1,11 +1,7 @@
-﻿using Json2BakinPlugin.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Xml.Linq;
-using Yukar.Engine;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static Yukar.Engine.VirtualPad;
+using System.Collections.Generic;
+using Json2BakinPlugin.Models;
 
 namespace Json2BakinPlugin.Services
 {
@@ -15,7 +11,7 @@ namespace Json2BakinPlugin.Services
         private MvMapDataLoadService _loadService;
         private Json2BakinConvertService _convertService;
         private string _moveChar;
-        private bool _isTimerUsed;
+        private bool _isTimerUsed = false;
         #endregion
 
         #region Methods
@@ -31,7 +27,8 @@ namespace Json2BakinPlugin.Services
                         {
                             code.ExtractMoveRoute();
                         }
-                        page.list = _convertService.ConvertRouteCodesToDestinationCode(page.list);
+                        //deactivated. Won't work..
+                        //page.list = _convertService.ConvertRouteCodesToDestinationCode(page.list);
                     }
                 }
             }
@@ -51,6 +48,10 @@ namespace Json2BakinPlugin.Services
                             {
                                 code.Params.Add(code.BakinCode[1]); //for comment, text is added to the parameters list.
                             }
+                            else if (code.Subcode == 11103|| code.Subcode == 12400) //timer related command
+                            {
+                                _isTimerUsed = true;
+                            }
                         }
                     }
                 }
@@ -67,7 +68,8 @@ namespace Json2BakinPlugin.Services
                     {
                         code.ExtractMoveRoute();
                     }
-                    ev.list = _convertService.ConvertRouteCodesToDestinationCode(ev.list);
+                    //deactivated. Won't work..
+                    //ev.list = _convertService.ConvertRouteCodesToDestinationCode(ev.list);
                 }
             }
         }

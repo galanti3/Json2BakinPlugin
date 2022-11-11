@@ -321,19 +321,19 @@ namespace Json2BakinPlugin.Services
                     AddCommandMotion(p, code.Params);
                     break;
                 case "SW_PLLOCKROTATE": //35, 36
-                    AddCommandSwpllockrotate(p, code.Params);
+                    AddCommandSwpllockrotate(p, new List<string> { code.code == 35 ? "1" : "0" });
                     break;
                 case "CHANGE_PLAYER_MOVABLE": //37, 38
-                    AddCommandChangemovable(p, code.Params);
+                    AddCommandChangemovable(p, new List<string> { code.code == 37 ? "1" : "0" });
                     break;
                 case "CHANGE_MOVABLE": //37, 38
-                    AddCommandChangemovable(p, code.Params);
+                    AddCommandChangemovable(p, new List<string> { code.code == 37 ? "1" : "0" });
                     break;
                 case "PLHIDE": //39, 40
-                    AddCommandHide(p, code.Params);
+                    AddCommandHide(p, new List<string> { code.code == 39 ? "1" : "0" });
                     break;
                 case "EVHIDE": //39, 40, 211
-                    AddCommandHide(p, code.Params);
+                    AddCommandHide(p, new List<string> { code.code == 39 ? "1" : code.code == 40 ? "0" : code.Params[0] });
                     break;
                 case "PLAYSE": //44, 250
                     AddCommandPlayse(p, code.Params);
@@ -1431,11 +1431,11 @@ namespace Json2BakinPlugin.Services
         //312 Change MP: 0:specify type(const, var), 1:actor value or id, 2:Operation(+, -), 3:type(const, var), 4:value or id
         private void AddCommandChghpmp(int code, List<BakinParameter> p, List<string> paras)
         {
-            AddCommandNoticeComment(p, Cvt_NeedRevise, Para_ObjCast + "");
+            Tuple<string, string> varval = GetBknVarNameOrVal(paras[0], paras[1]);
+            AddCommandNoticeComment(p, Cvt_NeedRevise, Para_ObjCast + "(ID:" + varval.Item2 + ")");
             AddCommandHeader(p, "CHG_HPMP");
             p.Add(new BakinParameter("整数", Para_ObjCast + Para_SpecifyOrN, "1")); //0=specify_cast 1=n-th member
-            Tuple<string, string> varval = GetBknVarNameOrVal(paras[0], paras[1]);
-            //p.Add(new BakinParameter("Guid", "指定キャストGuid" + "(ID:" + varval.Item2 + ")")); //cast guid
+            p.Add(new BakinParameter("Guid", "指定キャストGuid" + "(ID:" + varval.Item2 + ")")); //cast guid
             p.Add(new BakinParameter("整数", Para_NthInParty, "0")); //member number, N-1
             p.Add(new BakinParameter("整数", Para_EffectObj01, code == 311 ? "0" : "1")); //0=hp 1=mp
             varval = GetBknVarNameOrVal(paras[3], paras[4]);
@@ -1451,7 +1451,7 @@ namespace Json2BakinPlugin.Services
             AddCommandNoticeComment(p, Cvt_NeedRevise, Para_ObjCast + "(ID:" + varval.Item2 + ")," + Para_StateChange + "(ID:" + paras[3] + ")");
             AddCommandHeader(p, "CHG_STTAILM");
             p.Add(new BakinParameter("整数", Para_ObjCast + Para_SpecifyOrN, "1")); //0=specify_cast 1=n-th member
-                                                                                  //p.Add(new BakinParameter("Guid", "指定キャストGuid")); //cast guid, all if 0
+            p.Add(new BakinParameter("Guid", "指定キャストGuid")); //cast guid, all if 0
             p.Add(new BakinParameter("整数", Para_NthInParty, "0")); //member number, N-1
             p.Add(new BakinParameter("Guid", Para_StateChange + "Guid")); //state guid
             p.Add(new BakinParameter("整数", Para_StateAddRemove, paras[2])); //0=add 1=remove
@@ -1608,7 +1608,8 @@ namespace Json2BakinPlugin.Services
         {
             AddCommandNoticeComment(p, Cvt_NeedRevise, Para_ObjMonster + "(ID:" + paras[0] + "), " + Para_State + "(ID:" + paras[2] + ")");
             AddCommandHeader(p, "BTL_STATUS");
-            p.Add(new BakinParameter("Guid", Para_ObjMonster + "Guid")); //cast guid
+            p.Add(new BakinParameter("整数", Para_BtlStateObj, "2")); //1=party 2=troop
+            p.Add(new BakinParameter("整数", Para_ObjMonster, paras[0])); //cast guid
             p.Add(new BakinParameter("Guid", Para_State + "Guid")); //state guid
             p.Add(new BakinParameter("整数", Para_StateAddRemove, paras[1])); //0=add 2=remove
             AddCommandEnd(p);
@@ -1699,7 +1700,7 @@ namespace Json2BakinPlugin.Services
             p.Add(new BakinParameter("整数", Para_ThroughEvent, "0")); //through flag
             p.Add(new BakinParameter("整数", Para_StepOver, "0")); //step over flag
             p.Add(new BakinParameter("整数", Para_NoMotionChange, "0")); //no motion change flag
-            var tmp = code == 5 ? "315" : code == 6 ? "45" : code == 7 ? "225" : "135";
+            var tmp = code == 5 ? "315" : code == 6 ? "45" : code == 7 ? "225" : code == 8 ? "135" : "0";
             p.Add(new BakinParameter("整数", Para_Angle, tmp)); //degree
             p.Add(new BakinParameter("整数", ""));
             p.Add(new BakinParameter("整数", Para_SmoothTurn, "1")); //smooth rotate flag
@@ -1712,9 +1713,9 @@ namespace Json2BakinPlugin.Services
         {
             AddCommandNoticeComment(p, Cvt_NeedRevise, Para_MoveRouteTime);
             //first get position X & Z
-            AddCommandTemporaryHlvariable(p, "Tmp1", 0, ToInt(_moveChar), 17);
+            AddCommandTemporaryGamedataVariable(p, "Tmp1", 0, _moveChar == "-1" ? 17 : 14); //xpos
             AddCommandTemporaryVariable(p, "Tmp1", ToInt(paras[0]), 1);
-            AddCommandTemporaryHlvariable(p, "Tmp2", 0, ToInt(_moveChar), 18);
+            AddCommandTemporaryGamedataVariable(p, "Tmp2", 0, _moveChar == "-1" ? 18 : 15); //ypos
             AddCommandTemporaryVariable(p, "Tmp2", ToInt(paras[1]), 1);
 
             AddCommandHeader(p, _moveChar == "-1" ? "PLWALK_TGT" : "EVWALK_TGT");
@@ -1791,21 +1792,22 @@ namespace Json2BakinPlugin.Services
         private void AddCommandSwpllockrotate(List<BakinParameter> p, List<string> paras)
         {
             AddCommandHeader(p, "SW_PLLOCKROTATE");
-            p.Add(new BakinParameter("整数", Para_NoPlayerTurn));  //fix direction flag
+            p.Add(new BakinParameter("整数", Para_NoPlayerTurn, paras[0]));  //fix direction flag
             AddCommandEnd(p);
         }
 
+        //through
         private void AddCommandChangemovable(List<BakinParameter> p, List<string> paras)
         {
             AddCommandHeader(p, _moveChar == "-1" ? "CHANGE_PLAYER_MOVABLE" : "CHANGE_MOVABLE");
-            p.Add(new BakinParameter("整数", Para_Through)); //through flag
+            p.Add(new BakinParameter("整数", Para_Through, paras[0])); //through flag
             AddCommandEnd(p);
         }
 
         private void AddCommandHide(List<BakinParameter> p, List<string> paras)
         {
             AddCommandHeader(p, _moveChar == "-1" ? "PLHIDE" : "EVHIDE");
-            p.Add(new BakinParameter("整数", Para_Trans));  //transparent flag
+            p.Add(new BakinParameter("整数", Para_Trans, paras[0]));  //transparent flag
             AddCommandEnd(p);
         }
 
@@ -1877,23 +1879,23 @@ namespace Json2BakinPlugin.Services
             AddCommandEnd(p);
         }
 
-        private void AddCommandTemporaryHlvariable(List<BakinParameter> p, string varname, int op, int type, int id)
+        private void AddCommandTemporaryGamedataVariable(List<BakinParameter> p, string varname, int op, int id)
         {
             //player:(mapx, mapy, dir, screenx, screeny, posx, posy) = [ 17, 18, 21, 29, 30, 17, 18 ];
             //event:(mapx, mapy, dir, screenx, screeny, posx, posy) = [ 14, 15, 20, 27, 28, 14, 15 ];
             AddCommandHeader(p, "HLVARIABLE");
             p.Add(new BakinParameter("整数", ""));
             p.Add(new BakinParameter("変数", Para_VarNum, "N:" + varname)); //type":name N=numeric
-            p.Add(new BakinParameter("整数", ""));
-            if (type < 0)
-            {
-                p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
-            }
-            else //game data
-            {
+            //if (type < 0)
+            //{
+            //    p.Add(new BakinParameter("整数", ""));
+            //    p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
+            //}
+            //else //game data
+            //{
                 //nummember = 31, gold = 4, playtime(hour) = 8
                 p.Add(new BakinParameter("整数", Para_DataType, ToStr(id)));
-            }
+            //}
             p.Add(new BakinParameter("整数", Para_Calc0to7, ToStr(op))); //0=overwrite 1=add 2=sub 3=mult 4=div 6=mod 7=floor
             AddCommandEnd(p);
         }

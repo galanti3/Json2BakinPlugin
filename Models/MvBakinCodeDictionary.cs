@@ -238,8 +238,8 @@ namespace Json2BakinPlugin.Models
 			{3201, new List<string>{"GRAPHIC", Dic_Event + Dic_WaklAnimeOff}}, //WALK_ANIME_OFF
 			{3301, new List<string>{"MOTION", Dic_Event + Dic_StepAnimeOn}}, //STEP_ANIME_ON
 			{3401, new List<string>{"MOTION", Dic_Event + Dic_StepAnimeOff}}, //STEP_ANIME_OFF
-			{3501, new List<string>{"SW_LOCKROTATE", Dic_Event + Dic_DirFixOn}}, //DIR_FIX_ON
-			{3601, new List<string>{"SW_LOCKROTATE", Dic_Event + Dic_DirFixOff}}, //DIR_FIX_OFF
+			{3501, new List<string>{"ERROR", Dic_Event + Dic_DirFixOn}}, //DIR_FIX_ON
+			{3601, new List<string>{"ERROR", Dic_Event + Dic_DirFixOff}}, //DIR_FIX_OFF
 			{3701, new List<string>{"CHANGE_MOVABLE", Dic_Event + Dic_ThroughOn}}, //THROUGH_ON
 			{3801, new List<string>{"CHANGE_MOVABLE", Dic_Event + Dic_ThrougnOff}}, //THROUGH_OFF
 			{3901, new List<string>{"EVHIDE", Dic_Event + Dic_TransOn}}, //TRANSPARENT_ON

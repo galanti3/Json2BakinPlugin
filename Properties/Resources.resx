@@ -1471,4 +1471,7 @@
   <data name="Para_TimerVarName" xml:space="preserve">
     <value>タイマー変数名</value>
   </data>
+  <data name="Para_BtlStateObj" xml:space="preserve">
+    <value>対象（1：パーティ、２：モンスター）</value>
+  </data>
 </root>
