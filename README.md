@@ -73,7 +73,7 @@
 
 ## Download
 
-You can download Json2BakinPlugin dll file and dependent dlls from [here](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v1.2.0).
+You can download Json2BakinPlugin dll file and dependent dlls from [here](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v0.0.1).
 
 ## How To Use
 
@@ -371,7 +371,7 @@ MV (MZ)'s consecutive same-direction movement commands (walk up, down, right, le
 
 ## ダウンロード
 
-Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v1.2.0)からダウンロードできます。
+Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v0.0.1)からダウンロードできます。
 
 ## 使い方
 
