@@ -119,37 +119,121 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 163</value>
+    <value>391, 12</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 6, 6, 6</value>
   </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 133</value>
-  </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 121</value>
-  </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 0, 6, 0</value>
+    <value>88, 114</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>902, 36</value>
+    <value>761, 36</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>This plugin will convert json map data to BAKIN event sheet format.</value>
+    <value>This plugin converts Json event data to Bakin event data</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>12, 25</value>
+  <data name="jsonSelector.Location" type="System.Drawing.Point, System.Drawing">
+    <value>879, 289</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>992, 719</value>
+  <data name="jsonSelector.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 37</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Json2Bakin</value>
+  <data name="jsonSelector.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="bakinSelector.Location" type="System.Drawing.Point, System.Drawing">
+    <value>879, 378</value>
+  </data>
+  <data name="bakinSelector.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 37</value>
+  </data>
+  <data name="bakinSelector.Text" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 257</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 29</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Json Data Folder</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 346</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 29</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Bakin Event Data Export Foldera</value>
+  </data>
+  <data name="transformButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>575, 848</value>
+  </data>
+  <data name="transformButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 55</value>
+  </data>
+  <data name="transformButton.Text" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 169</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>985, 29</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>After converted, load exported text files in Bakin Event Editor by pressing the "Import" button</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 447</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>489, 28</value>
+  </data>
+  <data name="nonConvertCommentCheckBox.Text" xml:space="preserve">
+    <value>Export non-convertable events as comments</value>
+  </data>
+  <data name="alertCommentCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 505</value>
+  </data>
+  <data name="alertCommentCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>724, 28</value>
+  </data>
+  <data name="alertCommentCheckBox.Text" xml:space="preserve">
+    <value>Append an alert comment above commands that need to be modified</value>
+  </data>
+  <data name="jsonFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 291</value>
+  </data>
+  <data name="jsonFolderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>776, 37</value>
+  </data>
+  <data name="bakinFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 380</value>
+  </data>
+  <data name="bakinFolderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>776, 37</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>514, 43</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1035, 938</value>
+  </data>
+  <data name="logTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 553</value>
+  </data>
+  <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1076, 258</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>14, 11, 14, 11</value>
   </data>
 </root>

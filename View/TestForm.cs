@@ -73,5 +73,10 @@ namespace Json2BakinPlugin
             controller.UiEnabled = true;
         }
         #endregion
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

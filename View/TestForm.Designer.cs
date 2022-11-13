@@ -49,9 +49,9 @@
             // 
             // pictureBox1
             // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.ErrorImage = global::Json2BakinPlugin.Properties.Resources.smile;
             this.pictureBox1.Image = global::Json2BakinPlugin.Properties.Resources.smile;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.InitialImage = global::Json2BakinPlugin.Properties.Resources.smile;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
@@ -60,6 +60,7 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // jsonSelector
             // 

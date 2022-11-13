@@ -117,11 +117,1409 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Para_3dSound" xml:space="preserve">
+    <value>3Dサウンドとして再生</value>
+  </data>
+  <data name="Para_Action" xml:space="preserve">
+    <value>行動</value>
+  </data>
+  <data name="Para_ActorInfo" xml:space="preserve">
+    <value>アクター情報</value>
+  </data>
+  <data name="Para_AllowRow" xml:space="preserve">
+    <value>隊列歩行の許可</value>
+  </data>
+  <data name="Para_Angle" xml:space="preserve">
+    <value>角度</value>
+  </data>
+  <data name="Para_Armor" xml:space="preserve">
+    <value>防具</value>
+  </data>
+  <data name="Para_AxesToGet" xml:space="preserve">
+    <value>取得する座標（0：プレイヤーの現在位置、1：イベントの現在位置、2：変数で指定）</value>
+  </data>
+  <data name="Para_AxXNum" xml:space="preserve">
+    <value>X座標用変数の番号</value>
+  </data>
+  <data name="Para_AxYNum" xml:space="preserve">
+    <value>Y座標用変数の番号</value>
+  </data>
+  <data name="Para_Back" xml:space="preserve">
+    <value>背景（0：黒、1：画像、2：なし）</value>
+  </data>
+  <data name="Para_BtlBack" xml:space="preserve">
+    <value>戦闘背景</value>
+  </data>
+  <data name="Para_BtlMap" xml:space="preserve">
+    <value>バトルマップ</value>
+  </data>
+  <data name="Para_Calc0to7" xml:space="preserve">
+    <value>計算（0：代入、1：足す、2：引く、3：かける、4：割る、6：割った余りを代入、7：小数点以下を切り捨てて代入）</value>
+  </data>
+  <data name="Para_Camera" xml:space="preserve">
+    <value>カメラ</value>
+  </data>
+  <data name="Para_ChangeCast" xml:space="preserve">
+    <value>変更キャスト</value>
+  </data>
+  <data name="Para_ChangeMDefLuc" xml:space="preserve">
+    <value>魔法防御, 運の変更</value>
+  </data>
+  <data name="Para_ChangeObjJob" xml:space="preserve">
+    <value>変更対象（0：職業、1：副業）</value>
+  </data>
+  <data name="Para_ChangingSkill" xml:space="preserve">
+    <value>変更するスキル</value>
+  </data>
+  <data name="Para_ChoiceLabel" xml:space="preserve">
+    <value>選択肢のラベル</value>
+  </data>
+  <data name="Para_ChoiceN" xml:space="preserve">
+    <value>選択肢n番号（n-1）</value>
+  </data>
+  <data name="Para_ChoicePos" xml:space="preserve">
+    <value>選択肢の位置（0：左上、1：上、2：右上、3：左、4：中央、5：右、6：左下、7：下、8：右下）</value>
+  </data>
+  <data name="Para_ChoicePos2" xml:space="preserve">
+    <value>選択肢の位置（2130706432-N　0：左上、1：上、2：右上、3：左、4：中央、5：右、6：左下、7：下、8：右下）</value>
+  </data>
+  <data name="Para_Command" xml:space="preserve">
+    <value>コマンド</value>
+  </data>
+  <data name="Para_CommandEnd" xml:space="preserve">
+    <value>コマンド終了</value>
+  </data>
+  <data name="Para_CommonEvent" xml:space="preserve">
+    <value>共通イベント</value>
+  </data>
+  <data name="Para_CompCond" xml:space="preserve">
+    <value>比較条件（0：同じ、1：先頭が同じ、2：最後尾が同じ、3：含む）</value>
+  </data>
+  <data name="Para_CompStr" xml:space="preserve">
+    <value>比較文字列</value>
+  </data>
+  <data name="Para_CondEnemyStatus" xml:space="preserve">
+    <value>条件分岐：敵ステータス</value>
+  </data>
+  <data name="Para_CondHave" xml:space="preserve">
+    <value>条件（0：持っている、1：持っていない）</value>
+  </data>
+  <data name="Para_CondInParty" xml:space="preserve">
+    <value>条件（0：パーティにいる、1：パーティにいない）</value>
+  </data>
+  <data name="Para_CondOnOff" xml:space="preserve">
+    <value>条件（0：オン、1：オフ）</value>
+  </data>
+  <data name="Para_CondOp" xml:space="preserve">
+    <value>比較条件（0：=、1：&gt;=、2：&lt;=、3：!=、4：&gt;、5：&lt;）</value>
+  </data>
+  <data name="Para_CurveInterp" xml:space="preserve">
+    <value>曲線補間</value>
+  </data>
+  <data name="Cvt_NeedRevise" xml:space="preserve">
+    <value>修正が必要なコマンド：</value>
+  </data>
+  <data name="Cvt_NoConvert" xml:space="preserve">
+    <value>変換不可能なコマンド：</value>
+  </data>
+  <data name="Para_DataType" xml:space="preserve">
+    <value>データタイプ</value>
+  </data>
+  <data name="Dic_Armor" xml:space="preserve">
+    <value>防具を増やす／減らす</value>
+  </data>
+  <data name="Dic_Away" xml:space="preserve">
+    <value>プレイヤーから遠ざかる</value>
+  </data>
+  <data name="Dic_Back" xml:space="preserve">
+    <value>遠景の変更</value>
+  </data>
+  <data name="Dic_Backward" xml:space="preserve">
+    <value>一歩後退</value>
+  </data>
+  <data name="Dic_BossBattle" xml:space="preserve">
+    <value>バトル実行と結果の確認</value>
+  </data>
+  <data name="Dic_BtlBack" xml:space="preserve">
+    <value>戦闘背景の変更</value>
+  </data>
+  <data name="Dic_BtlBgm" xml:space="preserve">
+    <value>戦闘BGMの変更</value>
+  </data>
+  <data name="Dic_BtlCastEffect" xml:space="preserve">
+    <value>エフェクトの表示</value>
+  </data>
+  <data name="Dic_BtlCastHp" xml:space="preserve">
+    <value>バトルキャストのHP・MPを回復／減らす</value>
+  </data>
+  <data name="Dic_BtlCastMp" xml:space="preserve">
+    <value>バトルキャストのHP・MPを回復／減らす</value>
+  </data>
+  <data name="Dic_BtlCastState" xml:space="preserve">
+    <value>バトルキャストを状態変化にする／治す</value>
+  </data>
+  <data name="Dic_BtlCastStatus" xml:space="preserve">
+    <value>バトルキャストの状態を指定する</value>
+  </data>
+  <data name="Dic_BtlEnd" xml:space="preserve">
+    <value>バトルの強制終了</value>
+  </data>
+  <data name="Dic_BtlIfBattle" xml:space="preserve">
+    <value>バトル中かどうかを確認</value>
+  </data>
+  <data name="Dic_BtlIfMonster" xml:space="preserve">
+    <value>バトル中のモンスターのチェック</value>
+  </data>
+  <data name="Dic_BtlSwCamera" xml:space="preserve">
+    <value>バトルカメラ演出の許可/禁止</value>
+  </data>
+  <data name="Dic_CastGraphic" xml:space="preserve">
+    <value>キャストのグラフィックを変える</value>
+  </data>
+  <data name="Dic_ChangeGameoverAction" xml:space="preserve">
+    <value>ゲームオーバー時の動作指定</value>
+  </data>
+  <data name="Dic_ChangeHeight" xml:space="preserve">
+    <value>イベントのY座標を変更</value>
+  </data>
+  <data name="Dic_ChangeImageColor" xml:space="preserve">
+    <value>ピクチャの色調変更</value>
+  </data>
+  <data name="Dic_ChangePlayerHeight" xml:space="preserve">
+    <value>プレイヤーのY座標を変更</value>
+  </data>
+  <data name="Dic_ChangePlayerScale" xml:space="preserve">
+    <value>プレイヤーのスケールを変更</value>
+  </data>
+  <data name="Dic_ChangeRender" xml:space="preserve">
+    <value>レンダリング設定の変更</value>
+  </data>
+  <data name="Dic_ChangeScale" xml:space="preserve">
+    <value>イベントのスケールを変更</value>
+  </data>
+  <data name="Dic_ChangeStringVariable" xml:space="preserve">
+    <value>文字列入力</value>
+  </data>
+  <data name="Dic_CharChip" xml:space="preserve">
+    <value>画像の変更</value>
+  </data>
+  <data name="Dic_Choice" xml:space="preserve">
+    <value>選択肢</value>
+  </data>
+  <data name="Dic_ChoiceCancel" xml:space="preserve">
+    <value>選択肢キャンセル時</value>
+  </data>
+  <data name="Dic_Choices" xml:space="preserve">
+    <value>選択肢から選んで結果を確認</value>
+  </data>
+  <data name="Dic_ChoicesEnd" xml:space="preserve">
+    <value>選択肢終了</value>
+  </data>
+  <data name="Dic_Close" xml:space="preserve">
+    <value>分岐終端</value>
+  </data>
+  <data name="Dic_ColContack" xml:space="preserve">
+    <value>接触状態の確認</value>
+  </data>
+  <data name="Dic_ColRaycast" xml:space="preserve">
+    <value>周囲の当たり判定の確認</value>
+  </data>
+  <data name="Dic_Comment" xml:space="preserve">
+    <value>注釈</value>
+  </data>
+  <data name="Dic_DeleteImage" xml:space="preserve">
+    <value>イメージを消す</value>
+  </data>
+  <data name="Dic_DestroyEvent" xml:space="preserve">
+    <value>イベント削除</value>
+  </data>
+  <data name="Dic_Dialogue" xml:space="preserve">
+    <value>会話を表示</value>
+  </data>
+  <data name="Dic_DirFixOff" xml:space="preserve">
+    <value>向き固定OFF</value>
+  </data>
+  <data name="Dic_DirFixOn" xml:space="preserve">
+    <value>向き固定ON</value>
+  </data>
+  <data name="Dic_Effect" xml:space="preserve">
+    <value>エフェクトの表示</value>
+  </data>
+  <data name="Dic_Else" xml:space="preserve">
+    <value>条件分岐それ以外</value>
+  </data>
+  <data name="Dic_Emerge" xml:space="preserve">
+    <value>モンスターを出現させる</value>
+  </data>
+  <data name="Dic_Emote" xml:space="preserve">
+    <value>感情マークを表示</value>
+  </data>
+  <data name="Dic_Encount" xml:space="preserve">
+    <value>モンスターの出現の許可/禁止</value>
+  </data>
+  <data name="Dic_End" xml:space="preserve">
+    <value>イベント終了</value>
+  </data>
+  <data name="Dic_EndLoop" xml:space="preserve">
+    <value>ループ終了</value>
+  </data>
+  <data name="Dic_EnemyFullRecover" xml:space="preserve">
+    <value>敵キャラの全回復</value>
+  </data>
+  <data name="Dic_EnemyTp" xml:space="preserve">
+    <value>敵キャラのTP増減</value>
+  </data>
+  <data name="Dic_Equip" xml:space="preserve">
+    <value>キャストの装備を変更する</value>
+  </data>
+  <data name="Dic_Event" xml:space="preserve">
+    <value>イベント:</value>
+  </data>
+  <data name="Dic_EventMove" xml:space="preserve">
+    <value>イベントを瞬間移動</value>
+  </data>
+  <data name="Dic_EventTransparent" xml:space="preserve">
+    <value>イベントを透明にする／透明から戻す</value>
+  </data>
+  <data name="Dic_EvSnap" xml:space="preserve">
+    <value>イベントの位置をグリッドに吸着する</value>
+  </data>
+  <data name="Dic_EvWalkTgt" xml:space="preserve">
+    <value>イベントの座標を変更して歩かせる</value>
+  </data>
+  <data name="Dic_Exec" xml:space="preserve">
+    <value>共通イベント呼び出し</value>
+  </data>
+  <data name="Dic_Exit" xml:space="preserve">
+    <value>ゲーム終了</value>
+  </data>
+  <data name="Dic_Exp" xml:space="preserve">
+    <value>経験値を増やす／減らす</value>
+  </data>
+  <data name="Dic_FaceMotion" xml:space="preserve">
+    <value>マップキャストの表情の変更</value>
+  </data>
+  <data name="Dic_Fadein" xml:space="preserve">
+    <value>画面を明るくする</value>
+  </data>
+  <data name="Dic_Fadeout" xml:space="preserve">
+    <value>画面を暗くする</value>
+  </data>
+  <data name="Dic_FadeoutBgm" xml:space="preserve">
+    <value>BGMをフェードアウト</value>
+  </data>
+  <data name="Dic_FadeoutBgs" xml:space="preserve">
+    <value>環境音をフェードアウト</value>
+  </data>
+  <data name="Dic_FallEvent" xml:space="preserve">
+    <value>イベントの落下を開始</value>
+  </data>
+  <data name="Dic_FallPlayer" xml:space="preserve">
+    <value>プレイヤーの落下を開始</value>
+  </data>
+  <data name="Dic_Flash" xml:space="preserve">
+    <value>画面をフラッシュ</value>
+  </data>
+  <data name="Dic_Forward" xml:space="preserve">
+    <value>一歩前進</value>
+  </data>
+  <data name="Dic_FullRecover" xml:space="preserve">
+    <value>パーティを全回復</value>
+  </data>
+  <data name="Dic_GameOver" xml:space="preserve">
+    <value>ゲームオーバー</value>
+  </data>
+  <data name="Dic_Gather" xml:space="preserve">
+    <value>隊列メンバーの集合</value>
+  </data>
+  <data name="Dic_HeroName" xml:space="preserve">
+    <value>パーティメンバーの名前を変更</value>
+  </data>
+  <data name="Dic_HlStrVariable" xml:space="preserve">
+    <value>複雑な文字列変数の操作</value>
+  </data>
+  <data name="Dic_HlVariable" xml:space="preserve">
+    <value>複雑な変数ボックスの操作</value>
+  </data>
+  <data name="Dic_Hp" xml:space="preserve">
+    <value>HP/MPを回復／減らす</value>
+  </data>
+  <data name="Dic_IfButtonPressed" xml:space="preserve">
+    <value>条件分岐：押されているボタン</value>
+  </data>
+  <data name="Dic_IfClassSkillState" xml:space="preserve">
+    <value>条件分岐：アクタークラス、スキル、状態</value>
+  </data>
+  <data name="Dic_IfDirection" xml:space="preserve">
+    <value>条件分岐：キャラクターの向き</value>
+  </data>
+  <data name="Dic_IfEscape" xml:space="preserve">
+    <value>バトル結果：逃げた時</value>
+  </data>
+  <data name="Dic_IfInventoryEmpty" xml:space="preserve">
+    <value>アイテム袋の空きの確認</value>
+  </data>
+  <data name="Dic_IfItem" xml:space="preserve">
+    <value>メンバーが持っているアイテムの確認</value>
+  </data>
+  <data name="Dic_IfLost" xml:space="preserve">
+    <value>バトル結果：負けた時</value>
+  </data>
+  <data name="Dic_IfMoney" xml:space="preserve">
+    <value>持っているお金の確認</value>
+  </data>
+  <data name="Dic_IfParty" xml:space="preserve">
+    <value>パーティに含まれるキャストの確認</value>
+  </data>
+  <data name="Dic_IfPartyArmor" xml:space="preserve">
+    <value>パーティが持っている防具の確認</value>
+  </data>
+  <data name="Dic_IfPartyItem" xml:space="preserve">
+    <value>パーティが持っているアイテムの確認</value>
+  </data>
+  <data name="Dic_IfPartyWeapon" xml:space="preserve">
+    <value>パーティが持っている武器の確認</value>
+  </data>
+  <data name="Dic_IfScript" xml:space="preserve">
+    <value>条件分岐：スクリプト</value>
+  </data>
+  <data name="Dic_IfStringVariable" xml:space="preserve">
+    <value>文字列変数の確認</value>
+  </data>
+  <data name="Dic_IfSwitch" xml:space="preserve">
+    <value>イベントスイッチの確認</value>
+  </data>
+  <data name="Dic_IfTimer" xml:space="preserve">
+    <value>条件分岐：タイマー</value>
+  </data>
+  <data name="Dic_IfVariable" xml:space="preserve">
+    <value>変数ボックスの確認</value>
+  </data>
+  <data name="Dic_IfVehicle" xml:space="preserve">
+    <value>条件分岐：乗り物</value>
+  </data>
+  <data name="Dic_Inn" xml:space="preserve">
+    <value>宿屋の表示と結果の確認</value>
+  </data>
+  <data name="Dic_Invincible" xml:space="preserve">
+    <value>プレイヤーを無敵にする</value>
+  </data>
+  <data name="Dic_Item" xml:space="preserve">
+    <value>アイテムを増やす／減らす</value>
+  </data>
+  <data name="Dic_ItemMenu" xml:space="preserve">
+    <value>アイテム選択画面を表示</value>
+  </data>
+  <data name="Dic_ItemThrowOut" xml:space="preserve">
+    <value>アイテムを捨てる</value>
+  </data>
+  <data name="Dic_Job" xml:space="preserve">
+    <value>職業の変更</value>
+  </data>
+  <data name="Dic_JointWeapon" xml:space="preserve">
+    <value>主人公にモデルを取り付ける</value>
+  </data>
+  <data name="Dic_Jump" xml:space="preserve">
+    <value>ジャンプ(プレイヤーを物理エンジンで移動させる)</value>
+  </data>
+  <data name="Dic_Label" xml:space="preserve">
+    <value>ラベル</value>
+  </data>
+  <data name="Dic_LabelJump" xml:space="preserve">
+    <value>ラベルジャンプ</value>
+  </data>
+  <data name="Dic_Level" xml:space="preserve">
+    <value>レベルの増減</value>
+  </data>
+  <data name="Dic_Loop" xml:space="preserve">
+    <value>ループ開始</value>
+  </data>
+  <data name="Dic_LoopBreak" xml:space="preserve">
+    <value>ループから抜け出す</value>
+  </data>
+  <data name="Dic_LostMe" xml:space="preserve">
+    <value>敗北MEの変更</value>
+  </data>
+  <data name="Dic_MapName" xml:space="preserve">
+    <value>マップ名表示の変更</value>
+  </data>
+  <data name="Dic_Menu" xml:space="preserve">
+    <value>メニュー画面の表示の許可/禁止</value>
+  </data>
+  <data name="Dic_Message" xml:space="preserve">
+    <value>メッセージを表示</value>
+  </data>
+  <data name="Dic_MixChip" xml:space="preserve">
+    <value>合成方法の変更</value>
+  </data>
+  <data name="Dic_Money" xml:space="preserve">
+    <value>お金を増やす／減らす</value>
+  </data>
+  <data name="Dic_MoveDown" xml:space="preserve">
+    <value>下に移動</value>
+  </data>
+  <data name="Dic_MoveFrequency" xml:space="preserve">
+    <value>移動頻度の変更</value>
+  </data>
+  <data name="Dic_MoveImage" xml:space="preserve">
+    <value>イメージを移動</value>
+  </data>
+  <data name="Dic_MoveLD" xml:space="preserve">
+    <value>左下に移動</value>
+  </data>
+  <data name="Dic_MoveLeft" xml:space="preserve">
+    <value>左に移動</value>
+  </data>
+  <data name="Dic_MoveLU" xml:space="preserve">
+    <value>左上に移動</value>
+  </data>
+  <data name="Dic_MoveRandom" xml:space="preserve">
+    <value>ランダムに移動</value>
+  </data>
+  <data name="Dic_MoveRD" xml:space="preserve">
+    <value>右下に移動</value>
+  </data>
+  <data name="Dic_MoveRight" xml:space="preserve">
+    <value>右に移動</value>
+  </data>
+  <data name="Dic_MoveRoute" xml:space="preserve">
+    <value>移動ルートの設定</value>
+  </data>
+  <data name="Dic_MoveRU" xml:space="preserve">
+    <value>右上に移動</value>
+  </data>
+  <data name="Dic_MoveSpeed" xml:space="preserve">
+    <value>移動速度の変更</value>
+  </data>
+  <data name="Dic_MoveUp" xml:space="preserve">
+    <value>上に移動</value>
+  </data>
+  <data name="Dic_Mp" xml:space="preserve">
+    <value>HP/MPを回復／減らす</value>
+  </data>
+  <data name="Dic_Nickname" xml:space="preserve">
+    <value>二つ名の変更</value>
+  </data>
+  <data name="Dic_Opacity" xml:space="preserve">
+    <value>不透明度の変更</value>
+  </data>
+  <data name="Dic_Party" xml:space="preserve">
+    <value>パーティにキャストを参加／外す</value>
+  </data>
+  <data name="Dic_PartyOrder" xml:space="preserve">
+    <value>並び替えの許可/禁止</value>
+  </data>
+  <data name="Dic_PlayBgm" xml:space="preserve">
+    <value>BGMを演奏</value>
+  </data>
+  <data name="Dic_PlayBgs" xml:space="preserve">
+    <value>環境音を設定</value>
+  </data>
+  <data name="Dic_Player" xml:space="preserve">
+    <value>プレイヤー:</value>
+  </data>
+  <data name="Dic_PlayerMove" xml:space="preserve">
+    <value>プレイヤーを他の場所に移動</value>
+  </data>
+  <data name="Dic_PlayJingle" xml:space="preserve">
+    <value>ファンファーレを演奏</value>
+  </data>
+  <data name="Dic_PlayMovie" xml:space="preserve">
+    <value>ムービーの再生</value>
+  </data>
+  <data name="Dic_PlaySe" xml:space="preserve">
+    <value>効果音の再生</value>
+  </data>
+  <data name="Dic_PlaySe2" xml:space="preserve">
+    <value>SEの演奏</value>
+  </data>
+  <data name="Dic_PlSnap" xml:space="preserve">
+    <value>プレイヤーの位置をグリッドに吸着する</value>
+  </data>
+  <data name="Dic_PlSubgrp" xml:space="preserve">
+    <value>プレイヤーのサブグラフィックの表示状態変更</value>
+  </data>
+  <data name="Dic_Plugin" xml:space="preserve">
+    <value>プラグインコマンド</value>
+  </data>
+  <data name="Dic_PluginCont" xml:space="preserve">
+    <value>プラグインコマンド</value>
+  </data>
+  <data name="Dic_PlWalkTgt" xml:space="preserve">
+    <value>プレイヤーを座標指定して歩かせる</value>
+  </data>
+  <data name="Dic_Profile" xml:space="preserve">
+    <value>プロフィールの変更</value>
+  </data>
+  <data name="Dic_ReplaceStringVariable" xml:space="preserve">
+    <value>文字列の置き換え</value>
+  </data>
+  <data name="Dic_ResumeBgm" xml:space="preserve">
+    <value>BGMの再開</value>
+  </data>
+  <data name="Dic_Rot180" xml:space="preserve">
+    <value>180度回転</value>
+  </data>
+  <data name="Dic_RotateImage" xml:space="preserve">
+    <value>ピクチャの回転</value>
+  </data>
+  <data name="Dic_RotatePlXyz" xml:space="preserve">
+    <value>プレイヤーを回転させる</value>
+  </data>
+  <data name="Dic_RotateXyz" xml:space="preserve">
+    <value>イベントを回転させる</value>
+  </data>
+  <data name="Dic_RotLeft90" xml:space="preserve">
+    <value>左に90度回転</value>
+  </data>
+  <data name="Dic_RotLeftRight90" xml:space="preserve">
+    <value>左右どちらかに90度回転</value>
+  </data>
+  <data name="Dic_RotRandom" xml:space="preserve">
+    <value>ランダムに方向転換</value>
+  </data>
+  <data name="Dic_RotRight90" xml:space="preserve">
+    <value>右に90度回転</value>
+  </data>
+  <data name="Dic_Save" xml:space="preserve">
+    <value>セーブの許可/禁止</value>
+  </data>
+  <data name="Dic_SaveBgm" xml:space="preserve">
+    <value>BGMの保存</value>
+  </data>
+  <data name="Dic_ScreenColor" xml:space="preserve">
+    <value>画面の色を変える</value>
+  </data>
+  <data name="Dic_Script" xml:space="preserve">
+    <value>スクリプト</value>
+  </data>
+  <data name="Dic_Script2" xml:space="preserve">
+    <value>スクリプト</value>
+  </data>
+  <data name="Dic_SelfSwitch" xml:space="preserve">
+    <value>セルフスイッチのON/OFF</value>
+  </data>
+  <data name="Dic_SetCamera" xml:space="preserve">
+    <value>カメラの設定</value>
+  </data>
+  <data name="Dic_Shake" xml:space="preserve">
+    <value>画面を揺らす</value>
+  </data>
+  <data name="Dic_Shop" xml:space="preserve">
+    <value>お店の表示と結果の確認</value>
+  </data>
+  <data name="Dic_ShotEvent" xml:space="preserve">
+    <value>イベントを生成する</value>
+  </data>
+  <data name="Dic_ShowImage" xml:space="preserve">
+    <value>イメージを表示</value>
+  </data>
+  <data name="Dic_ShowMenu" xml:space="preserve">
+    <value>メニューの表示（イベント用フリーレイアウトを表示）</value>
+  </data>
+  <data name="Dic_ShowSave" xml:space="preserve">
+    <value>セーブ画面を表示</value>
+  </data>
+  <data name="Dic_Skill" xml:space="preserve">
+    <value>スキルを習得/忘れる</value>
+  </data>
+  <data name="Dic_Skip" xml:space="preserve">
+    <value>スキップ</value>
+  </data>
+  <data name="Dic_SpText" xml:space="preserve">
+    <value>イメージとして画面に文字を表示する</value>
+  </data>
+  <data name="Dic_State" xml:space="preserve">
+    <value>状態変化にする／治す</value>
+  </data>
+  <data name="Dic_Status" xml:space="preserve">
+    <value>キャストの能力値を上げる／下げる</value>
+  </data>
+  <data name="Dic_StepAnimeOff" xml:space="preserve">
+    <value>足踏みアニメOFF(キャストのモーションを変更)</value>
+  </data>
+  <data name="Dic_StepAnimeOn" xml:space="preserve">
+    <value>足踏みアニメON(キャストのモーションを変更)</value>
+  </data>
+  <data name="Dic_StopSe" xml:space="preserve">
+    <value>効果音の停止</value>
+  </data>
+  <data name="Dic_StringVariable" xml:space="preserve">
+    <value>文字列変数への代入</value>
+  </data>
+  <data name="Dic_Subgrp" xml:space="preserve">
+    <value>イベントのサブグラフィックの表示状態変更</value>
+  </data>
+  <data name="Dic_SwCamLock" xml:space="preserve">
+    <value>カメラ操作の許可/禁止</value>
+  </data>
+  <data name="Dic_SwDash" xml:space="preserve">
+    <value>プレイヤーのダッシュの許可/禁止</value>
+  </data>
+  <data name="Dic_Switch" xml:space="preserve">
+    <value>イベントスイッチのON/OFF</value>
+  </data>
+  <data name="Dic_SwitchOFF" xml:space="preserve">
+    <value>スイッチOFF</value>
+  </data>
+  <data name="Dic_SwitchOn" xml:space="preserve">
+    <value>スイッチON</value>
+  </data>
+  <data name="Dic_SwJump" xml:space="preserve">
+    <value>ジャンプの許可/禁止</value>
+  </data>
+  <data name="Dic_SwPlLock" xml:space="preserve">
+    <value>プレイヤー操作の許可/禁止</value>
+  </data>
+  <data name="Dic_Telop" xml:space="preserve">
+    <value>テロップを表示</value>
+  </data>
+  <data name="Dic_Terrain" xml:space="preserve">
+    <value>地形の情報を取得</value>
+  </data>
+  <data name="Dic_ThroughOn" xml:space="preserve">
+    <value>すり抜けON</value>
+  </data>
+  <data name="Dic_ThrougnOff" xml:space="preserve">
+    <value>すり抜けOFF</value>
+  </data>
+  <data name="Dic_Tileset" xml:space="preserve">
+    <value>タイルセットの変更</value>
+  </data>
+  <data name="Dic_Timer" xml:space="preserve">
+    <value>共通イベント呼び出し：タイマーの操作</value>
+  </data>
+  <data name="Dic_ToTitle" xml:space="preserve">
+    <value>タイトル画面に戻る</value>
+  </data>
+  <data name="Dic_Toward" xml:space="preserve">
+    <value>プレイヤーに近づく</value>
+  </data>
+  <data name="Dic_Tp" xml:space="preserve">
+    <value>TPの増減</value>
+  </data>
+  <data name="Dic_Transform" xml:space="preserve">
+    <value>敵キャラの変身</value>
+  </data>
+  <data name="Dic_TransOff" xml:space="preserve">
+    <value>透明化OFF</value>
+  </data>
+  <data name="Dic_TransOn" xml:space="preserve">
+    <value>透明化ON</value>
+  </data>
+  <data name="Dic_TurnAway" xml:space="preserve">
+    <value>プレイヤーの逆を向く</value>
+  </data>
+  <data name="Dic_TurnDown" xml:space="preserve">
+    <value>下を向く</value>
+  </data>
+  <data name="Dic_TurnLeft" xml:space="preserve">
+    <value>左を向く</value>
+  </data>
+  <data name="Dic_TurnRight" xml:space="preserve">
+    <value>右を向く</value>
+  </data>
+  <data name="Dic_TurnToward" xml:space="preserve">
+    <value>プレイヤーの方を向く</value>
+  </data>
+  <data name="Dic_TurnUp" xml:space="preserve">
+    <value>上を向く</value>
+  </data>
+  <data name="Dic_VarActor" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：アクター</value>
+  </data>
+  <data name="Dic_VarChar" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：キャラクター</value>
+  </data>
+  <data name="Dic_VarEnemy" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：モンスター</value>
+  </data>
+  <data name="Dic_VarGameData" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：ゲームデータ</value>
+  </data>
+  <data name="Dic_VarItem" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：アイテム</value>
+  </data>
+  <data name="Dic_VarPartyActorId" xml:space="preserve">
+    <value>変数：パーティアクターID</value>
+  </data>
+  <data name="Dic_VarRandom" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：乱数</value>
+  </data>
+  <data name="Dic_VarScript" xml:space="preserve">
+    <value>複雑な変数ボックスの操作：スクリプト</value>
+  </data>
+  <data name="Dic_VehicleBgm" xml:space="preserve">
+    <value>乗り物BGMの変更</value>
+  </data>
+  <data name="Dic_VehicleGraphic" xml:space="preserve">
+    <value>乗り物の画像変更</value>
+  </data>
+  <data name="Dic_VehiclePosition" xml:space="preserve">
+    <value>乗り物の位置設定</value>
+  </data>
+  <data name="Dic_VehicleRide" xml:space="preserve">
+    <value>乗り物の乗降</value>
+  </data>
+  <data name="Dic_Wait" xml:space="preserve">
+    <value>指定した時間待つ</value>
+  </data>
+  <data name="Dic_WaklAnimeOff" xml:space="preserve">
+    <value>歩行アニメOFF</value>
+  </data>
+  <data name="Dic_WalkAnimeOn" xml:space="preserve">
+    <value>歩行アニメON</value>
+  </data>
+  <data name="Dic_WalkInRows" xml:space="preserve">
+    <value>隊列歩行の許可/禁止</value>
+  </data>
+  <data name="Dic_WalkInRowsOrder" xml:space="preserve">
+    <value>隊列にキャストを追加する／順番を入れ替える</value>
+  </data>
+  <data name="Dic_Weapon" xml:space="preserve">
+    <value>武器を増やす／減らす</value>
+  </data>
+  <data name="Dic_WebBrowser" xml:space="preserve">
+    <value>ウェブブラウザを表示</value>
+  </data>
+  <data name="Dic_WindowColor" xml:space="preserve">
+    <value>表示するレイアウト（ウィンドウカラー）を変更</value>
+  </data>
+  <data name="Dic_WinMe" xml:space="preserve">
+    <value>勝利MEの変更</value>
+  </data>
+  <data name="Para_Dir" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="Para_Dir0to10" xml:space="preserve">
+    <value>方向（0：上、1：下、2：左、3：右、4：ランダム、5：このイベントの方、6：このイベントの逆、8：向いている方向、10：任意の角度）</value>
+  </data>
+  <data name="Para_Dir0to8" xml:space="preserve">
+    <value>方向（0：上、1：下、2：左、3：右、4：ランダム、5：このイベントの方、6：このイベントの逆、7：クルッと回転、8：任意の角度）</value>
+  </data>
+  <data name="Para_DirAtMoveEnd" xml:space="preserve">
+    <value>移動終了時の向き（0：任意の角度、1：進行方向）</value>
+  </data>
+  <data name="Para_DispCenter01" xml:space="preserve">
+    <value>表示中心位置（0：イベント、1：プレイヤー）</value>
+  </data>
+  <data name="Para_DispCenter0123" xml:space="preserve">
+    <value>表示中心位置（0：イベント、1：プレイヤー、2：画面、3：イメージ）</value>
+  </data>
+  <data name="Para_DisplayFlag" xml:space="preserve">
+    <value>表示フラグ</value>
+  </data>
+  <data name="Para_Dist" xml:space="preserve">
+    <value>距離</value>
+  </data>
+  <data name="Para_Effect" xml:space="preserve">
+    <value>エフェクト</value>
+  </data>
+  <data name="Para_Effect01" xml:space="preserve">
+    <value>効果（0：明るくする、1：暗くする）</value>
+  </data>
+  <data name="Para_EffectObj01" xml:space="preserve">
+    <value>効果対象（0：HP、1：MP）</value>
+  </data>
+  <data name="Para_EffectObj012345" xml:space="preserve">
+    <value>効果対象（0：最大HP、1：最大MP、2：攻撃力、3：防御力、4：魔力、5：素早さ）</value>
+  </data>
+  <data name="Para_EmergeMessageFlagSection" xml:space="preserve">
+    <value>1006：登場メッセージフラグセクション</value>
+  </data>
+  <data name="Para_Emote" xml:space="preserve">
+    <value>感情マーク</value>
+  </data>
+  <data name="Para_EnemyInfo" xml:space="preserve">
+    <value>モンスター情報</value>
+  </data>
+  <data name="Para_EnemyPosSection" xml:space="preserve">
+    <value>1001：モンスター位置セクション（中心からの相対値）</value>
+  </data>
+  <data name="Para_EquipItem" xml:space="preserve">
+    <value>装備アイテム</value>
+  </data>
+  <data name="Para_EquipPart" xml:space="preserve">
+    <value>装備箇所（0：武器、1：腕防具、2：頭防具、3：体防具、4：装飾品1、5：装飾品2）</value>
+  </data>
+  <data name="Para_Exp" xml:space="preserve">
+    <value>経験値（変数可）</value>
+  </data>
+  <data name="Para_FadeinTime" xml:space="preserve">
+    <value>フェードイン時間</value>
+  </data>
+  <data name="Para_FadeoutTime" xml:space="preserve">
+    <value>フェードアウト時間</value>
+  </data>
+  <data name="Para_Fix4Dir" xml:space="preserve">
+    <value>4方向に丸める</value>
+  </data>
+  <data name="Para_FixDir" xml:space="preserve">
+    <value>向きを固定</value>
+  </data>
+  <data name="Para_FlashTime" xml:space="preserve">
+    <value>フラッシュする時間</value>
+  </data>
+  <data name="Para_GameBack" xml:space="preserve">
+    <value>遠景</value>
+  </data>
+  <data name="Para_Graphic" xml:space="preserve">
+    <value>グラフィック</value>
+  </data>
+  <data name="Para_GraphicGuid" xml:space="preserve">
+    <value>画像Guid</value>
+  </data>
+  <data name="Para_HalfTrans" xml:space="preserve">
+    <value>半透明にする（無効：-1、有効：2139062143）</value>
+  </data>
+  <data name="Para_HideFade" xml:space="preserve">
+    <value>じわっと消す</value>
+  </data>
+  <data name="Para_Image" xml:space="preserve">
+    <value>イメージ</value>
+  </data>
+  <data name="Para_ImageNum" xml:space="preserve">
+    <value>イメージの管理番号</value>
+  </data>
+  <data name="Para_InfoType" xml:space="preserve">
+    <value>情報タイプ</value>
+  </data>
+  <data name="Para_InGroupNum" xml:space="preserve">
+    <value>グループ内番号</value>
+  </data>
+  <data name="Para_InheritGrownStatus" xml:space="preserve">
+    <value>成長したステータスの引継ぎ</value>
+  </data>
+  <data name="Para_InheritStatus" xml:space="preserve">
+    <value>前回参加時のステータスを引き継ぐ</value>
+  </data>
+  <data name="Para_Input" xml:space="preserve">
+    <value>代入（0：上書き、1：先頭に追加、2：最後尾に追加）</value>
+  </data>
+  <data name="Para_InputValue" xml:space="preserve">
+    <value>代入値</value>
+  </data>
+  <data name="Para_InterP" xml:space="preserve">
+    <value>補間（0：一定、1：加速、2：減速、3：加速～減速）</value>
+  </data>
+  <data name="Para_Item" xml:space="preserve">
+    <value>アイテム</value>
+  </data>
+  <data name="Para_ItemList" xml:space="preserve">
+    <value>アイテムリスト</value>
+  </data>
+  <data name="Para_ItemPrice" xml:space="preserve">
+    <value>アイテム価格</value>
+  </data>
+  <data name="Para_Job" xml:space="preserve">
+    <value>職業</value>
+  </data>
+  <data name="Para_LayoutGraphic" xml:space="preserve">
+    <value>レイアウト用グラフィック</value>
+  </data>
+  <data name="Para_LearnForget" xml:space="preserve">
+    <value>状態（0：習得、1：忘れる）</value>
+  </data>
+  <data name="Para_LevelSection" xml:space="preserve">
+    <value>1002：レベルセクション</value>
+  </data>
+  <data name="Para_MapCenterSection" xml:space="preserve">
+    <value>1000：マップ中心セクション</value>
+  </data>
+  <data name="Para_MapCenterX" xml:space="preserve">
+    <value>バトルマップの中心X座標</value>
+  </data>
+  <data name="Para_MapCenterZ" xml:space="preserve">
+    <value>バトルマップの中心Z座標</value>
+  </data>
+  <data name="Para_MapId" xml:space="preserve">
+    <value>マップID</value>
+  </data>
+  <data name="Para_MaxNumInput" xml:space="preserve">
+    <value>入力可能な最大文字数</value>
+  </data>
+  <data name="Para_MemberPosSection" xml:space="preserve">
+    <value>1005：メンバー位置セクション（中心からの相対値）</value>
+  </data>
+  <data name="Para_MoneyAmount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="Para_MoneyAmountVar" xml:space="preserve">
+    <value>金額（変数可）</value>
+  </data>
+  <data name="Para_Motion" xml:space="preserve">
+    <value>モーション</value>
+  </data>
+  <data name="Para_MotionGraphicName" xml:space="preserve">
+    <value>モーション画像名</value>
+  </data>
+  <data name="Para_MotionName" xml:space="preserve">
+    <value>モーション名</value>
+  </data>
+  <data name="Para_MoveRouteTime" xml:space="preserve">
+    <value>移動ルート, 移動時間</value>
+  </data>
+  <data name="Para_MoveSpeed" xml:space="preserve">
+    <value>移動スピード（‐3～3）</value>
+  </data>
+  <data name="Para_MovieName" xml:space="preserve">
+    <value>ムービー名</value>
+  </data>
+  <data name="Para_NewCastName" xml:space="preserve">
+    <value>新キャスト名</value>
+  </data>
+  <data name="Para_NoConvChoiceEnd" xml:space="preserve">
+    <value>変換不可分岐の終端</value>
+  </data>
+  <data name="Para_NoEmerge" xml:space="preserve">
+    <value>モンスターの出現の禁止</value>
+  </data>
+  <data name="Para_NoEmergeMessage" xml:space="preserve">
+    <value>モンスター登場メッセージを出さない</value>
+  </data>
+  <data name="Para_NoEscape" xml:space="preserve">
+    <value>逃げられない</value>
+  </data>
+  <data name="Para_NoGameover" xml:space="preserve">
+    <value>負けてもゲームオーバーにしない</value>
+  </data>
+  <data name="Para_NoMenu" xml:space="preserve">
+    <value>メニュー画面の表示の禁止</value>
+  </data>
+  <data name="Para_NoMotionChange" xml:space="preserve">
+    <value>モーションを変更しない</value>
+  </data>
+  <data name="Para_NoPan" xml:space="preserve">
+    <value>パン設定不可</value>
+  </data>
+  <data name="Para_NoPlayerTurn" xml:space="preserve">
+    <value>プレイヤーの向きの変更の禁止</value>
+  </data>
+  <data name="Para_NoSave" xml:space="preserve">
+    <value>セーブの禁止</value>
+  </data>
+  <data name="Para_NoSwap" xml:space="preserve">
+    <value>イベント位置の入れ替え不可</value>
+  </data>
+  <data name="Para_Nth" xml:space="preserve">
+    <value>N番目</value>
+  </data>
+  <data name="Para_NthInParty" xml:space="preserve">
+    <value>パーティのn番目（n-1）</value>
+  </data>
+  <data name="Para_NthPosX" xml:space="preserve">
+    <value>メンバーn位置X座標ｘ1000</value>
+  </data>
+  <data name="Para_NthPosZ" xml:space="preserve">
+    <value>メンバーn位置Z座標ｘ1000</value>
+  </data>
+  <data name="Para_Num" xml:space="preserve">
+    <value>個数</value>
+  </data>
+  <data name="Para_NumBtl" xml:space="preserve">
+    <value>戦闘回数</value>
+  </data>
+  <data name="Para_NumChoces" xml:space="preserve">
+    <value>選択肢の数</value>
+  </data>
+  <data name="Para_NumEnemy" xml:space="preserve">
+    <value>モンスターの数</value>
+  </data>
+  <data name="Para_NumEscape" xml:space="preserve">
+    <value>逃走回数</value>
+  </data>
+  <data name="Para_NumItem" xml:space="preserve">
+    <value>アイテム数</value>
+  </data>
+  <data name="Para_NumMember" xml:space="preserve">
+    <value>メンバーの数</value>
+  </data>
+  <data name="Para_NumSave" xml:space="preserve">
+    <value>セーブ回数</value>
+  </data>
+  <data name="Para_NumSteps" xml:space="preserve">
+    <value>歩数</value>
+  </data>
+  <data name="Para_NumVar" xml:space="preserve">
+    <value>個数（変数可）</value>
+  </data>
+  <data name="Para_NumWin" xml:space="preserve">
+    <value>勝利回数</value>
+  </data>
+  <data name="Para_OnMapGraphic" xml:space="preserve">
+    <value>マップ上グラフィック</value>
+  </data>
+  <data name="Para_Parallax" xml:space="preserve">
+    <value>地形情報（特定位置、タグ、タイル、リージョン）</value>
+  </data>
+  <data name="Para_ParallaxInfo" xml:space="preserve">
+    <value>取得情報（0：地形のリソース名、1：地形の高さ）</value>
+  </data>
+  <data name="Para_Bilboard" xml:space="preserve">
+    <value>ビルボード</value>
+  </data>
+  <data name="Para_Cast" xml:space="preserve">
+    <value>キャスト</value>
+  </data>
+  <data name="Para_Change" xml:space="preserve">
+    <value>変化</value>
+  </data>
+  <data name="Para_ChangeUpDown" xml:space="preserve">
+    <value>変化（0：上げる、1：下げる）</value>
+  </data>
+  <data name="Para_DisplayCast" xml:space="preserve">
+    <value>表示するキャスト</value>
+  </data>
+  <data name="Para_DisplayKeys" xml:space="preserve">
+    <value>入力画面に表示する文字</value>
+  </data>
+  <data name="Para_DisplayText" xml:space="preserve">
+    <value>表示するテキスト</value>
+  </data>
+  <data name="Para_EventSwitchName" xml:space="preserve">
+    <value>イベントスイッチ名</value>
+  </data>
+  <data name="Para_Flip" xml:space="preserve">
+    <value>左右反転</value>
+  </data>
+  <data name="Para_FromType" xml:space="preserve">
+    <value>代入元タイプ</value>
+  </data>
+  <data name="Para_IncrDecr01" xml:space="preserve">
+    <value>（0：増やす、1：減らす）</value>
+  </data>
+  <data name="Para_IncrDecr12" xml:space="preserve">
+    <value>（1：増やす、2：減らす）</value>
+  </data>
+  <data name="Para_ObjCast" xml:space="preserve">
+    <value>対象キャスト</value>
+  </data>
+  <data name="Para_ObjEvent" xml:space="preserve">
+    <value>対象イベント</value>
+  </data>
+  <data name="Para_ObjItem" xml:space="preserve">
+    <value>対象アイテム</value>
+  </data>
+  <data name="Para_ObjMonster" xml:space="preserve">
+    <value>対象モンスター</value>
+  </data>
+  <data name="Para_ShowWindow" xml:space="preserve">
+    <value>ウィンドウを表示</value>
+  </data>
+  <data name="Para_SpeakingCast" xml:space="preserve">
+    <value>喋らせるキャスト（0：キャスト1、1：キャスト2）</value>
+  </data>
+  <data name="Para_SpecifyOrN" xml:space="preserve">
+    <value>（0：指定、1：n番目）</value>
+  </data>
+  <data name="Para_UseMapLightSource" xml:space="preserve">
+    <value>マップの光源を使用する</value>
+  </data>
+  <data name="Para_VariableValue" xml:space="preserve">
+    <value>数値（変数可）</value>
+  </data>
+  <data name="Para_WindowPos" xml:space="preserve">
+    <value>ウィンドウ表示位置（0：上、1：中央、2：下）</value>
+  </data>
+  <data name="Para_JoinState" xml:space="preserve">
+    <value>参加状態（0：参加、1：外す）</value>
+  </data>
+  <data name="Para_PhysX" xml:space="preserve">
+    <value>X物理エンジン移動</value>
+  </data>
+  <data name="Para_PhysY" xml:space="preserve">
+    <value>Y物理エンジン移動</value>
+  </data>
+  <data name="Para_PhysZ" xml:space="preserve">
+    <value>Z物理エンジン移動</value>
+  </data>
+  <data name="Para_PlayMovie" xml:space="preserve">
+    <value>再生する動画</value>
+  </data>
   <data name="PluginName" xml:space="preserve">
     <value>JSON - BAKIN conversion plugin</value>
+  </data>
+  <data name="Para_PosX" xml:space="preserve">
+    <value>X位置（変数可）</value>
+  </data>
+  <data name="Para_PosY" xml:space="preserve">
+    <value>Y位置（変数可）</value>
+  </data>
+  <data name="Para_Rand" xml:space="preserve">
+    <value>乱数</value>
+  </data>
+  <data name="Para_RandMax" xml:space="preserve">
+    <value>乱数最大値</value>
+  </data>
+  <data name="Para_RandMin" xml:space="preserve">
+    <value>乱数最小値</value>
+  </data>
+  <data name="Para_Range" xml:space="preserve">
+    <value>効果範囲</value>
+  </data>
+  <data name="Para_Rendering" xml:space="preserve">
+    <value>レンダリング</value>
+  </data>
+  <data name="Para_RenderingName" xml:space="preserve">
+    <value>レンダリング名</value>
+  </data>
+  <data name="Para_Rot" xml:space="preserve">
+    <value>回転（変数可）</value>
+  </data>
+  <data name="Para_RotDir" xml:space="preserve">
+    <value>回転方向</value>
+  </data>
+  <data name="Para_ScreenColor" xml:space="preserve">
+    <value>画面色</value>
+  </data>
+  <data name="Para_ScreenTone" xml:space="preserve">
+    <value>画面色調</value>
+  </data>
+  <data name="Para_ScrollTelop" xml:space="preserve">
+    <value>テロップをスクロールさせる</value>
+  </data>
+  <data name="Para_ShakeStrength" xml:space="preserve">
+    <value>ゆれの強さ（0：弱、1：中、2：強）</value>
+  </data>
+  <data name="Para_ShakeTime" xml:space="preserve">
+    <value>ゆらす時間</value>
+  </data>
+  <data name="Para_ShowDamage" xml:space="preserve">
+    <value>ダメージ数字を画面に表示する</value>
+  </data>
+  <data name="Para_ShowFade" xml:space="preserve">
+    <value>じわっと表示</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="smile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\smile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Para_SmoothTurn" xml:space="preserve">
+    <value>向きを滑らかに変化させる</value>
+  </data>
+  <data name="Para_SpecDir" xml:space="preserve">
+    <value>向きを指定（0：変更しない、1：上向き、2：下向き、3：左向き、4：右向き）</value>
+  </data>
+  <data name="Para_Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="Para_Spot" xml:space="preserve">
+    <value>マップGuid|スポットID|X位置（変数可）|Y位置|Z位置（変数可）</value>
+  </data>
+  <data name="Para_State" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Para_StateAddRemove" xml:space="preserve">
+    <value>状態（0：状態変化にする、1：状態変化を治す）</value>
+  </data>
+  <data name="Para_StateChange" xml:space="preserve">
+    <value>状態変化</value>
+  </data>
+  <data name="Para_StateOnOff" xml:space="preserve">
+    <value>状態(0：オン、1：オフ）</value>
+  </data>
+  <data name="Para_Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="Para_StatusType" xml:space="preserve">
+    <value>ステータスタイプ</value>
+  </data>
+  <data name="Para_StepBack" xml:space="preserve">
+    <value>一歩後退</value>
+  </data>
+  <data name="Para_StepOver" xml:space="preserve">
+    <value>段差を越える</value>
+  </data>
+  <data name="Para_StopSeGuid" xml:space="preserve">
+    <value>停止するSEのGuid、空の場合はすべてのSE</value>
+  </data>
+  <data name="Para_StopStuck" xml:space="preserve">
+    <value>移動できなかった場合は中断</value>
+  </data>
+  <data name="Para_StrVarName" xml:space="preserve">
+    <value>文字列変数名</value>
+  </data>
+  <data name="Para_StrVarNum" xml:space="preserve">
+    <value>文字列変数の番号</value>
+  </data>
+  <data name="Para_SubjobToJob" xml:space="preserve">
+    <value>副業を職業にする</value>
+  </data>
+  <data name="Para_Tempo" xml:space="preserve">
+    <value>テンポ</value>
+  </data>
+  <data name="Para_Text" xml:space="preserve">
+    <value>テキスト</value>
+  </data>
+  <data name="Para_ThisEventMove" xml:space="preserve">
+    <value>現在はこのイベントが移動します</value>
+  </data>
+  <data name="Para_Through" xml:space="preserve">
+    <value>通行可能でない地形への出入り許可</value>
+  </data>
+  <data name="Para_ThroughEvent" xml:space="preserve">
+    <value>イベントをすり抜ける</value>
+  </data>
+  <data name="Para_Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="Para_Timer" xml:space="preserve">
+    <value>タイマー</value>
+  </data>
+  <data name="Para_TimeToChange" xml:space="preserve">
+    <value>変更までにかかる時間</value>
+  </data>
+  <data name="Para_TimeToRot" xml:space="preserve">
+    <value>移動にかける時間</value>
+  </data>
+  <data name="Para_TimeUnit" xml:space="preserve">
+    <value>時間単位（時間、分、秒）</value>
+  </data>
+  <data name="Para_Tone" xml:space="preserve">
+    <value>色調</value>
+  </data>
+  <data name="Para_Trans" xml:space="preserve">
+    <value>透明化</value>
+  </data>
+  <data name="Para_Troop" xml:space="preserve">
+    <value>敵グループ</value>
+  </data>
+  <data name="Para_TypeKeys1" xml:space="preserve">
+    <value>あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽっ</value>
+  </data>
+  <data name="Para_TypeKeys2" xml:space="preserve">
+    <value>アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポッ</value>
+  </data>
+  <data name="Para_UseLayout" xml:space="preserve">
+    <value>使用するレイアウト</value>
+  </data>
+  <data name="Para_VarCharStatus" xml:space="preserve">
+    <value>変数処理：キャラステータス</value>
+  </data>
+  <data name="Para_VarGameData" xml:space="preserve">
+    <value>変数処理：ゲームデータ</value>
+  </data>
+  <data name="Para_VarNum" xml:space="preserve">
+    <value>変数ボックスの番号</value>
+  </data>
+  <data name="Para_VarNumToParallaxInfo" xml:space="preserve">
+    <value>取得先変数の番号</value>
+  </data>
+  <data name="Para_Vol" xml:space="preserve">
+    <value>ボリューム</value>
+  </data>
+  <data name="Para_WaitComplete" xml:space="preserve">
+    <value>完了するまで待つ</value>
+  </data>
+  <data name="Para_WaitExecEvent" xml:space="preserve">
+    <value>実行先のイベントが完了するまで待つ</value>
+  </data>
+  <data name="Para_WaitMotion" xml:space="preserve">
+    <value>モーションが完了するまでモーション変化させない</value>
+  </data>
+  <data name="Para_WaitProcess" xml:space="preserve">
+    <value>ウエイト処理</value>
+  </data>
+  <data name="Para_Weapon" xml:space="preserve">
+    <value>武器</value>
+  </data>
+  <data name="Para_Weather" xml:space="preserve">
+    <value>天候</value>
+  </data>
+  <data name="Para_WindowColor" xml:space="preserve">
+    <value>ウィンドウ色</value>
+  </data>
+  <data name="Para_WithoutEquipItem" xml:space="preserve">
+    <value>装備中のアイテムを含めない</value>
+  </data>
+  <data name="Para_ZoomX" xml:space="preserve">
+    <value>X拡大率</value>
+  </data>
+  <data name="Para_ZoomY" xml:space="preserve">
+    <value>Y拡大率</value>
+  </data>
+  <data name="Para_Event" xml:space="preserve">
+    <value>イベント</value>
+  </data>
+  <data name="Para_Expression" xml:space="preserve">
+    <value>表情</value>
+  </data>
+  <data name="Para_VarName" xml:space="preserve">
+    <value>変数名</value>
+  </data>
+  <data name="Para_Calc" xml:space="preserve">
+    <value>計算</value>
+  </data>
+  <data name="Para_JumpDist" xml:space="preserve">
+    <value>ジャンプ距離</value>
+  </data>
+  <data name="Para_Target" xml:space="preserve">
+    <value>ターゲット</value>
+  </data>
+  <data name="Para_Value" xml:space="preserve">
+    <value>数値</value>
+  </data>
+  <data name="Para_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Para_NoConvChoiceElse" xml:space="preserve">
+    <value>変換不可分岐のその他分岐</value>
+  </data>
+  <data name="Para_TimerSec" xml:space="preserve">
+    <value>タイマー秒数</value>
+  </data>
+  <data name="Para_TimerVarName" xml:space="preserve">
+    <value>タイマー変数名</value>
+  </data>
+  <data name="Para_BtlStateObj" xml:space="preserve">
+    <value>対象（1：パーティ、２：モンスター）</value>
+  </data>
+  <data name="Log_ConvertEnd" xml:space="preserve">
+    <value>Conversion completed</value>
+  </data>
+  <data name="Log_ConvertStart" xml:space="preserve">
+    <value>Conversion started</value>
+  </data>
+  <data name="Log_Do" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Log_DontDo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Log_InputFolder" xml:space="preserve">
+    <value>Input folder:</value>
+  </data>
+  <data name="Log_LoadDatabase" xml:space="preserve">
+    <value>Loading the database of your RPG Maker game project...</value>
+  </data>
+  <data name="Log_NoConvertComment" xml:space="preserve">
+    <value>Export non-convertable commands as comments:</value>
+  </data>
+  <data name="Log_NumMaps" xml:space="preserve">
+    <value>Number of map data file(s) to be converted:</value>
+  </data>
+  <data name="Log_OutputFolder" xml:space="preserve">
+    <value>Export folder:</value>
+  </data>
+  <data name="Log_ReviceComment" xml:space="preserve">
+    <value>Export an alert comment above commands that need to be modified:</value>
+  </data>
+  <data name="Log_StartCommon" xml:space="preserve">
+    <value>Common event conversion started</value>
+  </data>
+  <data name="Log_StartEvents" xml:space="preserve">
+    <value>Started event data conversion</value>
+  </data>
+  <data name="Log_StartMap" xml:space="preserve">
+    <value>Started map data conversion:</value>
+  </data>
+  <data name="Log_EndMap" xml:space="preserve">
+    <value>Completed map data conversion</value>
+  </data>
+  <data name="Log_NoDatabaseExists" xml:space="preserve">
+    <value>Database file(s) not found:</value>
+  </data>
+  <data name="Log_NoMapExists" xml:space="preserve">
+    <value>Map data for conversion not found</value>
   </data>
 </root>
