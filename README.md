@@ -73,13 +73,13 @@
 
 ## Download
 
-You can download Json2BakinPlugin dll file and dependent dlls from [here](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v1.2.0).
+You can download Json2BakinPlugin dll file and dependent dlls from [here](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v0.0.2).
 
 ## How To Use
 
-1. Extract downloaded zip file. Place Json2BakinPlugin folder under the Plugin folder of Bakin installation. 
+1. Extract downloaded zip file. Place Json2BakinPlugin folder under the "plugins" folder of Bakin installation. Place en\Json2BakinPlugin.resources.dll under the "plugins\en" folder of Bakin installation.
   > **Note**
-  > If you installed Bakin via Steam, the Plugin folder can be usually found at C:\Program Files (x86)\Steam\steamapps\common\Bakin
+  > If you installed Bakin via Steam, the "plugins" folder can be usually found at C:\Program Files (x86)\Steam\steamapps\common\Bakin
 
 2. Start Bakin and open any game project.
 
@@ -371,13 +371,13 @@ MV (MZ)'s consecutive same-direction movement commands (walk up, down, right, le
 
 ## ダウンロード
 
-Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v1.2.0)からダウンロードできます。
+Json2Bakinプラグインのdllと関連するdllsは[ここ](https://github.com/galanti3/Json2BakinPlugin/releases/tag/v0.0.2)からダウンロードできます。
 
 ## 使い方
 
-1. ダウンロードしたzipファイルを解凍して、できた「Json2BakinPlugin」フォルダを丸ごとBakinアプリケーションフォルダ内の「Plugin」フォルダの中に入れてください。 
+1. ダウンロードしたzipファイルを解凍して、できた「Json2BakinPlugin」フォルダを丸ごとBakinアプリケーションフォルダ内の「plugins」フォルダの中に入れてください。 
   > **Note**
-  > Steamを通してBakinをインストールした場合、「Plugin」フォルダは通常「C:\Program Files (x86)\Steam\steamapps\common\Bakin」内にあるはずです。
+  > Steamを通してBakinをインストールした場合、「plugins」フォルダは通常「C:\Program Files (x86)\Steam\steamapps\common\BAKIN」内にあるはずです。
 
 2. Bakinを開始し、ゲームプロジェクトを開いてください。
 
