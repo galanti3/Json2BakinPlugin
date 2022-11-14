@@ -69,7 +69,7 @@
 * Exports unsupported RPG Maker commands as comments
 * Event-wise conversion: all pages contained in an MV event can be imported to a Bakin event at once.
 * Adds an alert comment prior to a command which requires modification
-* Human-friendly: Appends a human-readable description to each Bakin command and parameter (currently Japanese only)
+* Human-friendly: Appends a human-readable description to each Bakin command and parameter
 
 ## Download
 
@@ -152,148 +152,148 @@ MV (MZ)'s consecutive same-direction movement commands (walk up, down, right, le
 ## Command Conversion List
 <h3>Basic Commands</h3>
 
-|MV(MZ) Codes|Bakin Codes|Description(JP)|Description(EN), to be filled|
+|MV(MZ) Codes|Bakin Codes|Description(JP)|Description(EN)|
 |---------------:|-----------|-------------------|--------|
-|000|`CLOSE`|クローズタグ||
-|101|`DIALOGUE`|会話を表示||
-|101-1|`MESSAGE`|メッセージを表示|Not used|
-|102|`CHOICES`|選択肢から選んで結果を確認||
-|103|`CHANGE_STRING_VARIABLE`|文字列入力||
-|104|`ITEMMENU`|アイテム選択画面を表示||
-|105|`TELOP`|テロップを表示||
-|108|`COMMENT`|注釈||
-|109|N/A|スキップ||
-|111-0|`IFSWITCH`|イベントスイッチの確認||
-|111-1|`IFVARIABLE`|変数ボックスの確認：数値||
-|111-2|`IFSWITCH`|変数ボックスの確認：スイッチ||
-|111-3|`IFVARIABLE`|条件分岐：タイマー||
-|111-4|`IFPARTY`|パーティに含まれるキャストの確認||
-|111-5|`IF_STRING_VARIABLE`|文字列変数の確認||
-|111-6|N/A|条件分岐：アクタークラス、スキル、状態||
-|111-7|`IFITEM`|メンバーが持っているアイテムの確認||
-|111-8|`BTL_IFMONSTER`|バトル中のモンスターのチェック||
-|111-9|N/A|条件分岐：キャラクターの向き||
-|111-10|`IFMONEY`|持っているお金の確認||
-|111-11|`IFITEM`|パーティが持っているアイテムの確認||
-|111-12|`IFITEM`|パーティが持っている武器の確認||
-|111-13|`IFITEM`|パーティが持っている防具の確認||
-|111-14|N/A|条件分岐：押されているボタン||
-|111-15|N/A|条件分岐：スクリプト||
-|111-16|N/A|条件分岐：乗り物||
-|112|`LOOP`|ループ開始||
-|113|`BREAK`|ループから抜け出す||
-|115|`END`|イベント終了||
-|117|`EXEC`|共通イベント呼び出し||
-|118|N/A|ラベル||
-|119|N/A|ラベルジャンプ||
-|121|`SWITCH`|イベントスイッチのON/OFF||
-|122-0|`HLVARIABLE`|複雑な変数ボックスの操作||
-|122-1|`HLVARIABLE`|複雑な変数ボックスの操作：乱数||
-|122-2|`HLVARIABLE`|複雑な変数ボックスの操作：アイテム||
-|122-3|`HLVARIABLE`|複雑な変数ボックスの操作：アクター||
-|122-4|`HLVARIABLE`|複雑な変数ボックスの操作：モンスター||
-|122-5|`HLVARIABLE`|複雑な変数ボックスの操作：キャラクター||
-|122-6|N/A|変数：パーティアクターID||
-|122-7|`HLVARIABLE`|複雑な変数ボックスの操作：ゲームデータ||
-|122-8|N/A|複雑な変数ボックスの操作：スクリプト||
-|123|`SWITCH`|セルフスイッチのON/OFF||
-|124|`VARIABLE`|変数ボックスの操作<br>(コモンイベント「カウントダウンタイマー」が必要)|Common Event (Timer) needed|
-|125|`MONEY`|お金を増やす／減らす||
-|126|`ITEM`|アイテムを増やす／減らす||
-|127|`ITEM`|武器を増やす／減らす||
-|128|`ITEM`|防具を増やす／減らす||
-|129|`PARTY`|パーティにキャストを参加／外す||
-|132|N/A|戦闘BGMの変更||
-|133|N/A|勝利MEの変更||
-|134|`SW_SAVE`|セーブの許可/禁止||
-|135|`SW_MENU`|メニュー画面の表示の許可/禁止||
-|136|`SW_ENCOUNTING`|モンスターの出現の許可/禁止||
-|137|N/A|並び替えの許可/禁止||
-|138|`CHANGE_LAYOUT`|表示するレイアウト（ウィンドウカラー）を変更||
-|139|N/A|敗北MEの変更||
-|140|N/A|乗り物BGMの変更||
-|201|`PLMOVE`|プレイヤーを他の場所に移動||
-|202|N/A|乗り物の位置設定||
-|203|`MOVE`|イベントを瞬間移動||
-|204|`CAM_ANIMATION`|カメラの設定||
-|205|`MOVEROUTE`|移動ルートの設定||
-|206|N/A|乗り物の乗降||
-|211|`EVHIDE`|イベントを透明にする／透明から戻す||
-|212|`EFFECT`|エフェクトの表示||
-|213|`EMOTE`|感情マークを表示||
-|214|`DESTROY_EVENT`|イベント削除||
-|216|`WALK_IN_ROWS`|隊列歩行の許可/禁止||
-|217|N/A|隊列メンバーの集合||
-|221|`SCREEN_FADE`|画面を暗くする||
-|222|`SCREEN_FADE`|画面を明るくする||
-|223|`SCREEN_COLOR`|画面の色を変える||
-|224|`SCREEN_FLASH`|画面をフラッシュ||
-|225|`SCREEN_SHAKE`|画面を揺らす||
-|230|`WAIT`|指定した時間待つ||
-|231|`SPPICTURE`|イメージを表示||
-|232|`SPMOVE`|イメージを移動||
-|233|N/A|ピクチャの回転||
-|234|N/A|ピクチャの色調変更||
-|235|`SPHIDE`|イメージを消す||
-|236|`CHANGE_RENDER`|レンダリング設定の変更||
-|241|`PLAYBGM`|BGMを演奏||
-|242|`PLAYBGM`|BGMをフェードアウト||
-|243|N/A|BGMの保存||
-|244|N/A|BGMの再開||
-|245|`PLAYBGS`|環境音を設定||
-|246|`PLAYBGS`|環境音をフェードアウト||
-|249|`PLAYJINGLE`|ファンファーレを演奏||
-|250|`PLAYSE`|効果音の再生||
-|251|`STOPSE`|効果音の停止||
-|261|`PLAYMOVIE`|ムービーの再生||
-|281|N/A|マップ名表示の変更||
-|282|N/A|タイルセットの変更||
-|283|`CHANGE_RENDER`|戦闘背景の変更||
-|284|`CHANGE_RENDER`|遠景の変更||
-|285|`GET_TERRAIN`|地形の情報を取得||
-|301|`BOSSBATTLE`|バトル実行と結果の確認||
-|302|`SHOP`|お店の表示と結果の確認||
-|303|`CHANGE_HERO_NAME`|パーティメンバーの名前を変更||
-|311|`CHG_HPMP`|HP/MPを回復／減らす||
-|312|`CHG_HPMP`|HP/MPを回復／減らす||
-|313|`CHG_STTAILM`|状態変化にする／治す||
-|314|`FULLRECOV`|パーティを全回復||
-|315|`CHG_EXP`|経験値を増やす／減らす||
-|316|N/A|レベルの増減||
-|317|`STATUS`|キャストの能力値を上げる／下げる||
-|318|`CHG_SKILL`|スキルを習得/忘れる||
-|319|`EQUIP`|キャストの装備を変更する||
-|320|`STRING_VARIABLE`|文字列変数への代入||
-|321|`CHANGE_JOB`|職業の変更||
-|322|`PLGRAPHIC`|キャストのグラフィックを変える||
-|323|N/A|乗り物の画像変更||
-|324|N/A|二つ名の変更||
-|325|N/A|プロフィールの変更||
-|326|N/A|TPの増減||
-|331|`BTL_HEAL`|バトルキャストのHP・MPを回復／減らす||
-|332|`BTL_HEAL`|バトルキャストのHP・MPを回復／減らす||
-|342|N/A|敵キャラのTP増減|||
-|333|`BTL_STATUS`|バトルキャストを状態変化にする／治す||
-|334|N/A|敵キャラの全回復||
-|335|`BTL_APPEAR`|モンスターを出現させる||
-|336|N/A|敵キャラの変身||
-|337|`EFFECT`|エフェクトの表示||
-|339|`BTL_ACTION`|バトルキャストの状態を指定する||
-|340|`BTL_STOP`|バトルの強制終了||
-|351|`SHOW_SCORE_BOARD`|メニューの表示（イベント用フリーレイアウトを表示）||
-|352|`SAVE`|セーブ画面を表示||
-|353|N/A|ゲームオーバー||
-|354|N/A|タイトル画面に戻る||
-|355|`COMMENT`|スクリプト||
-|356|`COMMENT`|プラグインコマンド||
-|357|`COMMENT`|プラグインコマンド||
-|402|`BRANCH`|選択肢||
-|403|`BRANCH`|選択肢キャンセル時||
-|404|`CLOSE`|選択肢終了||
-|411|`ELSE`|条件分岐それ以外||
-|413|`ENDLOOP`|ループ終了||
-|602|`ELSE`|バトル結果：逃げた時||
-|603|`ELSE`|バトル結果：負けた時||
+|000|`CLOSE`|クローズタグ|Close tag|
+|101|`DIALOGUE`|会話を表示|Display dialogue|
+|101-1|`MESSAGE`|メッセージを表示|Display message|
+|102|`CHOICES`|選択肢から選んで結果を確認|Display choices and check result|
+|103|`CHANGE_STRING_VARIABLE`|文字列入力|Input string|
+|104|`ITEMMENU`|アイテム選択画面を表示|Display item menu|
+|105|`TELOP`|テロップを表示|Show telop|
+|108|`COMMENT`|注釈|Comment|
+|109|N/A|スキップ|Skip|
+|111-0|`IFSWITCH`|イベントスイッチの確認|Check event switch|
+|111-1|`IFVARIABLE`|変数ボックスの確認：数値|Check variable: value|
+|111-2|`IFSWITCH`|変数ボックスの確認：スイッチ|Check variable: switch|
+|111-3|`IFVARIABLE`|条件分岐：タイマー|Branch: timer|
+|111-4|`IFPARTY`|パーティに含まれるキャストの確認|Check cast in party|
+|111-5|`IF_STRING_VARIABLE`|文字列変数の確認|Check string variable|
+|111-6|N/A|条件分岐：アクタークラス、スキル、状態|Branch: actor class, skill, state|
+|111-7|`IFITEM`|メンバーが持っているアイテムの確認|Check item member possesses|
+|111-8|`BTL_IFMONSTER`|バトル中のモンスターのチェック|Check monster in battle|
+|111-9|N/A|条件分岐：キャラクターの向き|Branch: check character orientation|
+|111-10|`IFMONEY`|持っているお金の確認|Check money|
+|111-11|`IFITEM`|パーティが持っているアイテムの確認|Check party item|
+|111-12|`IFITEM`|パーティが持っている武器の確認|Check party weapon|
+|111-13|`IFITEM`|パーティが持っている防具の確認|CHeck party armor|
+|111-14|N/A|条件分岐：押されているボタン|Branch: button pressed|
+|111-15|N/A|条件分岐：スクリプト|Branch: script|
+|111-16|N/A|条件分岐：乗り物|Branch: vehicle|
+|112|`LOOP`|ループ開始|Start loop|
+|113|`BREAK`|ループから抜け出す|Break loop|
+|115|`END`|イベント終了|End event|
+|117|`EXEC`|共通イベント呼び出し|Execute common event|
+|118|N/A|ラベル|Label|
+|119|N/A|ラベルジャンプ|Label jump|
+|121|`SWITCH`|イベントスイッチのON/OFF|Event switch on/off|
+|122-0|`HLVARIABLE`|複雑な変数ボックスの操作|Advanced variable operation|
+|122-1|`HLVARIABLE`|複雑な変数ボックスの操作：乱数|Advanced variable op: random|
+|122-2|`HLVARIABLE`|複雑な変数ボックスの操作：アイテム|Advanced variable op: item|
+|122-3|`HLVARIABLE`|複雑な変数ボックスの操作：アクター|Advanced variable op: actor|
+|122-4|`HLVARIABLE`|複雑な変数ボックスの操作：モンスター|Advanced variable op: monster|
+|122-5|`HLVARIABLE`|複雑な変数ボックスの操作：キャラクター|Advanced variable op: character|
+|122-6|N/A|変数：パーティアクターID|Party actor ID|
+|122-7|`HLVARIABLE`|複雑な変数ボックスの操作：ゲームデータ|Advanced variable op: game data|
+|122-8|N/A|複雑な変数ボックスの操作：スクリプト|Advanced variable op: script|
+|123|`SWITCH`|セルフスイッチのON/OFF|Self switch on/off|
+|124|`VARIABLE`|変数ボックスの操作<br>(コモンイベント「カウントダウンタイマー」が必要)|Variable<br>(Common Event "Timer" required)|
+|125|`MONEY`|お金を増やす／減らす|Change money|
+|126|`ITEM`|アイテムを増やす／減らす|Change item quantity|
+|127|`ITEM`|武器を増やす／減らす|Change weapon quantity|
+|128|`ITEM`|防具を増やす／減らす|Change armor quantity|
+|129|`PARTY`|パーティにキャストを参加／外す|Add/remove party cast|
+|132|N/A|戦闘BGMの変更|Change battle BGM|
+|133|N/A|勝利MEの変更|Change win ME|
+|134|`SW_SAVE`|セーブの許可/禁止|Enable/disable save|
+|135|`SW_MENU`|メニュー画面の表示の許可/禁止|Enable/disable menu|
+|136|`SW_ENCOUNTING`|モンスターの出現の許可/禁止|Enable/disable monster appearing|
+|137|N/A|並び替えの許可/禁止|Enable/disable change party order|
+|138|`CHANGE_LAYOUT`|表示するレイアウト（ウィンドウカラー）を変更|CHange layout (window color) to display|
+|139|N/A|敗北MEの変更|Change lost ME|
+|140|N/A|乗り物BGMの変更|Change vehicle BGM|
+|201|`PLMOVE`|プレイヤーを他の場所に移動|Teleport player|
+|202|N/A|乗り物の位置設定|Teleport vehicle|
+|203|`MOVE`|イベントを瞬間移動|Teleport event|
+|204|`CAM_ANIMATION`|カメラの設定|camera setting|
+|205|`MOVEROUTE`|移動ルートの設定|Set movement route|
+|206|N/A|乗り物の乗降|Get off/on vehicle|
+|211|`EVHIDE`|イベントを透明にする／透明から戻す|Event transparency on/off|
+|212|`EFFECT`|エフェクトの表示|Show effect|
+|213|`EMOTE`|感情マークを表示|Show emote|
+|214|`DESTROY_EVENT`|イベント削除|Delete event|
+|216|`WALK_IN_ROWS`|隊列歩行の許可/禁止|Enable/disable walk in rows|
+|217|N/A|隊列メンバーの集合|Gather party member|
+|221|`SCREEN_FADE`|画面を暗くする|Fadeout screen|
+|222|`SCREEN_FADE`|画面を明るくする|Fadein screen|
+|223|`SCREEN_COLOR`|画面の色を変える|Change screen color|
+|224|`SCREEN_FLASH`|画面をフラッシュ|Flash screen|
+|225|`SCREEN_SHAKE`|画面を揺らす|Shake screen|
+|230|`WAIT`|指定した時間待つ|Wait|
+|231|`SPPICTURE`|イメージを表示|Show image|
+|232|`SPMOVE`|イメージを移動|Move image|
+|233|N/A|ピクチャの回転|Rotate image|
+|234|N/A|ピクチャの色調変更|Change image tone|
+|235|`SPHIDE`|イメージを消す|Delete image|
+|236|`CHANGE_RENDER`|レンダリング設定の変更|Change render setting|
+|241|`PLAYBGM`|BGMを演奏|Play BGM|
+|242|`PLAYBGM`|BGMをフェードアウト|Fadeout BGM|
+|243|N/A|BGMの保存|Save BGM|
+|244|N/A|BGMの再開|Resume BGM|
+|245|`PLAYBGS`|環境音を設定|Play BGS|
+|246|`PLAYBGS`|環境音をフェードアウト|Fadeout BGS|
+|249|`PLAYJINGLE`|ファンファーレを演奏|Play jingle|
+|250|`PLAYSE`|効果音の再生|Play SE|
+|251|`STOPSE`|効果音の停止|Stop SE|
+|261|`PLAYMOVIE`|ムービーの再生|Play movie|
+|281|N/A|マップ名表示の変更|On/off Map name display|
+|282|N/A|タイルセットの変更|Change tileset|
+|283|`CHANGE_RENDER`|戦闘背景の変更|Change battle background|
+|284|`CHANGE_RENDER`|遠景の変更|Change parallax|
+|285|`GET_TERRAIN`|地形の情報を取得|Get terrain info|
+|301|`BOSSBATTLE`|バトル実行と結果の確認|Start battle and check result|
+|302|`SHOP`|お店の表示と結果の確認|Display shop and check result|
+|303|`CHANGE_HERO_NAME`|パーティメンバーの名前を変更|Change party member name|
+|311|`CHG_HPMP`|HP/MPを回復／減らす|Change HP/MP|
+|312|`CHG_HPMP`|HP/MPを回復／減らす|Change HP/MP|
+|313|`CHG_STTAILM`|状態変化にする／治す|Add/remove state|
+|314|`FULLRECOV`|パーティを全回復|Fully recover all members|
+|315|`CHG_EXP`|経験値を増やす／減らす|Change experience value|
+|316|N/A|レベルの増減|Change level|
+|317|`STATUS`|キャストの能力値を上げる／下げる|Change cast ability value|
+|318|`CHG_SKILL`|スキルを習得/忘れる|Learn/forget skill|
+|319|`EQUIP`|キャストの装備を変更する|change cast's equipment|
+|320|`STRING_VARIABLE`|文字列変数への代入|input to string variable|
+|321|`CHANGE_JOB`|職業の変更|Change job|
+|322|`PLGRAPHIC`|キャストのグラフィックを変える|Change cast's graphic|
+|323|N/A|乗り物の画像変更|Change vehicle's graphic|
+|324|N/A|二つ名の変更|Change nickname|
+|325|N/A|プロフィールの変更|Chane profile|
+|326|N/A|TPの増減|Change TP|
+|331|`BTL_HEAL`|バトルキャストのHP・MPを回復／減らす|Change battle cast's HP/MP|
+|332|`BTL_HEAL`|バトルキャストのHP・MPを回復／減らす|Change battle cast's HP/MP|
+|342|N/A|敵キャラのTP増減|Change enemy's TP|
+|333|`BTL_STATUS`|バトルキャストを状態変化にする／治す|Add/remove battlecast's state|
+|334|N/A|敵キャラの全回復|Fully recover all enemies|
+|335|`BTL_APPEAR`|モンスターを出現させる|Make monsters appear|
+|336|N/A|敵キャラの変身|Transform enemy|
+|337|`EFFECT`|エフェクトの表示|Show effect|
+|339|`BTL_ACTION`|バトルキャストの状態を指定する|Specify battle cast's state|
+|340|`BTL_STOP`|バトルの強制終了|Terminate battle|
+|351|`SHOW_SCORE_BOARD`|メニューの表示（イベント用フリーレイアウトを表示）|Display menu(using free layout)|
+|352|`SAVE`|セーブ画面を表示|Display save|
+|353|N/A|ゲームオーバー|Gameover|
+|354|N/A|タイトル画面に戻る|Go to title|
+|355|`COMMENT`|スクリプト|Script|
+|356|`COMMENT`|プラグインコマンド|Plugin command|
+|357|`COMMENT`|プラグインコマンド|Plugin command|
+|402|`BRANCH`|選択肢|Branch|
+|403|`BRANCH`|選択肢キャンセル時|Branch if cancel|
+|404|`CLOSE`|選択肢終了|Branch end|
+|411|`ELSE`|条件分岐それ以外|Branch else|
+|413|`ENDLOOP`|ループ終了|End loop|
+|602|`ELSE`|バトル結果：逃げた時|Battle result: if escaped|
+|603|`ELSE`|バトル結果：負けた時|Battle result: if lost|
 
 <h3>Move Route Commands: Player (upper) or command running event (lower) only</h3>
 
