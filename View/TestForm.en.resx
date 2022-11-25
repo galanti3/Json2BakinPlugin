@@ -174,7 +174,7 @@
     <value>Bakin Event Data Export Foldera</value>
   </data>
   <data name="transformButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>575, 848</value>
+    <value>541, 919</value>
   </data>
   <data name="transformButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 55</value>
@@ -203,11 +203,17 @@
   <data name="alertCommentCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>94, 505</value>
   </data>
+  <data name="alertCommentCheckBox.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>500, 48</value>
+  </data>
+  <data name="alertCommentCheckBox.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 64</value>
+  </data>
   <data name="alertCommentCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>724, 28</value>
+    <value>500, 64</value>
   </data>
   <data name="alertCommentCheckBox.Text" xml:space="preserve">
-    <value>Append an alert comment above commands that need to be modified</value>
+    <value>Append an alert comment to incompletely converted commands</value>
   </data>
   <data name="jsonFolderTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>94, 291</value>
@@ -225,13 +231,40 @@
     <value>514, 43</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1035, 938</value>
+    <value>1049, 950</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ver. 0.0.3 by galanti</value>
   </data>
   <data name="logTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 553</value>
+    <value>94, 625</value>
   </data>
   <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>1076, 258</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>676, 447</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 145</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Output file name</value>
+  </data>
+  <data name="fileNameMapNameCheck.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 28</value>
+  </data>
+  <data name="fileNameMapNameCheck.Text" xml:space="preserve">
+    <value>Map name</value>
+  </data>
+  <data name="fileNameMapNumCheck.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 28</value>
+  </data>
+  <data name="fileNameMapNumCheck.Text" xml:space="preserve">
+    <value>Map number</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1281, 1147</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>14, 11, 14, 11</value>

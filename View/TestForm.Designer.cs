@@ -44,14 +44,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.logTextBox = new System.Windows.Forms.RichTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fileNameMapNameCheck = new System.Windows.Forms.CheckBox();
+            this.fileNameMapNumCheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.ErrorImage = global::Json2BakinPlugin.Properties.Resources.smile;
             this.pictureBox1.Image = global::Json2BakinPlugin.Properties.Resources.smile;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.InitialImage = global::Json2BakinPlugin.Properties.Resources.smile;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
@@ -60,7 +64,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // jsonSelector
             // 
@@ -142,10 +145,33 @@
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ReadOnly = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.fileNameMapNameCheck);
+            this.groupBox1.Controls.Add(this.fileNameMapNumCheck);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // fileNameMapNameCheck
+            // 
+            resources.ApplyResources(this.fileNameMapNameCheck, "fileNameMapNameCheck");
+            this.fileNameMapNameCheck.Name = "fileNameMapNameCheck";
+            this.fileNameMapNameCheck.UseVisualStyleBackColor = true;
+            this.fileNameMapNameCheck.CheckedChanged += new System.EventHandler(this.fileNameMapNameCheck_CheckedChanged);
+            // 
+            // fileNameMapNumCheck
+            // 
+            resources.ApplyResources(this.fileNameMapNumCheck, "fileNameMapNumCheck");
+            this.fileNameMapNumCheck.Name = "fileNameMapNumCheck";
+            this.fileNameMapNumCheck.UseVisualStyleBackColor = true;
+            this.fileNameMapNumCheck.CheckedChanged += new System.EventHandler(this.fileNameMapNumCheck_CheckedChanged);
+            // 
             // TestForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
@@ -164,6 +190,8 @@
             this.Name = "TestForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +214,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox logTextBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox fileNameMapNameCheck;
+        private System.Windows.Forms.CheckBox fileNameMapNumCheck;
     }
 }

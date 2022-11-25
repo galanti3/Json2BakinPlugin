@@ -133,9 +133,9 @@ namespace Json2BakinPlugin.Services
             }
         }
 
-        public void ExportMap(string path)
+        public void ExportMap(string path, bool isMapNumber, bool isMapName)
         {
-            string mapName = _loadService.GetMapName();
+            string mapName = _loadService.GetMapName(isMapNumber, isMapName);
             foreach (MvEvent ev in _loadService.GetMapEvents())
             {
                 if (ev != null)

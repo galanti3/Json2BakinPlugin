@@ -98,6 +98,7 @@
     <Compile Include="Controller\Json2BakinPluginController.cs" />
     <Compile Include="Models\BakinCode.cs" />
     <Compile Include="Models\CountDownTimer.cs" />
+    <Compile Include="Models\MvDatabaseItem.cs" />
     <Compile Include="Models\MvBakinCodeDictionary.cs" />
     <Compile Include="Models\MvAudio.cs" />
     <Compile Include="Models\MvCode.cs" />
@@ -136,10 +137,12 @@
     <EmbeddedResource Include="Properties\Resources.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TestForm.en.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

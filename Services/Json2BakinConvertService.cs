@@ -278,11 +278,11 @@ namespace Json2BakinPlugin.Services
                     AddCommandNoparams(p, "SAVE");
                     break;
                 case "PLWALK": //1-13
-                    var plSteps = code.Params == null ? "1" : code.Params.Last();
+                    var plSteps = code.Params.Count == 0 ? "1" : code.Params.Last();
                     AddCommandWalk(p, code.code, plSteps);
                     break;
                 case "WALK": //1-13
-                    string steps = code.Params == null ? "1" : code.Params.Last();
+                    string steps = code.Params.Count == 0 ? "1" : code.Params.Last();
                     AddCommandWalk(p, code.code, steps);
                     break;
                 case "PLWALK_TGT": //converted from consecutive player move commands
@@ -1696,7 +1696,14 @@ namespace Json2BakinPlugin.Services
         private void AddCommandTimer(List<BakinParameter> p, List<string> paras)
         {
             AddCommandTemporaryVariable(p, "TimerTrigger", paras[0], 0);
-            AddCommandTemporaryVariable(p, "TimerInfo", paras[1], 0);
+            if (paras[0] == "0")
+            {
+                AddCommandTemporaryVariable(p, "TimerInfo", paras[1], 0);
+            }
+            else
+            {
+                AddCommandTemporaryVariable(p, "TimerInfo", "0", 0);
+            }
         }
 
         private void AddCommandNoparams(List<BakinParameter> p, string command)
@@ -1716,7 +1723,7 @@ namespace Json2BakinPlugin.Services
             }
             _moveChar = paras[0];
             //list data are the same as follwoing move route command.
-            paras[1] = Regex.Replace(paras[1], "\"list\":\\[\\{.*?\\}\\]", "\"list\":\"\"");
+            paras[1] = Regex.Replace(paras[1], ".*\\\"repeat", "{\"list\":\"\",\"repeat");
             MvEventMoveRouteHeader route = JsonSerializer.Deserialize<MvEventMoveRouteHeader>(paras[1]);
             _isStopStuck = route.skippable ? "1" : "0";
 
@@ -1807,7 +1814,14 @@ namespace Json2BakinPlugin.Services
 
         private void AddCommandGraphic(List<BakinParameter> p, List<string> paras)
         {
-            AddCommandNoticeComment(p, Cvt_NeedRevise, Para_Graphic + "(" + paras[0] + ")");
+            if(paras.Count > 0)
+            {
+                AddCommandNoticeComment(p, Cvt_NeedRevise, Para_Graphic + "(" + paras[0] + ")");
+            }
+            else
+            {
+                AddCommandNoticeComment(p, Cvt_NeedRevise, Para_Graphic + "(???)");
+            }
             AddCommandHeader(p, "GRAPHIC");
             p.Add(new BakinParameter("Guid", Para_ObjCast + "Guid"));  //mapchip guid
             p.Add(new BakinParameter("文字列", Para_MotionGraphicName));
@@ -1931,14 +1945,14 @@ namespace Json2BakinPlugin.Services
             AddCommandHeader(p, "HLVARIABLE");
             p.Add(new BakinParameter("整数", ""));
             p.Add(new BakinParameter("変数", Para_VarNum, "N:" + varname)); //type":name N=numeric
-                                                                          //if (type < 0)
-                                                                          //{
-                                                                          //    p.Add(new BakinParameter("整数", ""));
-                                                                          //    p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
-                                                                          //}
-                                                                          //else //game data
-                                                                          //{
-                                                                          //nummember = 31, gold = 4, playtime(hour) = 8
+            //if (type < 0)
+            //{
+            //    p.Add(new BakinParameter("整数", ""));
+            //    p.Add(new BakinParameter("整数", Para_InfoType, ToStr(id)));
+            //}
+            //else //game data
+            //{
+            //nummember = 31, gold = 4, playtime(hour) = 8
             p.Add(new BakinParameter("整数", Para_DataType, ToStr(id)));
             //}
             p.Add(new BakinParameter("整数", Para_Calc0to7, ToStr(op))); //0=overwrite 1=add 2=sub 3=mult 4=div 6=mod 7=floor
@@ -1967,7 +1981,7 @@ namespace Json2BakinPlugin.Services
             else if (_indentType.Last() == "IGNORE")
             {
                 //close tag for non-converted command.
-                AddCommandNoticeComment(p, Cvt_NoConvert, "変換不可分岐の終端");
+                AddCommandNoticeComment(p, Cvt_NoConvert, Para_NoConvChoiceEnd);
             }
             _indentType.RemoveAt(_indentType.Count - 1);
         }

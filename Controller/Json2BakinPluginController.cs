@@ -63,6 +63,10 @@ namespace Json2BakinPlugin.Controller
         
         public bool IsAddNonConvertedComment { get; set; } = true;
 
+        public bool IsMapNumber { get; set; } = true;
+
+        public bool IsMapName { get; set; } = true;
+
         private bool uiEnabled;
         public bool UiEnabled
         {
@@ -106,15 +110,18 @@ namespace Json2BakinPlugin.Controller
             _convertService.SetReviceCommentMode(IsAddReviceComment);
             foreach (string file in files)
             {
-                LogText += "----" + Log_StartMap + file.Split('\\').Last() + "----\n";
-                _loadService.DeserializeMapData(file, file.Split('\\').Last().Replace("Map", "").Replace(".json", ""));
-                _exportService.Preprocess();
-                _exportService.RegisterBakinCodes();
-                _exportService.Postprocess();
-                LogText += Log_StartEvents + "\n";
-                _exportService.ExportMap(BakinFolder);
-                LogText += Log_EndMap + "\n";
-                mvMaps.Add(_loadService.GetMap());
+                if(!file.Contains("MapInfos"))
+                {
+                    LogText += "----" + Log_StartMap + file.Split('\\').Last() + "----\n";
+                    _loadService.DeserializeMapData(file, file.Split('\\').Last().Replace("Map", "").Replace(".json", ""));
+                    _exportService.Preprocess();
+                    _exportService.RegisterBakinCodes();
+                    _exportService.Postprocess();
+                    LogText += Log_StartEvents + "\n";
+                    _exportService.ExportMap(BakinFolder, (!IsMapNumber && !IsMapName) ? true : IsMapNumber, IsMapName);
+                    LogText += Log_EndMap + "\n";
+                    mvMaps.Add(_loadService.GetMap());
+                }
             }
 
             //common event

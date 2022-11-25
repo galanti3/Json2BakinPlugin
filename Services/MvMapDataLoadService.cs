@@ -3,6 +3,8 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Json2BakinPlugin.Models;
+using System.Dynamic;
+using System;
 
 namespace Json2BakinPlugin.Services
 {
@@ -19,20 +21,25 @@ namespace Json2BakinPlugin.Services
         {
             MvDatabase database = new MvDatabase();
             List<string> dataList = new List<string> { "Actors", "Animations", "Armors", "Classes", "Enemies", "Items", 
-                                                    "Skills", "States", "Troops", "Weapons"};
+                                                    "Skills", "States", "Troops", "Weapons", "MapInfos"};
             List<string> noExist = new List<string>();
             string text;
-            List<string> list;
+            List<string> names;
+            List<string> ids;
 
-            foreach(string data in dataList)
+            foreach (string data in dataList)
             {
                 try
                 {
                     string file =  (data == "Switches" || data == "Variables") ? "System" : data;
                     text = System.IO.File.ReadAllText(path + "/" + file + ".json");
-                    list = Regex.Matches(text, @",""name"":.*?[^\\]""").Cast<Match>()
+                    names = Regex.Matches(text, @",""name"":.*?[^\\]""").Cast<Match>()
                                             .Select(d => d.Value.Replace(@",""name"":", "").Replace("\"", ""))
                                             .ToList();
+                    ids = Regex.Matches(text, @"""id"":.*?[^\\]""").Cast<Match>()
+                                            .Select(d => d.Value.Replace(@"""id"":", "").Replace(",", "").Replace("\"", ""))
+                                            .ToList();
+                    List<MvDatabaseItem> list = ids.Zip(names, (id, name) => new MvDatabaseItem { Id = int.Parse(id), Name = name }).ToList();
                     database.GetType().GetProperty(data).SetValue(database, list);
                 }
                 catch
@@ -44,7 +51,7 @@ namespace Json2BakinPlugin.Services
             {
                 //switches and variables
                 text = System.IO.File.ReadAllText(path + "/SYSTEM.json");
-                list = JsonSerializer.Deserialize<List<string>>(Regex.Matches(text, @",""switches"":\[.*?\]").Cast<Match>()
+                List<string> list = JsonSerializer.Deserialize<List<string>>(Regex.Matches(text, @",""switches"":\[.*?\]").Cast<Match>()
                                         .Select(d => d.Value.Replace(@",""switches"":", "")).ToList().First());
                 database.Switches = list;
                 list = JsonSerializer.Deserialize<List<string>>(Regex.Matches(text, @",""variables"":\[.*?\]").Cast<Match>()
@@ -73,16 +80,18 @@ namespace Json2BakinPlugin.Services
             return _map.events;
         }
 
-        public string GetMapName()
+        public string GetMapName(bool isMapNumber, bool isMapName)
         {
-            if (_map.displayName != null && _map.displayName != "")
+            string otext = "";
+            if (isMapNumber || (!isMapNumber && (_map.displayName == null || _map.displayName == "")))
             {
-                return _map.displayName;
+                otext += "Map" + _map.IdString;
             }
-            else
+            if (isMapName && _map.displayName != null && _map.displayName != "")
             {
-                return "Map" + _map.IdString;
+                otext += (isMapNumber ? "_" : "") + _map.displayName;
             }
+            return otext;
         }
         
         public List<MvCommonEvent> GetCommonEvents()
@@ -99,6 +108,7 @@ namespace Json2BakinPlugin.Services
             MergeInterCodeParams(jsondata.events);
             _map = jsondata;
             _map.IdString = id;
+            _map.displayName = _database.MapInfos.Where(d => d.Id == int.Parse(id)).First().Name;
         }
 
         public void DeserializeCommonData(string file)
@@ -172,43 +182,58 @@ namespace Json2BakinPlugin.Services
 
         private string StringifyParameters(string text)
         {
-            List<string> paraendStrings = new List<string> { "]},", "]}]" }; //parameter endpos for middle of list or last of list
             string outtext = "";
             int idx0 = 0;
             int idx1 = text.IndexOf("\"parameters\":"); //parameter start pos
-
-            List<int> idx2Cand = new List<int> { text.IndexOf(paraendStrings[0]), text.IndexOf(paraendStrings[1]) };
-            int idx2 = idx2Cand.Min() == -1 ? idx2Cand.Max() : idx2Cand.Min(); //parameter end pos
-
+            if (idx1 == -1)
+                return text;
             while (true)
             {
                 outtext += text.Substring(idx0, idx1 - idx0); //skipped part;
                 if (idx1 == text.Length) break;
 
-                outtext += "\"parameters\":\""; //"parameters":" 
-                                                //inside parameter. add a backslash to quote and backslash characters.
-                for (int i = idx1 + 13; i < idx2; i++)
-                {
-                    outtext += text[i] == '"' ? "\\\"" : (text[i] == '\\' ? "\\\\" : text[i].ToString());
-                }
+                outtext += "\"parameters\":\"["; //"parameters":" 
+                                                 //inside parameter. add a backslash to quote and backslash characters.
+                var parastr = GetParameterChunkAsString(text.Substring(idx1 + 13));
+                outtext += parastr.Item1;
                 //close parameter.
                 outtext += "]\"";
                 //next chunk start.
-                idx0 = idx2 + 1;
-                idx1 = text.Substring(idx0, text.Length - idx0).IndexOf("\"parameters\":") + idx0;
+                idx0 = idx1 + 13 + parastr.Item2 + 1;
+                idx1 = text.Substring(idx0).IndexOf("\"parameters\":") + idx0;
                 if (idx1 - idx0 == -1)
                 {
                     idx1 = text.Length;
                 }
-                else
-                {
-                    string substr = text.Substring(idx1, text.Length - idx1);
-                    idx2Cand = new List<int> { substr.IndexOf(paraendStrings[0]), substr.IndexOf(paraendStrings[1]) };
-                    idx2 = (idx2Cand.Min() == -1 ? idx2Cand.Max() : idx2Cand.Min()) + idx1;
-                }
             }
             return outtext;
         }
+
+        private Tuple<string, int> GetParameterChunkAsString(string text)
+        {
+            string otext = "";
+            //parameters are the string within "[]" blackets.
+            int cnt = 0;
+            int idx = 1; //0 should be "["
+            while(true)
+            {
+                if (text[idx] == '[')
+                {
+                    cnt++;
+                }
+                else if (text[idx] == ']')
+                {
+                    if(--cnt < 0)
+                    {
+                        break;
+                    }
+                }
+                otext += text[idx] == '"' ? "\\\"" : (text[idx] == '\\' ? "\\\\" : text[idx].ToString());
+                idx++;
+            }
+            return new Tuple<string, int>(otext, idx);
+        }
+
         #endregion
     }
 }

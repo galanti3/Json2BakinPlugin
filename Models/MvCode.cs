@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Json2BakinPlugin.Models
 {
@@ -75,17 +76,10 @@ namespace Json2BakinPlugin.Models
                 code = int.Parse(paras[0].Substring(paras[0].IndexOf(":") + 1));
                 paras.RemoveAt(0);
                 string oldpara = string.Join(",", paras);
-                int bgn = oldpara.IndexOf(":"); //colon of "parameters"
-                int end = oldpara.IndexOf(",\"indent\":");
-                if (end - bgn < 0)
-                {
-                    Params = null;
-                }
-                else
-                {
-                    parameters = oldpara.Substring(bgn + 1, end - (bgn + 1));
-                    ExtractEventCodeParameters();
-                }
+                oldpara = Regex.Replace(oldpara, ",?\\\"indent\\\":[a-z0-9]*,?", "");
+                oldpara = Regex.Replace(oldpara, "\\\"parameters\\\":", "");
+                parameters = oldpara.Substring(0, oldpara.Length - 2);
+                ExtractEventCodeParameters();
             }
         }
 

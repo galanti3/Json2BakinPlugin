@@ -28,6 +28,9 @@ namespace Json2BakinPlugin
             transformButton.DataBindings.Add("Enabled", controller, "UiEnabled");
             jsonSelector.DataBindings.Add("Enabled", controller, "UiEnabled");
             bakinSelector.DataBindings.Add("Enabled", controller, "UiEnabled");
+
+            fileNameMapNameCheck.DataBindings.Add("Checked", controller, "IsMapName");
+            fileNameMapNumCheck.DataBindings.Add("Checked", controller, "IsMapNumber");
         }
         #endregion
 
@@ -66,6 +69,26 @@ namespace Json2BakinPlugin
             controller.IsAddReviceComment = alertCommentCheckBox.Checked;
         }
 
+        private void fileNameMapNumCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.IsMapNumber = fileNameMapNumCheck.Checked;
+            if (!controller.IsMapNumber && !controller.IsMapName)
+            {
+                fileNameMapNumCheck.Checked = true;
+                controller.IsMapNumber = fileNameMapNumCheck.Checked;
+            }
+        }
+
+        private void fileNameMapNameCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            controller.IsMapName = fileNameMapNameCheck.Checked;
+            if (!controller.IsMapNumber && !controller.IsMapName)
+            {
+                fileNameMapNumCheck.Checked = true;
+                controller.IsMapNumber = fileNameMapNumCheck.Checked;
+            }
+        }
+
         private void transformButton_Click(object sender, EventArgs e)
         {
             controller.UiEnabled = false;
@@ -74,9 +97,5 @@ namespace Json2BakinPlugin
         }
         #endregion
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
