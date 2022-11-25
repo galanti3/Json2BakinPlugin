@@ -77,7 +77,7 @@ You can download Json2BakinPlugin dll file and dependent dlls from [here](https:
 
 ## How To Use
 
-1. Extract downloaded zip file. Place Json2BakinPlugin folder under the "plugins" folder of Bakin installation. Place en\Json2BakinPlugin.resources.dll under the "plugins\en" folder of Bakin installation.
+1. Extract downloaded zip file. Place Json2BakinPlugin folder under the "plugins" folder of Bakin installation.
   > **Note**
   > If you installed Bakin via Steam, the "plugins" folder can be usually found at C:\Program Files (x86)\Steam\steamapps\common\BAKIN
 
